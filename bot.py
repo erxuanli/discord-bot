@@ -41,7 +41,7 @@ async def help(ctx):
     embed.add_field(name="**;sheeesh**", value="completely useless cmd", inline=False)
     embed.add_field(name="**;melih**", value="completely useless cmd", inline=False)
     embed.set_footer(
-        text="Thanks for using this useless bot xD and greeting to all weebs xD")
+        text="Thanks for using this useless bot xD and greetings to all weebs xD")
 
     await ctx.send(embed=embed)
 
