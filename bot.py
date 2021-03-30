@@ -5,10 +5,7 @@ import random
 import datetime
 import math
 
-intents = discord.Intents.default()
-intents.members = True
-
-client = commands.Bot(command_prefix=";", help_command=None, intents=intents)
+client = commands.Bot(command_prefix=";", help_command=None)
 
 
 @client.event
