@@ -5,6 +5,8 @@ import random
 import datetime
 import math
 
+import keep_alive
+
 client = commands.Bot(command_prefix=";", help_command=None)
 
 
@@ -228,4 +230,5 @@ async def on_message(message):
     await client.process_commands(message)
 
 
+keep_alive.keep_alive()
 client.run("ODI1NDIzMTkzNjk0Nzk3ODM0.YF9tQA.99TXXuF3hPpRgIPMdNMI-G63w4s")
