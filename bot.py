@@ -11,7 +11,7 @@ client = commands.Bot(command_prefix=";", help_command=None)
 @client.event
 async def on_ready():
     await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(name=";help || Stalking PolarBear4u#7025"))
-    print("Connected")
+    print(f"{client.user}: Connected")
 
 
 # ---------------------- general commands -----------------------------------
@@ -42,6 +42,8 @@ async def help(ctx):
                     value="returns the current time", inline=False)
     embed.add_field(name="**;quote**",
                     value="returns random quote", inline=False)
+    embed.add_field(name="**;ascii**", value="converts to ascii / unicode", inline=False)
+    embed.add_field(name="**;morse**", value="converts to morse code", inline=False)
     embed.add_field(name="**;pi**", value="returns pi", inline=False)
     embed.add_field(name="**;dice [min] [max]**",
                     value="random number", inline=False)
@@ -92,6 +94,46 @@ async def quote(ctx):
     ind = random.randint(0, len(quotes) - 1)
     await ctx.send(quotes[ind])
 
+
+@client.command()
+async def morse(ctx, *sentence):
+    MORSE_CODE_DICT = {'A': '.-', 'B': '-...',
+                       'C': '-.-.', 'D': '-..', 'E': '.',
+                       'F': '..-.', 'G': '--.', 'H': '....',
+                       'I': '..', 'J': '.---', 'K': '-.-',
+                       'L': '.-..', 'M': '--', 'N': '-.',
+                       'O': '---', 'P': '.--.', 'Q': '--.-',
+                       'R': '.-.', 'S': '...', 'T': '-',
+                       'U': '..-', 'V': '...-', 'W': '.--',
+                       'X': '-..-', 'Y': '-.--', 'Z': '--..',
+                       '1': '.----', '2': '..---', '3': '...--',
+                       '4': '....-', '5': '.....', '6': '-....',
+                       '7': '--...', '8': '---..', '9': '----.',
+                       '0': '-----', ', ': '--..--', '.': '.-.-.-',
+                       '?': '..--..', '/': '-..-.', '-': '-....-',
+                       '(': '-.--.', ')': '-.--.-'}
+    res = ""
+    for word in sentence:
+        for char in word:            
+            res += MORSE_CODE_DICT[char.upper()]
+            res += " "
+
+    await ctx.send(res)
+
+
+@client.command()
+async def ascii(ctx, *sentence):
+    res = ""
+    for word in sentence:
+        for char in word:
+            res += str(ord(char))
+            res += "/"
+        res = res[:-1]
+        res += " | "
+    res = res[:-3]
+    await ctx.send(res)
+
+
 # --------------------- math commands ----------------------------------------
 
 
@@ -124,7 +166,7 @@ async def on_message(message):
     # ---------------------- happy responses ---------------------------------
     if "happy birthday" in message.content.lower():
         await message.channel.send("Happpppyyyyyy Birrrthhhhdayyyy!!!")
-    
+
     # ---------------------- troll flori resposes ----------------------------
     if message.content.startswith("mh"):
         await message.channel.send("troll")
@@ -140,7 +182,7 @@ async def on_message(message):
         await message.channel.send("troll")
     if message.content.startswith("mbj"):
         await message.channel.send("troll")
-        
+
     await client.process_commands(message)
 
 
