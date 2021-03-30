@@ -44,6 +44,7 @@ async def help(ctx):
                     value="returns random quote", inline=False)
     embed.add_field(name="**;ascii**", value="converts to ascii / unicode", inline=False)
     embed.add_field(name="**;morse**", value="converts to morse code", inline=False)
+    embed.add_field(name="**;demorse**", value="converts morse code back", inline=False)
     embed.add_field(name="**;pi**", value="returns pi", inline=False)
     embed.add_field(name="**;dice [min] [max]**",
                     value="random number", inline=False)
@@ -80,6 +81,15 @@ async def ping(ctx):
 @client.command()
 async def time(ctx):
     await ctx.send(datetime.datetime.now())
+
+# ---------------------- vc commands -------------------------------------
+@client.command()
+async def join(ctx):
+    channel = ctx.author.voice.channel
+    await channel.connect()
+@client.command()
+async def leave(ctx):
+    await ctx.voice_client.disconnect()
 
 # --------------------- fun commands --------------------------------------
 
@@ -119,6 +129,34 @@ async def morse(ctx, *sentence):
             res += " "
 
     await ctx.send(res)
+
+@client.command()
+async def demorse(ctx, *sentence):
+    MORSE_CODE_DICT = {'A': '.-', 'B': '-...',
+                       'C': '-.-.', 'D': '-..', 'E': '.',
+                       'F': '..-.', 'G': '--.', 'H': '....',
+                       'I': '..', 'J': '.---', 'K': '-.-',
+                       'L': '.-..', 'M': '--', 'N': '-.',
+                       'O': '---', 'P': '.--.', 'Q': '--.-',
+                       'R': '.-.', 'S': '...', 'T': '-',
+                       'U': '..-', 'V': '...-', 'W': '.--',
+                       'X': '-..-', 'Y': '-.--', 'Z': '--..',
+                       '1': '.----', '2': '..---', '3': '...--',
+                       '4': '....-', '5': '.....', '6': '-....',
+                       '7': '--...', '8': '---..', '9': '----.',
+                       '0': '-----', ', ': '--..--', '.': '.-.-.-',
+                       '?': '..--..', '/': '-..-.', '-': '-....-',
+                       '(': '-.--.', ')': '-.--.-'}
+    div = dict()
+    for key, value in MORSE_CODE_DICT.items():
+        div[value] = key
+
+    res = ""
+    for mchar in sentence:
+        res += div[mchar].lower()
+
+    await ctx.send(res)
+    
 
 
 @client.command()
