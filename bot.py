@@ -18,7 +18,7 @@ client = discord.Client()
 @client.event
 async def on_ready():
         # Setting `Playing ` status
-    await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(name="Stalking PolarBear4u#7025"))
+    await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(name=";help || Stalking PolarBear4u#7025"))
 
     # # Setting `Streaming ` status
     # await client.change_presence(activity=discord.Streaming(name="My Stream", url=my_twitch_url))
