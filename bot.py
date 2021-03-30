@@ -115,5 +115,33 @@ async def sheeesh(ctx):
 async def melih(ctx):
     await ctx.send("i'm gaaaaaayy xD")
 
+# ----------------------- non cmd responses ----------------------------------
+
+
+@client.event
+async def on_message(message):
+
+    # ---------------------- happy responses ---------------------------------
+    if "happy birthday" in message.content.lower():
+        await message.channel.send("Happpppyyyyyy Birrrthhhhdayyyy!!!")
+    
+    # ---------------------- troll flori resposes ----------------------------
+    if message.content.startswith("mh"):
+        await message.channel.send("troll")
+    if message.content.startswith("ms"):
+        await message.channel.send("troll")
+    if message.content.startswith("mwork"):
+        await message.channel.send("troll")
+    if message.content.startswith("mcd"):
+        await message.channel.send("troll")
+    if message.content.startswith("mdaily"):
+        await message.channel.send("troll")
+    if message.content.startswith("mvote"):
+        await message.channel.send("troll")
+    if message.content.startswith("mbj"):
+        await message.channel.send("troll")
+        
+    await client.process_commands(message)
+
 
 client.run("ODI1NDIzMTkzNjk0Nzk3ODM0.YF9tQA.99TXXuF3hPpRgIPMdNMI-G63w4s")
