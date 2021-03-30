@@ -57,6 +57,12 @@ async def ping(ctx):
 async def time(ctx):
     await ctx.send(datetime.datetime.now())
 
+# --------------------- fun commands --------------------------------------
+@client.command()
+async def randomuser(ctx):
+    await ctx.send(random.choice(ctx.guild.members))
+
+
 # --------------------- math commands ----------------------------------------
 @client.command()
 async def pi(ctx):
