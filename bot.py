@@ -5,7 +5,11 @@ import random
 import datetime
 import math
 
-client = commands.Bot(command_prefix=";", help_command=None)
+intents = discord.Intents.default()
+intents.members = True
+
+client = commands.Bot(command_prefix=";", help_command=None, intents=intents)
+
 
 @client.event
 async def on_ready():
@@ -30,24 +34,33 @@ async def help(ctx):
         url="https://static.wikia.nocookie.net/the-muse-list/images/f/fd/Albedo_Pout.jpg")
     embed.add_field(name="**;help**",
                     value="That's this command xD", inline=False)
-    embed.add_field(name="**;creator**", value="creator of this useless bot", inline=False)
-    embed.add_field(name="**;prefix**", value="returns the current prefix", inline=False)
-    embed.add_field(name="**;avatar [user]**", value="returns the avatar of the mentioned user", inline=False)
+    embed.add_field(name="**;creator**",
+                    value="creator of this useless bot", inline=False)
+    embed.add_field(name="**;prefix**",
+                    value="returns the current prefix", inline=False)
+    embed.add_field(
+        name="**;avatar [user]**", value="returns the avatar of the mentioned user", inline=False)
     embed.add_field(name="**;ping**", value="bot latency", inline=False)
-    embed.add_field(name="**;time**", value="returns the current time", inline=False)
-    embed.add_field(name="**;randomuser**", value="returns a random user", inline=False)
+    embed.add_field(name="**;time**",
+                    value="returns the current time", inline=False)
+    embed.add_field(name="**;quote**",
+                    value="returns random quote", inline=False)
     embed.add_field(name="**;pi**", value="returns pi", inline=False)
-    embed.add_field(name="**;dice [min] [max]**", value="random number", inline=False)
-    embed.add_field(name="**;sheeesh**", value="completely useless cmd", inline=False)
-    embed.add_field(name="**;melih**", value="completely useless cmd", inline=False)
+    embed.add_field(name="**;dice [min] [max]**",
+                    value="random number", inline=False)
+    embed.add_field(name="**;sheeesh**",
+                    value="completely useless cmd", inline=False)
+    embed.add_field(name="**;melih**",
+                    value="completely useless cmd", inline=False)
     embed.set_footer(
         text="Thanks for using this useless bot xD and greetings to all weebs xD")
 
     await ctx.send(embed=embed)
 
+
 @client.command()
 async def prefix(ctx):
-    await ctx.send(client.command_prefix) 
+    await ctx.send(client.command_prefix)
 
 
 @client.command()
@@ -70,12 +83,21 @@ async def time(ctx):
     await ctx.send(datetime.datetime.now())
 
 # --------------------- fun commands --------------------------------------
-@client.command()
-async def randomuser(ctx):
-    await ctx.send(random.choice(ctx.guild.members))
 
+
+@client.command()
+async def quote(ctx):
+    quotes = ["“Be yourself; everyone else is already taken.” ― Oscar Wilde",
+              "“I'm selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you can't handle me at my worst, then you sure as hell don't deserve me at my best.” ― Marilyn Monroe",
+              "“Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.” ― Albert Einstein",
+              "“So many books, so little time.” ― Frank Zappa",
+              "“A room without books is like a body without a soul.” ― Marcus Tullius Cicero"]
+    ind = random.randint(0, len(quotes) - 1)
+    await ctx.send(quotes[ind])
 
 # --------------------- math commands ----------------------------------------
+
+
 @client.command()
 async def pi(ctx):
     await ctx.send(math.pi)
