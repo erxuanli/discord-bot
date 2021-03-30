@@ -24,7 +24,7 @@ async def creator(ctx):
 async def help(ctx):
     embed = discord.Embed(title="help",
                           description="all useless cmds are listed below",
-                          color=discord.Color.blue())
+                          color=discord.Color.purple())
     embed.set_author(name=ctx.author.display_name,
                      icon_url=ctx.author.avatar_url)
     embed.set_thumbnail(
