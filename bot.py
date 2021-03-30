@@ -40,6 +40,10 @@ async def help(ctx):
     embed.add_field(name="**;ping**", value="bot latency", inline=False)
     embed.add_field(name="**;time**",
                     value="returns the current time", inline=False)
+    embed.add_field(name="**;join**",
+                    value="join vc", inline=False)
+    embed.add_field(name="**;leave**",
+                    value="leave vc", inline=False)
     embed.add_field(name="**;quote**",
                     value="returns random quote", inline=False)
     embed.add_field(name="**;ascii**", value="converts to ascii / unicode", inline=False)
