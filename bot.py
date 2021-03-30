@@ -7,7 +7,6 @@ import math
 
 client = commands.Bot(command_prefix=";", help_command=None)
 
-
 @client.event
 async def on_ready():
     await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(name=";help || Stalking PolarBear4u#7025"))
@@ -23,7 +22,7 @@ async def creator(ctx):
 @client.command()
 async def help(ctx):
     embed = discord.Embed(title="help",
-                          description="UwU",
+                          description="all useless cmds are listed below",
                           color=discord.Color.blue())
     embed.set_author(name=ctx.author.display_name,
                      icon_url=ctx.author.avatar_url)
@@ -31,11 +30,24 @@ async def help(ctx):
         url="https://static.wikia.nocookie.net/the-muse-list/images/f/fd/Albedo_Pout.jpg")
     embed.add_field(name="**;help**",
                     value="That's this command xD", inline=False)
-    embed.add_field(name="**;dice**", value=";dice [min] [max]", inline=True)
+    embed.add_field(name="**;creator**", value="creator of this useless bot", inline=False)
+    embed.add_field(name="**;prefix**", value="returns the current prefix", inline=False)
+    embed.add_field(name="**;avatar [user]**", value="returns the avatar of the mentioned user", inline=False)
+    embed.add_field(name="**;ping**", value="bot latency", inline=False)
+    embed.add_field(name="**;time**", value="returns the current time", inline=False)
+    embed.add_field(name="**;randomuser**", value="returns a random user", inline=False)
+    embed.add_field(name="**;pi**", value="returns pi", inline=False)
+    embed.add_field(name="**;dice [min] [max]**", value="random number", inline=False)
+    embed.add_field(name="**;sheeesh**", value="completely useless cmd", inline=False)
+    embed.add_field(name="**;melih**", value="completely useless cmd", inline=False)
     embed.set_footer(
         text="Thanks for using this useless bot xD and greeting to all weebs xD")
 
     await ctx.send(embed=embed)
+
+@client.command()
+async def prefix(ctx):
+    await ctx.send(client.command_prefix) 
 
 
 @client.command()
