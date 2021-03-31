@@ -5,7 +5,7 @@ import random
 import datetime
 import math
 
-import keep_alive
+# import keep_alive
 
 client = commands.Bot(command_prefix=";", help_command=None)
 
@@ -51,6 +51,7 @@ async def help(ctx):
     embed.add_field(name="**;ascii**", value="converts to ascii / unicode", inline=False)
     embed.add_field(name="**;morse**", value="converts to morse code", inline=False)
     embed.add_field(name="**;demorse**", value="converts morse code back", inline=False)
+    embed.add_field(name="**;sqfunc**", value="returns zero points of a quadratic function", inline=False)
     embed.add_field(name="**;pi**", value="returns pi", inline=False)
     embed.add_field(name="**;dice [min] [max]**",
                     value="random number", inline=False)
@@ -179,7 +180,23 @@ async def ascii(ctx, *sentence):
 
 
 # --------------------- math commands ----------------------------------------
-
+@client.command()
+async def sqfunc(ctx, a : int, b : int, c : int):
+    x1, x2 = None, None
+    b = b / a
+    c = c / a
+    v = -(b / 2)
+    try:
+        d = math.sqrt((b / 2)**2 - c)
+        if d == 0.0:
+            await ctx.send(v)
+        elif d > 0:
+            x1 = v + d
+            x2 = v - d
+            await ctx.send(f"{x1} {x2}")
+    except ValueError:
+        await ctx.send("There aren't any zero points")
+    
 
 @client.command()
 async def pi(ctx):
@@ -230,5 +247,5 @@ async def on_message(message):
     await client.process_commands(message)
 
 
-keep_alive.keep_alive()
+# keep_alive.keep_alive()
 client.run("ODI1NDIzMTkzNjk0Nzk3ODM0.YF9tQA.99TXXuF3hPpRgIPMdNMI-G63w4s")
