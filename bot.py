@@ -86,6 +86,12 @@ async def avatar(ctx, user: discord.Member = None):
         userAvatarUrl = user.avatar_url
         await ctx.send(userAvatarUrl)
 
+@client.command()
+async def clear(ctx, amount = 5):
+    if amount > 2000:
+        pass
+    else:
+        await ctx.channel.purge(limit = amount)
 
 # ---------------------- testing commands ----------------------------------
 @client.command()
