@@ -183,7 +183,7 @@ async def ascii(ctx, *sentence):
 
 # --------------------- math commands ----------------------------------------
 @client.command()
-async def sqfunc(ctx, a : int, b : int, c : int):
+async def sqfunc(ctx, a : float, b : float, c : float):
     x1, x2 = None, None
     b = b / a
     c = c / a
