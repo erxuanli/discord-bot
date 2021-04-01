@@ -42,7 +42,7 @@ async def help(ctx):
     embed.add_field(
         name="**;avatar [user]**", value="returns the avatar of the mentioned user", inline=False)
     embed.add_field(
-        name="**;clear [int]**", value="clears channel [max 2000]", inline=False)
+        name="**;clear [int]**", value="clears channel [max 100]; do not spam", inline=False)
     embed.add_field(name="**;ping**", value="bot latency", inline=False)
     embed.add_field(name="**;time**",
                     value="returns the current time (of host location)", inline=False)
@@ -90,7 +90,7 @@ async def avatar(ctx, user: discord.Member = None):
 
 @client.command()
 async def clear(ctx, amount = 5):
-    if amount > 2000:
+    if amount > 100:
         pass
     else:
         await ctx.channel.purge(limit = amount)
