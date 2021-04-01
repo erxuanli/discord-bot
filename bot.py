@@ -7,6 +7,8 @@ import math
 
 # import keep_alive
 
+import pi
+
 client = commands.Bot(command_prefix=";", help_command=None)
 
 
@@ -200,7 +202,7 @@ async def sqfunc(ctx, a : int, b : int, c : int):
 
 @client.command()
 async def pi(ctx):
-    await ctx.send(math.pi)
+    await ctx.send(pi.pi)
 
 
 @client.command()
