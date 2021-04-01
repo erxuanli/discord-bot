@@ -41,6 +41,8 @@ async def help(ctx):
                     value="returns the current prefix", inline=False)
     embed.add_field(
         name="**;avatar [user]**", value="returns the avatar of the mentioned user", inline=False)
+    embed.add_field(
+        name="**;clear [int]**", value="clears channel [max 2000]", inline=False)
     embed.add_field(name="**;ping**", value="bot latency", inline=False)
     embed.add_field(name="**;time**",
                     value="returns the current time (of host location)", inline=False)
