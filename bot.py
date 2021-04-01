@@ -50,10 +50,14 @@ async def help(ctx):
                     value="leave vc", inline=False)
     embed.add_field(name="**;quote**",
                     value="returns random quote", inline=False)
-    embed.add_field(name="**;ascii**", value="converts to ascii / unicode", inline=False)
-    embed.add_field(name="**;morse**", value="converts to morse code", inline=False)
-    embed.add_field(name="**;demorse**", value="converts morse code back", inline=False)
-    embed.add_field(name="**;sqfunc**", value="returns zero points of a quadratic function", inline=False)
+    embed.add_field(name="**;ascii**",
+                    value="converts to ascii / unicode", inline=False)
+    embed.add_field(name="**;morse**",
+                    value="converts to morse code", inline=False)
+    embed.add_field(name="**;demorse**",
+                    value="converts morse code back", inline=False)
+    embed.add_field(name="**;sqfunc**",
+                    value="returns zero points of a quadratic function", inline=False)
     embed.add_field(name="**;pi**", value="returns pi", inline=False)
     embed.add_field(name="**;dice [min] [max]**",
                     value="random number", inline=False)
@@ -92,10 +96,14 @@ async def time(ctx):
     await ctx.send(datetime.datetime.now())
 
 # ---------------------- vc commands -------------------------------------
+
+
 @client.command()
 async def join(ctx):
     channel = ctx.author.voice.channel
     await channel.connect()
+
+
 @client.command()
 async def leave(ctx):
     await ctx.voice_client.disconnect()
@@ -133,11 +141,12 @@ async def morse(ctx, *sentence):
                        '(': '-.--.', ')': '-.--.-'}
     res = ""
     for word in sentence:
-        for char in word:            
+        for char in word:
             res += MORSE_CODE_DICT[char.upper()]
             res += " "
 
     await ctx.send(res)
+
 
 @client.command()
 async def demorse(ctx, *sentence):
@@ -165,7 +174,6 @@ async def demorse(ctx, *sentence):
         res += div[mchar].lower()
 
     await ctx.send(res)
-    
 
 
 @client.command()
@@ -181,9 +189,33 @@ async def ascii(ctx, *sentence):
     await ctx.send(res)
 
 
+@client.command(prefix = "rag")
+async def ranimegif(ctx):
+    anime_gifs = ["https://tenor.com/view/anime-chainsaw-loli-girl-mad-gif-10166732",
+                  "https://tenor.com/view/anime-gif-10117765",
+                  "https://tenor.com/view/blush-anime-shy-cute-girl-gif-16149781",
+                  "https://tenor.com/view/cute-anime-dancing-silly-happy-excited-gif-13462237",
+                  "https://tenor.com/view/smug-anime-face-gif-6194051",
+                  "https://tenor.com/view/laugh-anime-chuckle-gif-10903422",
+                  "https://tenor.com/view/llorar1-cry-sad-tears-anime-gif-5648908",
+                  "https://tenor.com/view/anime-love-lets-party-feel-the-love-throw-gif-13352944",
+                  "https://tenor.com/view/anime-girl-phone-sad-gif-12144903",
+                  "https://tenor.com/view/sleep-resting-bed-rest-anime-gif-5469651",
+                  "https://tenor.com/view/bite-anime-cute-gif-8259627",
+                  "https://tenor.com/view/karma-anime-blush-boy-gif-14841901",
+                  "https://tenor.com/view/anime-thats-right-youre-right-gif-6015959",
+                  "https://tenor.com/view/sensual-wink-blush-anime-animation-gif-5628679",
+                  "https://tenor.com/view/shy-anime-embarassed-girl-gif-15974488",
+                  "https://tenor.com/view/chuunibyou-anime-kawaii-yes-gif-8215787",
+                  "https://tenor.com/view/cry-sad-why-anime-himouto-gif-5298257",
+                  "https://tenor.com/view/love-you-happy-anime-the-helpful-fox-senko-san-gif-14521920",
+                  "https://tenor.com/view/anime-zero-two-darling-in-the-franxx-cute-smile-gif-14500398"]
+    await ctx.send(anime_gifs[random.randint(0, len(anime_gifs) - 1)])
+
+
 # --------------------- math commands ----------------------------------------
 @client.command()
-async def sqfunc(ctx, a : float, b : float, c : float):
+async def sqfunc(ctx, a: float, b: float, c: float):
     x1, x2 = None, None
     b = b / a
     c = c / a
@@ -198,7 +230,7 @@ async def sqfunc(ctx, a : float, b : float, c : float):
             await ctx.send(f"{x1} {x2}")
     except ValueError:
         await ctx.send("There aren't any zero points")
-    
+
 
 @client.command()
 async def pi(ctx):
