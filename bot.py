@@ -50,6 +50,10 @@ async def help(ctx):
                     value="join vc", inline=False)
     embed.add_field(name="**;leave**",
                     value="leave vc", inline=False)
+    embed.add_field(name="**;vcmute**",
+                    value="mute all in vc", inline=False)
+    embed.add_field(name="**;vcunmute**",
+                    value="unmute all in vc", inline=False)
     embed.add_field(name="**;quote**",
                     value="returns random quote", inline=False)
     embed.add_field(name="**;ascii**",
