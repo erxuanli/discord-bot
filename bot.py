@@ -189,7 +189,7 @@ async def ascii(ctx, *sentence):
     await ctx.send(res)
 
 
-@client.command(prefix = "rag")
+@client.command()
 async def ranimegif(ctx):
     anime_gifs = ["https://tenor.com/view/anime-chainsaw-loli-girl-mad-gif-10166732",
                   "https://tenor.com/view/anime-gif-10117765",
