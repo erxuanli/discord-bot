@@ -202,7 +202,7 @@ async def sqfunc(ctx, a : float, b : float, c : float):
 
 @client.command()
 async def pi(ctx):
-    await ctx.send(pi.pi)
+    await ctx.send(pi_num.pi_num)
 
 
 @client.command()
