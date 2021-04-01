@@ -43,7 +43,7 @@ async def help(ctx):
         name="**;avatar [user]**", value="returns the avatar of the mentioned user", inline=False)
     embed.add_field(name="**;ping**", value="bot latency", inline=False)
     embed.add_field(name="**;time**",
-                    value="returns the current time", inline=False)
+                    value="returns the current time (of host location)", inline=False)
     embed.add_field(name="**;join**",
                     value="join vc", inline=False)
     embed.add_field(name="**;leave**",
@@ -52,6 +52,8 @@ async def help(ctx):
                     value="returns random quote", inline=False)
     embed.add_field(name="**;ascii**",
                     value="converts to ascii / unicode", inline=False)
+    embed.add_field(name="**;ranimegif**",
+                    value="random anime gif", inline=False)
     embed.add_field(name="**;morse**",
                     value="converts to morse code", inline=False)
     embed.add_field(name="**;demorse**",
