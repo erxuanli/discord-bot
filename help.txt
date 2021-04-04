@@ -26,3 +26,9 @@
 #         name="Secrets", value="||Surround your text with double pipes (\|\|)||", inline=False)
 #     embed.set_footer(text="Learn more here: realdrewdata.medium.com")
 #     await ctx.send(embed=embed)
+
+
+from dotenv import load_dotenv
+import os
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
