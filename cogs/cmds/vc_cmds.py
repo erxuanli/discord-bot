@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 
+
 class VcCmds(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -9,7 +10,6 @@ class VcCmds(commands.Cog):
     async def join(self, ctx):
         channel = ctx.author.voice.channel
         await channel.connect()
-
 
     @commands.command()
     async def leave(self, ctx):
