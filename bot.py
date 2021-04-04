@@ -9,7 +9,7 @@ import math
 
 import pi_num
 
-client = commands.Bot(command_prefix=";", help_command=None)
+client = commands.Bot(command_prefix=".", help_command=None)
 
 
 @client.event
