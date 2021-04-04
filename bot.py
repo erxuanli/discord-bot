@@ -1,6 +1,9 @@
 import discord
 from discord.ext import commands
 
+from flask import Flask
+from threading import Thread
+
 from datetime import datetime
 
 from cogs.cmds.general_cmds import GeneralCmds
@@ -38,4 +41,19 @@ async def on_ready():
     print(f"[{datetime.now()}] {client.user}: Connected")
 
 
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot is online"
+
+def run():
+  # app.run(host='0.0.0.0',port=8080)
+    app.run(port=5000)
+
+def keep_alive():  
+    t = Thread(target=run)
+    t.start()
+
+keep_alive()
 client.run("ODI1NDIzMTkzNjk0Nzk3ODM0.YF9tQA.x66Eqll-DRhs-6XUDDYH6m1fH4s")
