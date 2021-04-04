@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 
-import json
 from datetime import datetime
 
 from cogs.cmds.general_cmds import GeneralCmds
@@ -20,7 +19,7 @@ from cogs.activity_roles.voice.voice_activity_roles import VcActivityRoles
 # import keep_alive
 
 
-client = commands.Bot(command_prefix=".", help_command=None)
+client = commands.Bot(command_prefix=";", help_command=None)
 
 client.add_cog(GeneralCmds(client))
 client.add_cog(TestingCmds(client))
@@ -43,4 +42,4 @@ async def on_ready():
 
 
 # keep_alive.keep_alive()
-client.run("ODI3NTcyMDYyNTIzNjIxMzk2.YGc-iw.anV1EEUTLd_76gWlRysFA3YTk9c")
+client.run("ODI1NDIzMTkzNjk0Nzk3ODM0.YF9tQA.99TXXuF3hPpRgIPMdNMI-G63w4s")
