@@ -16,7 +16,7 @@ from cogs.non_cmds.events import Events
 
 from cogs.activity_roles.voice.voice_activity_roles import VcActivityRoles
 
-import keep_alive
+# import keep_alive
 
 client = commands.Bot(command_prefix=";", help_command=None)
 
@@ -39,5 +39,5 @@ async def on_ready():
     await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(name=";help || Stalking PolarBear4u#7025"))
     print(f"[{datetime.now()}] {client.user}: Connected")
 
-keep_alive.keep_alive()
+# keep_alive.keep_alive()
 client.run("ODI1NDIzMTkzNjk0Nzk3ODM0.YF9tQA.x66Eqll-DRhs-6XUDDYH6m1fH4s")
