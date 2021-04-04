@@ -49,8 +49,12 @@ class GeneralCmds(commands.Cog):
         embed.add_field(name=f"**{self.client.command_prefix}sqfunc**",
                         value="returns zero points of a quadratic function", inline=False)
         embed.add_field(name=f"**{self.client.command_prefix}pi**", value="returns pi", inline=False)
-        embed.add_field(name="**;dice [min] [max]**",
+        embed.add_field(name=f"**{self.client.command_prefix}dice [min] [max]**",
                         value="random number", inline=False)
+        embed.add_field(name=f"**{self.client.command_prefix}addrole [user] [role]**",
+                        value="adds a role to an user", inline=False)
+        embed.add_field(name=f"**{self.client.command_prefix}remrole [user] [role]**",
+                        value="removes a role from an user", inline=False)
         embed.add_field(name=f"**{self.client.command_prefix}sheeesh**",
                         value="completely useless cmd", inline=False)
         embed.add_field(name=f"**{self.client.command_prefix}melih**",
