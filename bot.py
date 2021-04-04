@@ -41,4 +41,4 @@ async def on_ready():
 
 
 keep_alive.keep_alive()
-client.run("ODI1NDIzMTkzNjk0Nzk3ODM0.YF9tQA.99TXXuF3hPpRgIPMdNMI-G63w4s")
+client.run("ODI1NDIzMTkzNjk0Nzk3ODM0.YF9tQA.x66Eqll-DRhs-6XUDDYH6m1fH4s")
