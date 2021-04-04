@@ -34,7 +34,5 @@ async def on_ready():
     print(f"{client.user}: Connected || [{datetime.now()}]")
 
 
-
-
 # keep_alive.keep_alive()
 client.run("ODI3NTcyMDYyNTIzNjIxMzk2.YGc-iw.anV1EEUTLd_76gWlRysFA3YTk9c")
