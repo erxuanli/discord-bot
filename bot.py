@@ -1,9 +1,6 @@
 import discord
 from discord.ext import commands
 
-from flask import Flask
-from threading import Thread
-
 from datetime import datetime
 
 from cogs.cmds.general_cmds import GeneralCmds
@@ -18,6 +15,8 @@ from cogs.non_cmds.troll_flori import TrollFlori
 from cogs.non_cmds.events import Events
 
 from cogs.activity_roles.voice.voice_activity_roles import VcActivityRoles
+
+import keep_alive
 
 client = commands.Bot(command_prefix=";", help_command=None)
 
@@ -40,20 +39,5 @@ async def on_ready():
     await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(name=";help || Stalking PolarBear4u#7025"))
     print(f"[{datetime.now()}] {client.user}: Connected")
 
-
-app = Flask('')
-
-@app.route('/')
-def home():
-    return "Bot is online"
-
-def run():
-  # app.run(host='0.0.0.0',port=8080)
-    app.run(port=5000)
-
-def keep_alive():  
-    t = Thread(target=run)
-    t.start()
-
-keep_alive()
+keep_alive.keep_alive()
 client.run("ODI1NDIzMTkzNjk0Nzk3ODM0.YF9tQA.x66Eqll-DRhs-6XUDDYH6m1fH4s")
