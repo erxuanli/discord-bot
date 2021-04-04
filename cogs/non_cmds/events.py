@@ -11,5 +11,3 @@ class Events(commands.Cog):
 
         if "happy birthday" in message.content.lower():
             await message.channel.send("Happpppyyyyyy Birrrthhhhdayyyy!!!")
-
-        await self.client.process_commands(message)

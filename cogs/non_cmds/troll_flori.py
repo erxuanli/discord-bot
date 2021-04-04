@@ -23,5 +23,3 @@ class TrollFlori(commands.Cog):
             await message.channel.send("troll")
         if message.content.startswith("mbj"):
             await message.channel.send("troll")
-
-        await self.client.process_commands(message)
