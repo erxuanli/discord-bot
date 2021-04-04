@@ -32,7 +32,7 @@ client.add_cog(Events(client))
 @client.event
 async def on_ready():
     await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(name=";help || Stalking PolarBear4u#7025"))
-    print(f"{client.user}: Connected || [{datetime.now()}]")
+    print(f"[{datetime.now()}] {client.user}: Connected")
 
 
 # keep_alive.keep_alive()
