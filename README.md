@@ -10,5 +10,6 @@ important sites:
 https://realpython.com/how-to-make-a-discord-bot-python/
 
 cogs: https://discordpy.readthedocs.io/en/latest/ext/commands/cogs.html
+
 discord permissions: https://discordpy.readthedocs.io/en/latest/api.html#discord.Permissions
 
