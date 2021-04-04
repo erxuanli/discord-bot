@@ -8,7 +8,6 @@ import math
 
 # import keep_alive
 
-import pi_num
 
 client = commands.Bot(command_prefix=".", help_command=None)
 
