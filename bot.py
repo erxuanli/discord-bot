@@ -16,8 +16,7 @@ from cogs.non_cmds.events import Events
 
 from cogs.activity_roles.voice.voice_activity_roles import VcActivityRoles
 
-# import keep_alive
-
+import keep_alive
 
 client = commands.Bot(command_prefix=";", help_command=None)
 
@@ -41,5 +40,5 @@ async def on_ready():
     print(f"[{datetime.now()}] {client.user}: Connected")
 
 
-# keep_alive.keep_alive()
+keep_alive.keep_alive()
 client.run("ODI1NDIzMTkzNjk0Nzk3ODM0.YF9tQA.99TXXuF3hPpRgIPMdNMI-G63w4s")

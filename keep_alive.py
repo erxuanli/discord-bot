@@ -1,5 +1,3 @@
-# https://dev.to/12944qwerty/hosting-a-discord-py-bot-with-repl-it-3l5a
-
 from flask import Flask
 from threading import Thread
 
