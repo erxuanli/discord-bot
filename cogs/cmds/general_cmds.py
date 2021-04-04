@@ -15,45 +15,45 @@ class GeneralCmds(commands.Cog):
                          icon_url=ctx.author.avatar_url)
         embed.set_thumbnail(
             url="https://static.wikia.nocookie.net/the-muse-list/images/f/fd/Albedo_Pout.jpg")
-        embed.add_field(name="**;help**",
+        embed.add_field(name=f"**{self.client.command_prefix}help**",
                         value="That's this command xD", inline=False)
-        embed.add_field(name="**;creator**",
+        embed.add_field(name=f"**{self.client.command_prefix}creator**",
                         value="creator of this useless bot", inline=False)
-        embed.add_field(name="**;prefix**",
+        embed.add_field(name=f"**{self.client.command_prefix}prefix**",
                         value="returns the current prefix", inline=False)
         embed.add_field(
-            name="**;avatar [user]**", value="returns the avatar of the mentioned user", inline=False)
+            name=f"**{self.client.command_prefix}avatar [user]**", value="returns the avatar of the mentioned user", inline=False)
         embed.add_field(
-            name="**;clear [int]**", value="clears channel [max 30]; do not spam", inline=False)
-        embed.add_field(name="**;ping**", value="bot latency", inline=False)
-        embed.add_field(name="**;time**",
+            name=f"**{self.client.command_prefix}clear [int]**", value="clears channel [max 30]; do not spam", inline=False)
+        embed.add_field(name=f"**{self.client.command_prefix}ping**", value="bot latency", inline=False)
+        embed.add_field(name=f"**{self.client.command_prefix}time**",
                         value="returns the current time (of host location)", inline=False)
-        embed.add_field(name="**;join**",
+        embed.add_field(name=f"**{self.client.command_prefix}join**",
                         value="join vc", inline=False)
-        embed.add_field(name="**;leave**",
+        embed.add_field(name=f"**{self.client.command_prefix}leave**",
                         value="leave vc", inline=False)
-        embed.add_field(name="**;vcmute**",
+        embed.add_field(name=f"**{self.client.command_prefix}vcmute**",
                         value="mute all in vc", inline=False)
-        embed.add_field(name="**;vcunmute**",
+        embed.add_field(name=f"**{self.client.command_prefix}vcunmute**",
                         value="unmute all in vc", inline=False)
-        embed.add_field(name="**;quote**",
+        embed.add_field(name=f"**{self.client.command_prefix}quote**",
                         value="returns random quote", inline=False)
-        embed.add_field(name="**;ascii**",
+        embed.add_field(name=f"**{self.client.command_prefix}ascii**",
                         value="converts to ascii / unicode", inline=False)
-        embed.add_field(name="**;ranimegif**",
+        embed.add_field(name=f"**{self.client.command_prefix}ranimegif**",
                         value="random anime gif", inline=False)
-        embed.add_field(name="**;morse**",
+        embed.add_field(name=f"**{self.client.command_prefix}morse**",
                         value="converts to morse code", inline=False)
-        embed.add_field(name="**;demorse**",
+        embed.add_field(name=f"**{self.client.command_prefix}demorse**",
                         value="converts morse code back", inline=False)
-        embed.add_field(name="**;sqfunc**",
+        embed.add_field(name=f"**{self.client.command_prefix}sqfunc**",
                         value="returns zero points of a quadratic function", inline=False)
-        embed.add_field(name="**;pi**", value="returns pi", inline=False)
+        embed.add_field(name=f"**{self.client.command_prefix}pi**", value="returns pi", inline=False)
         embed.add_field(name="**;dice [min] [max]**",
                         value="random number", inline=False)
-        embed.add_field(name="**;sheeesh**",
+        embed.add_field(name=f"**{self.client.command_prefix}sheeesh**",
                         value="completely useless cmd", inline=False)
-        embed.add_field(name="**;melih**",
+        embed.add_field(name=f"**{self.client.command_prefix}melih**",
                         value="completely useless cmd", inline=False)
         embed.set_footer(
             text="Thanks for using this useless bot xD and greetings to all weebs xD")
