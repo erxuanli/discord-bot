@@ -10,9 +10,12 @@ from cogs.cmds.vc_cmds import VcCmds
 from cogs.cmds.fun_cmds import FunCmds
 from cogs.cmds.math_cmds import MathCmds
 from cogs.cmds.dumb_cmds import DumbCmds
+from cogs.cmds.management_cmds import ManagementCmds
 
 from cogs.non_cmds.troll_flori import TrollFlori
 from cogs.non_cmds.events import Events
+
+from cogs.activity_roles.voice.voice_activity_roles import VcActivityRoles
 
 # import keep_alive
 
@@ -25,8 +28,12 @@ client.add_cog(VcCmds(client))
 client.add_cog(FunCmds(client))
 client.add_cog(MathCmds(client))
 client.add_cog(DumbCmds(client))
+client.add_cog(ManagementCmds(client))
+
 client.add_cog(TrollFlori(client))
 client.add_cog(Events(client))
+
+client.add_cog(VcActivityRoles(client))
 
 
 @client.event
