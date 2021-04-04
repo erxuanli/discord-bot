@@ -9,3 +9,5 @@ tempdev: ODI3NTcyMDYyNTIzNjIxMzk2.YGc-iw.anV1EEUTLd_76gWlRysFA3YTk9c
 important sites:
 https://realpython.com/how-to-make-a-discord-bot-python/
 
+cogs: https://discordpy.readthedocs.io/en/latest/ext/commands/cogs.html
+
