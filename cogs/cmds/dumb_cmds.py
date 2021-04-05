@@ -13,3 +13,7 @@ class DumbCmds(commands.Cog):
     @commands.command()
     async def melih(self, ctx):
         await ctx.send("i'm gaaaaaayy xD")
+
+    @commands.command()
+    async def hi(self, ctx):
+        await ctx.send("i luvvvv anime xD")
