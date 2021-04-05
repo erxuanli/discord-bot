@@ -1,6 +1,9 @@
 import discord
 from discord.ext import commands
 
+import os
+
+
 
 class GeneralCmds(commands.Cog):
     def __init__(self, client):
@@ -66,7 +69,7 @@ class GeneralCmds(commands.Cog):
 
     @commands.command()
     async def creator(self, ctx):
-        await ctx.send("PolarBear4u sennnnpaiiiiii")
+        await ctx.send(f"PolarBear4u sennnnpaiiiiii {os.environ['MY_DISCORD_ID']}")
 
     @commands.command()
     async def prefix(self, ctx):
