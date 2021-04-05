@@ -39,6 +39,8 @@ class GeneralCmds(commands.Cog):
                         value="unmute all in vc", inline=False)
         embed.add_field(name=f"**{self.client.command_prefix}play [url]**",
                         value="plays a mp3 file", inline=False)
+        embed.add_field(name=f"**{self.client.command_prefix}playl**",
+                        value="plays the previous played mp3 file", inline=False)
         embed.add_field(name=f"**{self.client.command_prefix}quote**",
                         value="returns random quote", inline=False)
         embed.add_field(name=f"**{self.client.command_prefix}ascii**",

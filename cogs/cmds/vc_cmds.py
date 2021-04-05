@@ -11,6 +11,9 @@ class VcCmds(commands.Cog):
 
     @commands.command()
     async def join(self, ctx):
+        if ctx.author.voice is None:
+            await ctx.send("Please join a voice channel")
+            return 
         channel = ctx.author.voice.channel
         await channel.connect()
         await ctx.send(f"Joined {channel}")
@@ -79,6 +82,21 @@ class VcCmds(commands.Cog):
         voice.play(source)
         await ctx.send("Playing mp3")
 
+    @commands.command()
+    async def playl(self, ctx):
+        # ------------ check user vc connection -------------------
+        if ctx.message.author.voice is None:
+            await ctx.send("Please join a voice channel")
+            return
+        channel = ctx.message.author.voice.channel        
+        voice = discord.utils.get(self.client.voice_clients, guild=ctx.guild)
+        if voice and voice.is_connected():
+            await voice.move_to(channel)
+        else:
+            voice = await channel.connect()
+        source = discord.FFmpegPCMAudio('audio.mp3')
+        voice.play(source)
+    
     # @commands.command()
     # async def bb(self, ctx):
     #     channel = ctx.message.author.voice.channel
