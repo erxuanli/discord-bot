@@ -17,11 +17,11 @@ class VcCmds(commands.Cog):
 
     @commands.command()
     async def leave(self, ctx):
-        if ctx.voice_client.is_connected():
-            await ctx.voice_client.disconnect()
-            await ctx.send(f"Disconnected from {ctx.voice_client}")
-        else:
+        if ctx.voice_client is None:
             await ctx.send("Bot is not in a voice channel")
+        elif ctx.voice_client.is_connected():
+            await ctx.voice_client.disconnect()
+            await ctx.send(f"Disconnected")
 
     @commands.command()
     async def vcmute(self, ctx):
@@ -39,22 +39,25 @@ class VcCmds(commands.Cog):
 
     @commands.command()
     async def play(self, ctx, url: str):
+        # ------------ check user vc connection -------------------
+        if ctx.message.author.voice is None:
+            await ctx.send("Please join a voice channel")
+            return
+
+        # ------------ downloading mp3 ---------------------------
+        await ctx.send("Downloading mp3 || Please wait")
         audio_there = os.path.isfile("audio.mp3")
         try:
             if audio_there:
                 os.remove("audio.mp3")
         except PermissionError:
             await ctx.send("Currently playing")
-        channel = ctx.author.voice.channel
-        if not channel.is_connected():
-            await channel.connect()
-            await ctx.send(f"Joined {channel}")
 
         ydl_opts = {"format": "bestaudio/best",
                     "postprocessors": [{"key": "FFmpegExtractAudio",
                                         "preferredcodec": "mp3",
                                         "preferredquality": "192"
-                                        }]
+                                        }],
                     }
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
@@ -62,25 +65,30 @@ class VcCmds(commands.Cog):
         for file in os.listdir("./"):
             if file.endswith(".mp3"):
                 os.rename(file, "audio.mp3")
-        channel.play(discord.FFmpegAudio("audio.mp3"))
 
-    @commands.command()
-    async def pause(self, ctx):
-        channel = ctx.author.voice.channel
-        if channel.is_playing():
-            channel.pause()
+        # --------------- check bot vc connection ---------------
+        channel = ctx.message.author.voice.channel
+        voice = discord.utils.get(self.client.voice_clients, guild=ctx.guild)
+        if voice and voice.is_connected():
+            await voice.move_to(channel)
         else:
-            await ctx.send("Nothing playing right now")
+            voice = await channel.connect()
 
-    @commands.command()
-    async def resume(self, ctx):
-        channel = ctx.author.voice.channel
-        if channel.is_paused():
-            channel.resume()
-        else:
-            await ctx.send("Nothing paused")
+        # --------------- play mp3 ----------------------------
+        source = discord.FFmpegPCMAudio('audio.mp3')
+        voice.play(source)
+        await ctx.send("Playing mp3")
 
-    @commands.command()
-    async def stop(self, ctx):
-        channel = ctx.author.voice.channel
-        channel.stop()
+    # @commands.command()
+    # async def bb(self, ctx):
+    #     channel = ctx.message.author.voice.channel
+    #     if not channel:
+    #         await ctx.send("Please join a voice channel")
+    #         return
+    #     voice = discord.utils.get(self.client.voice_clients, guild=ctx.guild)
+    #     if voice and voice.is_connected():
+    #         await voice.move_to(channel)
+    #     else:
+    #         voice = await channel.connect()
+    #     source = discord.FFmpegPCMAudio('audio.mp3')
+    #     voice.play(source)

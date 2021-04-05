@@ -40,3 +40,4 @@ async def on_ready():
     print(f"[{datetime.now()}] {client.user}: Connected")
 
 client.run(os.environ['BOT_TOKEN'])
+
