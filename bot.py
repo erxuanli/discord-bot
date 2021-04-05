@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 
+import os
+
 from datetime import datetime
 
 from cogs.cmds.general_cmds import GeneralCmds
@@ -34,7 +36,7 @@ client.add_cog(VcActivityRoles(client))
 
 @client.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(name=";help || Stalking PolarBear4u#7025"))
+    await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(name=f";help || Stalking {os.environ['MY_DISCORD_TAG']}"))
     print(f"[{datetime.now()}] {client.user}: Connected")
 
-client.run("ODI1NDIzMTkzNjk0Nzk3ODM0.YF9tQA.x66Eqll-DRhs-6XUDDYH6m1fH4s")
+client.run(os.environ['BOT_TOKEN'])
