@@ -96,6 +96,7 @@ class VcCmds(commands.Cog):
             voice = await channel.connect()
         source = discord.FFmpegPCMAudio('audio.mp3')
         voice.play(source)
+        await ctx.send("Playing mp3")
     
     # @commands.command()
     # async def bb(self, ctx):
