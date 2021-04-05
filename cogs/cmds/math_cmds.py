@@ -29,7 +29,7 @@ class MathCmds(commands.Cog):
 
     @commands.command()
     async def pi(self, ctx):
-        await ctx.send(self.pi_num.pi_num)
+        await ctx.send(self.pi_num)
 
     @commands.command()
     async def dice(self, ctx, min, max):
