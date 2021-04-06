@@ -155,6 +155,8 @@ class HelpCmds(commands.Cog):
                             value="kicks a member", inline=False)
             embed.add_field(name=f"**{self.client.command_prefix}ban [user] [reason]**",
                             value="bans a member", inline=False)
+            embed.add_field(name=f"**{self.client.command_prefix}nickname [user] [nickname]**",
+                            value="changes the nickname of an user", inline=False)
             embed.set_footer(
                 text="Thanks for using this useless bot xD and greetings to all weebs xD")
 

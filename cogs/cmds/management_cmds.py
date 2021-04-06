@@ -39,7 +39,7 @@ class ManagementCmds(commands.Cog):
         await ctx.send(f"Banned {member}")
 
     @commands.command()
-    async def nickname(self, ctx, member: discord.Member, nick : str):
+    async def nickname(self, ctx, member : discord.Member, nick : str):
         await member.edit(nick = nick)
         await ctx.send(f"Nickname change: {member}")
             
