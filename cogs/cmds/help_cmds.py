@@ -155,3 +155,7 @@ class HelpCmds(commands.Cog):
                 text="Thanks for using this useless bot xD and greetings to all weebs xD")
 
             await ctx.send(embed=embed)
+
+        # ------------------------- not a category ------------------------------------
+        else:
+            await ctx.send("That category is not available")
