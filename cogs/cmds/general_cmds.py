@@ -51,8 +51,8 @@ class GeneralCmds(commands.Cog):
 
         fields = [("User Tag", str(user), True),
                   ("User ID", str(user.id), True),
-                  ("Created at", user.created_at.strftime("%d.%m.%Y || %H:%M:&S"), True),
-                  ("Joined at", user.joined_at.strftime("%d.%m.%Y || %H:%M:&S"), True),
+                  ("Created at", user.created_at.strftime("%d.%m.%Y || %H:%M:%S"), True),
+                  ("Joined at", user.joined_at.strftime("%d.%m.%Y || %H:%M:%S"), True),
                   ("Highest Role", user.top_role.mention, True),
                   ("Status", str(user.status), True)]
 
