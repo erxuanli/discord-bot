@@ -5,6 +5,7 @@ import os
 
 from datetime import datetime
 
+from cogs.cmds.help_cmds import HelpCmds
 from cogs.cmds.general_cmds import GeneralCmds
 from cogs.cmds.testing_cmds import TestingCmds
 from cogs.cmds.vc_cmds import VcCmds
@@ -20,6 +21,7 @@ from cogs.activity_roles.voice.voice_activity_roles import VcActivityRoles
 
 client = commands.Bot(command_prefix=";", help_command=None)
 
+client.add_cog(HelpCmds(client))
 client.add_cog(GeneralCmds(client))
 client.add_cog(TestingCmds(client))
 client.add_cog(VcCmds(client))
