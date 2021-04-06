@@ -1,7 +1,8 @@
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 
 import os
+from itertools import cycle
 
 from datetime import datetime
 
@@ -35,11 +36,16 @@ client.add_cog(Events(client))
 
 client.add_cog(VcActivityRoles(client))
 
+bot_status = cycle([f";help || Stalking {os.environ['MY_DISCORD_TAG']}", "Watching Overlord", f"{datetime.now()}"])
 
 @client.event
 async def on_ready():
     await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(name=f";help || Stalking {os.environ['MY_DISCORD_TAG']}"))
     print(f"[{datetime.now()}] {client.user}: Connected")
+
+@tasks.loop(seconds = 10)
+async def change_status():
+    await client.change_presence(activity = discord.Game(name=next(bot_status)))
 
 client.run(os.environ['BOT_TOKEN'])
 
