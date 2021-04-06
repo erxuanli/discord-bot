@@ -20,8 +20,9 @@ class OtherCmds(commands.Cog):
 
     @tasks.loop(seconds=10)
     async def refresh_nicktimers(self):
-        for user in self.nicktimer_info.keys():
-            ctx = self.nicktimer_info[user]["ctx"]
-            start_time = self.nicktimer_info[user]["start"]
-            end_time = self.nicktimer_info[user]["end"]
-            await ctx.author.edit(nick = str(end_time - start_time))
+        print("test loop")
+        # for user in self.nicktimer_info.keys():
+        #     ctx = self.nicktimer_info[user]["ctx"]
+        #     start_time = self.nicktimer_info[user]["start"]
+        #     end_time = self.nicktimer_info[user]["end"]
+        #     await ctx.author.edit(nick = str(end_time - start_time))
