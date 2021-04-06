@@ -10,7 +10,7 @@ class TestingCmds(commands.Cog):
 
     @commands.command()
     async def ping(self, ctx):
-        await ctx.send(f"Pong! {round(self.client.latency * 1000)}ms")
+        await ctx.send(f"Pong! {round(self.client.latency * 1000, 3)}ms")
 
     @commands.command()
     async def time(self, ctx):
