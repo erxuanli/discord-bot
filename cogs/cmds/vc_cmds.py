@@ -98,16 +98,4 @@ class VcCmds(commands.Cog):
         voice.play(source)
         await ctx.send("Playing mp3")
     
-    # @commands.command()
-    # async def bb(self, ctx):
-    #     channel = ctx.message.author.voice.channel
-    #     if not channel:
-    #         await ctx.send("Please join a voice channel")
-    #         return
-    #     voice = discord.utils.get(self.client.voice_clients, guild=ctx.guild)
-    #     if voice and voice.is_connected():
-    #         await voice.move_to(channel)
-    #     else:
-    #         voice = await channel.connect()
-    #     source = discord.FFmpegPCMAudio('audio.mp3')
-    #     voice.play(source)
+   
