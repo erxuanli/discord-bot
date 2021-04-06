@@ -27,9 +27,14 @@ class ManagementCmds(commands.Cog):
     @commands.command()
     @commands.check(is_creator)
     async def kick(self, ctx, member: discord.Member, *, reason: str = None):
+        await ctx.send(f"Permission granted || Reason: {os.environ['MY_DISCORD_TAG']} senpai")
         await member.kick(reason=reason)
+        await ctx.send(f"Kicked {member}")
 
     @commands.command()
     @commands.check(is_creator)
     async def ban(self, ctx, member: discord.Member, *, reason: str = None):
+        await ctx.send(f"Permission granted || Reason: {os.environ['MY_DISCORD_TAG']} senpai")
         await member.ban(reason=reason)
+        await ctx.send(f"Banned {member}")
+        
