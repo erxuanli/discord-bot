@@ -18,23 +18,18 @@ class HelpCmds(commands.Cog):
             embed.set_thumbnail(
                 url="https://static.wikia.nocookie.net/the-muse-list/images/f/fd/Albedo_Pout.jpg")
 
-            embed.add_field(name=f"**{self.client.command_prefix}help general**",
-                            value="help for all general commands", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}help testing**",
-                            value="help for all testing commands", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}help vc**",
-                            value="help for all vc commands", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}help fun**",
-                            value="help for all fun commands", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}help math**",
-                            value="help for all math commands", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}help dumb**",
-                            value="help for all dumb commands", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}help management**",
-                            value="help for all management commands", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}help other**",
-                            value="help for all other commands", inline=False)
+            fields = [(f"**{self.client.command_prefix}help general**", "help for all general commands", False),
+                      (f"**{self.client.command_prefix}help testing**", "help for all testing commands", False),
+                      (f"**{self.client.command_prefix}help vc**", "help for all vc commands", False),
+                      (f"**{self.client.command_prefix}help fun**", "help for all fun commands", False),
+                      (f"**{self.client.command_prefix}help math**", "help for all math commands", False),
+                      (f"**{self.client.command_prefix}help dumb**", "help for all dumb commands", False),
+                      (f"**{self.client.command_prefix}help management**", "help for all management commands", False),
+                      (f"**{self.client.command_prefix}help other**", "help for all other commands", False)]  
 
+            for name, value, inline in fields:
+                embed.add_field(name = name, value = value, inline = inline)      
+            
             embed.set_footer(
                 text="Thanks for using this useless bot xD and greetings to all weebs xD")
 
