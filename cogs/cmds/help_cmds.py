@@ -119,7 +119,8 @@ class HelpCmds(commands.Cog):
                                   color=discord.Color.blue())
             embed.add_field(name=f"**{self.client.command_prefix}sqfunc**",
                             value="returns zero points of a quadratic function", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}pi**", value="returns pi", inline=False)
+            embed.add_field(
+                name=f"**{self.client.command_prefix}pi**", value="returns pi", inline=False)
             embed.add_field(name=f"**{self.client.command_prefix}dice [min] [max]**",
                             value="random number", inline=False)
             embed.set_footer(
@@ -154,9 +155,3 @@ class HelpCmds(commands.Cog):
                 text="Thanks for using this useless bot xD and greetings to all weebs xD")
 
             await ctx.send(embed=embed)
-
-
-
-
-   
-

@@ -10,14 +10,14 @@ class ManagementCmds(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command()
+    @commands.command(aliases = ["arole"])
     @commands.check(is_creator)
     async def addrole(self, ctx, member: discord.Member, role: discord.Role):
         await ctx.send(f"Permission granted || Reason: {os.environ['MY_DISCORD_TAG']} senpai")
         await member.add_roles(role)
         await ctx.send(f"added {role} to {member}")
 
-    @commands.command()
+    @commands.command(aliases = ["rrole"])
     @commands.check(is_creator)
     async def remrole(self, ctx, member: discord.Member, role: discord.Role):
         await ctx.send(f"Permission granted || Reason: {os.environ['MY_DISCORD_TAG']} senpai")

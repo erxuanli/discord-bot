@@ -26,21 +26,21 @@ class VcCmds(commands.Cog):
             await ctx.voice_client.disconnect()
             await ctx.send(f"Disconnected")
 
-    @commands.command()
+    @commands.command(aliases = ["vm"])
     async def vcmute(self, ctx):
         vc = ctx.author.voice.channel
         for member in vc.members:
             await member.edit(mute=True)
         await ctx.send(f"Muted all members in {vc}")
 
-    @commands.command()
+    @commands.command(aliases = ["vu"])
     async def vcunmute(self, ctx):
         vc = ctx.author.voice.channel
         for member in vc.members:
             await member.edit(mute=False)
         await ctx.send(f"Unmuted all members in {vc}")
 
-    @commands.command()
+    @commands.command(aliases = ["p"])
     async def play(self, ctx, url: str):
         # ------------ check user vc connection -------------------
         if ctx.message.author.voice is None:
@@ -82,7 +82,7 @@ class VcCmds(commands.Cog):
         voice.play(source)
         await ctx.send("Playing mp3")
 
-    @commands.command()
+    @commands.command(aliases = ["pl"])
     async def playl(self, ctx):
         # ------------ check user vc connection -------------------
         if ctx.message.author.voice is None:
