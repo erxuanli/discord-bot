@@ -18,6 +18,10 @@ class OtherCmds(commands.Cog):
         self.nicktimer_info[str(ctx.author.id)] = {
             "ctx": ctx, "start": start_time, "end": start_time + timer}
 
+    @commands.command()
+    async def print_dict(self, ctx):
+        await ctx.send(f"{self.nicktimer_info}")
+
     @tasks.loop(seconds=10)
     async def refresh_nicktimers(self):
         print("test loop")
