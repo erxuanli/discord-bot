@@ -5,6 +5,7 @@ import os
 
 import time
 
+
 class OtherCmds(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -12,21 +13,15 @@ class OtherCmds(commands.Cog):
         self.refresh_nicktimers.start()
 
     @commands.command()
-    async def nicktimer(self, ctx, timer : int):
-        self.nicktimer_info[str(ctx.guild.id)][str(ctx.author.id)]["ctx"] = ctx
-        self.nicktimer_info[str(ctx.guild.id)][str(ctx.author.id)]["start"] = time.time()
-        self.nicktimer_info[str(ctx.guild.id)][str(ctx.author.id)]["end"] = self.nicktimer_info[str(ctx.guild.id)][str(ctx.author.id)]["start"] + timer
+    async def nicktimer(self, ctx, timer: int):
+        start_time = time.time()
+        self.nicktimer_info[str(ctx.author.id)] = {
+            "ctx": ctx, "start": start_time, "end": start_time + timer}
 
-    @tasks.loop(seconds = 10)
+    @tasks.loop(seconds=10)
     async def refresh_nicktimers(self):
-        for server in self.nicktimer_info.keys():
-            for user in self.nicktimer_info[server]:
-                ctx = self.nicktimer_info[server][user]["ctx"]
-                start = self.nicktimer_info[server][user]["start"]
-                end = self.nicktimer_info[server][user]["end"]
-                await ctx.author.edit(nick = str(end - start))
-
-
-
-
-    
+        for user in self.nicktimer_info.keys():
+            ctx = self.nicktimer_info[user]["ctx"]
+            start_time = self.nicktimer_info[user]["start"]
+            end_time = self.nicktimer_info[user]["end"]
+            await ctx.author.edit(nick = str(end_time - start_time))
