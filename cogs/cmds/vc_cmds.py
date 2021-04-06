@@ -49,10 +49,10 @@ class VcCmds(commands.Cog):
 
         # ------------ downloading mp3 ---------------------------
         await ctx.send("Downloading mp3 || Please wait")
-        audio_there = os.path.isfile("audio.mp3")
+        audio_there = os.path.isfile(f"./cogs/cmds/music_audio_files/{ctx.guild.id}.mp3")
         try:
             if audio_there:
-                os.remove("audio.mp3")
+                os.remove(f"./cogs/cmds/music_audio_files/{ctx.guild.id}.mp3")
         except PermissionError:
             await ctx.send("Currently playing")
 
@@ -67,7 +67,7 @@ class VcCmds(commands.Cog):
 
         for file in os.listdir("./"):
             if file.endswith(".mp3"):
-                os.rename(file, "audio.mp3")
+                os.rename(file, f"./cogs/cmds/music_audio_files/{ctx.guild.id}.mp3")
 
         # --------------- check bot vc connection ---------------
         channel = ctx.message.author.voice.channel
@@ -78,7 +78,7 @@ class VcCmds(commands.Cog):
             voice = await channel.connect()
 
         # --------------- play mp3 ----------------------------
-        source = discord.FFmpegPCMAudio('audio.mp3')
+        source = discord.FFmpegPCMAudio(f"./cogs/cmds/music_audio_files/{ctx.guild.id}.mp3")
         voice.play(source)
         await ctx.send("Playing mp3")
 
@@ -94,7 +94,7 @@ class VcCmds(commands.Cog):
             await voice.move_to(channel)
         else:
             voice = await channel.connect()
-        source = discord.FFmpegPCMAudio('audio.mp3')
+        source = discord.FFmpegPCMAudio(f"./cogs/cmds/music_audio_files/{ctx.guild.id}.mp3")
         voice.play(source)
         await ctx.send("Playing mp3")
     
