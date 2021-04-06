@@ -37,4 +37,9 @@ class ManagementCmds(commands.Cog):
         await ctx.send(f"Permission granted || Reason: {os.environ['MY_DISCORD_TAG']} senpai")
         await member.ban(reason=reason)
         await ctx.send(f"Banned {member}")
-        
+
+    @commands.command()
+    async def nickname(self, ctx, member: discord.Member, nick : str):
+        await member.edit(nick = nick)
+        await ctx.send(f"Nickname change: {member}")
+            
