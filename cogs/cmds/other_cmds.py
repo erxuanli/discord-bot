@@ -23,7 +23,7 @@ class OtherCmds(commands.Cog):
     @tasks.loop(seconds = 10)
     async def test_nick_change(self):
         user = self.client.get_user(172002275412279296)
-        user.edit(nick = "test")
+        await user.edit(nick = "test")
 
 
 
