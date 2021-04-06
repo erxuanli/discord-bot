@@ -32,3 +32,11 @@ class GeneralCmds(commands.Cog):
             await ctx.send("max amount 30")
         else:
             await ctx.channel.purge(limit=amount)
+
+
+    @commands.command()
+    async def id(self, ctx, member : discord.Member = None):
+        if member is None:
+            await ctx.send(str(ctx.author.id))
+        else:
+            await ctx.send(str(member.id))

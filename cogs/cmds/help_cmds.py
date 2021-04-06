@@ -53,6 +53,8 @@ class HelpCmds(commands.Cog):
                 name=f"**{self.client.command_prefix}avatar [user]**", value="returns the avatar of the mentioned user", inline=False)
             embed.add_field(
                 name=f"**{self.client.command_prefix}clear [int]**", value="clears channel [max 30]; do not spam", inline=False)
+            embed.add_field(
+                name=f"**{self.client.command_prefix}id [member]**", value="returns the id of a member", inline=False)
             embed.set_footer(
                 text="Thanks for using this useless bot xD and greetings to all weebs xD")
 
