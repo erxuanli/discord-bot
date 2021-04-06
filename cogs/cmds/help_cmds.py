@@ -32,6 +32,8 @@ class HelpCmds(commands.Cog):
                             value="help for all dumb commands", inline=False)
             embed.add_field(name=f"**{self.client.command_prefix}help management**",
                             value="help for all management commands", inline=False)
+            embed.add_field(name=f"**{self.client.command_prefix}help other**",
+                            value="help for all other commands", inline=False)
 
             embed.set_footer(
                 text="Thanks for using this useless bot xD and greetings to all weebs xD")
@@ -157,6 +159,18 @@ class HelpCmds(commands.Cog):
                             value="bans a member", inline=False)
             embed.add_field(name=f"**{self.client.command_prefix}nickname [user] [nickname]**",
                             value="changes the nickname of an user", inline=False)
+            embed.set_footer(
+                text="Thanks for using this useless bot xD and greetings to all weebs xD")
+
+            await ctx.send(embed=embed)
+
+        # ---------------------------- help other ---------------------------------
+        elif category == "other":
+            embed = discord.Embed(title="help [other]",
+                                  description="help for all other commands",
+                                  color=discord.Color.blue())
+            embed.add_field(name=f"**{self.client.command_prefix}nicktimer [int : minutes]**",
+                            value="a nickname timer", inline=False)
             embed.set_footer(
                 text="Thanks for using this useless bot xD and greetings to all weebs xD")
 
