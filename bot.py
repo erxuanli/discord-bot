@@ -46,7 +46,6 @@ async def on_ready():
 
 @tasks.loop(seconds = 10)
 async def change_status():
-    print("changed status")
     await client.change_presence(activity = discord.Game(name = next(bot_status)))
 
 client.run(os.environ['BOT_TOKEN'])
