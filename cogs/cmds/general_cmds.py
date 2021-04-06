@@ -3,6 +3,8 @@ from discord.ext import commands
 
 import os
 
+from cogs.cmds.custom_checks import is_creator
+
 class GeneralCmds(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -87,7 +89,7 @@ class GeneralCmds(commands.Cog):
 
     @commands.command()
     async def clear(self, ctx, amount=5):
-        if amount > 30:
+        if amount > 30 and not is_creator(ctx):
             await ctx.send("max amount 30")
         else:
             await ctx.channel.purge(limit=amount)
