@@ -40,16 +40,16 @@ class HelpCmds(commands.Cog):
             embed = discord.Embed(title="help [general]",
                                   description="help for all general commands",
                                   color=discord.Color.blue())
-            embed.add_field(name=f"**{self.client.command_prefix}creator**",
-                            value="creator of this useless bot", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}prefix**",
-                            value="returns the current prefix", inline=False)
-            embed.add_field(
-                name=f"**{self.client.command_prefix}avatar [user]**", value="returns the avatar of the mentioned user", inline=False)
-            embed.add_field(
-                name=f"**{self.client.command_prefix}clear [int]**", value="clears channel [max 30]; do not spam", inline=False)
-            embed.add_field(
-                name=f"**{self.client.command_prefix}id [member]**", value="returns the id of a member", inline=False)
+
+            fields = [(f"**{self.client.command_prefix}creator**", "creator of this useless bot", False),
+                      (f"**{self.client.command_prefix}prefix**", "returns the current prefix", False),
+                      (f"**{self.client.command_prefix}avatar [user]**", "returns the avatar of the mentioned user", False),
+                      (f"**{self.client.command_prefix}clear [int]**", "clears channel [max 30]; do not spam", False),
+                      (f"**{self.client.command_prefix}id [member]**", "returns the id of a member", False)]
+
+            for name, value, inline in fields:
+                embed.add_field(name = name, value = value, inline = inline)  
+
             embed.set_footer(
                 text="Thanks for using this useless bot xD and greetings to all weebs xD")
 
@@ -60,10 +60,13 @@ class HelpCmds(commands.Cog):
             embed = discord.Embed(title="help [testing]",
                                   description="help for all testing commands",
                                   color=discord.Color.blue())
-            embed.add_field(
-                name=f"**{self.client.command_prefix}ping**", value="bot latency", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}time**",
-                            value="returns the current time (of host location)", inline=False)
+
+            fields = [(f"**{self.client.command_prefix}ping**", "bot latency", False),
+                      (f"**{self.client.command_prefix}time**", "returns the current time (of host location)", False)]
+
+            for name, value, inline in fields:
+                embed.add_field(name = name, value = value, inline = inline) 
+
             embed.set_footer(
                 text="Thanks for using this useless bot xD and greetings to all weebs xD")
 
@@ -74,18 +77,17 @@ class HelpCmds(commands.Cog):
             embed = discord.Embed(title="help [vc]",
                                   description="help for all vc commands",
                                   color=discord.Color.blue())
-            embed.add_field(name=f"**{self.client.command_prefix}join**",
-                            value="join vc", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}leave**",
-                            value="leave vc", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}vcmute**",
-                            value="mute all in vc", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}vcunmute**",
-                            value="unmute all in vc", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}play [url]**",
-                            value="plays a mp3 file", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}playl**",
-                            value="plays the previous played mp3 file", inline=False)
+
+            fields = [(f"**{self.client.command_prefix}join**", "join vc", False),
+                      (f"**{self.client.command_prefix}leave**", "leave vc", False),
+                      (f"**{self.client.command_prefix}vcmute**", "mute all in vc", False),
+                      (f"**{self.client.command_prefix}vcunmute**", "unmute all in vc", False),
+                      (f"**{self.client.command_prefix}play [url]**", "plays a mp3 file", False),
+                      (f"**{self.client.command_prefix}playl**", "plays the previous played mp3 file", False)]
+
+            for name, value, inline in fields:
+                embed.add_field(name = name, value = value, inline = inline) 
+
             embed.set_footer(
                 text="Thanks for using this useless bot xD and greetings to all weebs xD")
 
@@ -96,16 +98,16 @@ class HelpCmds(commands.Cog):
             embed = discord.Embed(title="help [fun]",
                                   description="help for all fun commands",
                                   color=discord.Color.blue())
-            embed.add_field(name=f"**{self.client.command_prefix}quote**",
-                            value="returns random quote", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}ascii**",
-                            value="converts to ascii / unicode", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}ranimegif**",
-                            value="random anime gif", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}morse**",
-                            value="converts to morse code", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}demorse**",
-                            value="converts morse code back", inline=False)
+
+            fields = [(f"**{self.client.command_prefix}quote**", "returns random quote", False),
+                      (f"**{self.client.command_prefix}ascii**", "converts to ascii / unicode", False),
+                      (f"**{self.client.command_prefix}ranimegif**", "random anime gif", False),
+                      (f"**{self.client.command_prefix}morse**", "converts to morse code", False),
+                      (f"**{self.client.command_prefix}demorse**", "converts morse code back", False)]
+
+            for name, value, inline in fields:
+                embed.add_field(name = name, value = value, inline = inline) 
+            
             embed.set_footer(
                 text="Thanks for using this useless bot xD and greetings to all weebs xD")
 
@@ -116,12 +118,14 @@ class HelpCmds(commands.Cog):
             embed = discord.Embed(title="help [math]",
                                   description="help for all math commands",
                                   color=discord.Color.blue())
-            embed.add_field(name=f"**{self.client.command_prefix}sqfunc**",
-                            value="returns zero points of a quadratic function", inline=False)
-            embed.add_field(
-                name=f"**{self.client.command_prefix}pi**", value="returns pi", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}dice [min] [max]**",
-                            value="random number", inline=False)
+
+            fields = [(f"**{self.client.command_prefix}sqfunc**", "returns zero points of a quadratic function", False),
+                      (f"**{self.client.command_prefix}pi**", "returns pi", False),
+                      (f"**{self.client.command_prefix}dice [min] [max]**", "random number", False)]
+
+            for name, value, inline in fields:
+                embed.add_field(name = name, value = value, inline = inline) 
+
             embed.set_footer(
                 text="Thanks for using this useless bot xD and greetings to all weebs xD")
 
@@ -132,12 +136,14 @@ class HelpCmds(commands.Cog):
             embed = discord.Embed(title="help [dumb]",
                                   description="help for all dumb commands",
                                   color=discord.Color.blue())
-            embed.add_field(name=f"**{self.client.command_prefix}sheeesh**",
-                            value="completely useless cmd", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}melih**",
-                            value="completely useless cmd", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}erxuan**",
-                            value="completely useless cmd", inline=False)
+
+            fields = [(f"**{self.client.command_prefix}sheeesh**", "completely useless cmd", False),
+                      (f"**{self.client.command_prefix}melih**", "completely useless cmd", False),
+                      (f"**{self.client.command_prefix}erxuan**", "completely useless cmd", False)]
+
+            for name, value, inline in fields:
+                embed.add_field(name = name, value = value, inline = inline) 
+
             embed.set_footer(
                 text="Thanks for using this useless bot xD and greetings to all weebs xD")
 
@@ -148,16 +154,16 @@ class HelpCmds(commands.Cog):
             embed = discord.Embed(title="help [management]",
                                   description="help for all management commands",
                                   color=discord.Color.blue())
-            embed.add_field(name=f"**{self.client.command_prefix}addrole [user] [role]**",
-                            value="adds a role to an user", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}remrole [user] [role]**",
-                            value="removes a role from an user", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}kick [user] [reason]**",
-                            value="kicks a member", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}ban [user] [reason]**",
-                            value="bans a member", inline=False)
-            embed.add_field(name=f"**{self.client.command_prefix}nickname [user] [nickname]**",
-                            value="changes the nickname of an user", inline=False)
+
+            fields = [(f"**{self.client.command_prefix}addrole [user] [role]**", "adds a role to an user", False),
+                      (f"**{self.client.command_prefix}remrole [user] [role]**", "removes a role from an user", False),
+                      (f"**{self.client.command_prefix}kick [user] [reason]**", "kicks a member", False),
+                      (f"**{self.client.command_prefix}ban [user] [reason]**", "bans a member", False),
+                      (f"**{self.client.command_prefix}nickname [user] [nickname]**", "changes the nickname of an user", False)]
+
+            for name, value, inline in fields:
+                embed.add_field(name = name, value = value, inline = inline) 
+
             embed.set_footer(
                 text="Thanks for using this useless bot xD and greetings to all weebs xD")
 
@@ -168,8 +174,12 @@ class HelpCmds(commands.Cog):
             embed = discord.Embed(title="help [other]",
                                   description="help for all other commands",
                                   color=discord.Color.blue())
-            embed.add_field(name=f"**{self.client.command_prefix}nicktimer [int : minutes]**",
-                            value="a nickname timer", inline=False)
+
+            fields = [(f"**{self.client.command_prefix}nicktimer [int : minutes]**", "a nickname timer", False)]
+
+            for name, value, inline in fields:
+                embed.add_field(name = name, value = value, inline = inline) 
+            
             embed.set_footer(
                 text="Thanks for using this useless bot xD and greetings to all weebs xD")
 
