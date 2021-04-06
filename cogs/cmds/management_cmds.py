@@ -10,16 +10,26 @@ class ManagementCmds(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command(aliases = ["arole"])
+    @commands.command(aliases=["arole"])
     @commands.check(is_creator)
     async def addrole(self, ctx, member: discord.Member, role: discord.Role):
         await ctx.send(f"Permission granted || Reason: {os.environ['MY_DISCORD_TAG']} senpai")
         await member.add_roles(role)
         await ctx.send(f"added {role} to {member}")
 
-    @commands.command(aliases = ["rrole"])
+    @commands.command(aliases=["rrole"])
     @commands.check(is_creator)
     async def remrole(self, ctx, member: discord.Member, role: discord.Role):
         await ctx.send(f"Permission granted || Reason: {os.environ['MY_DISCORD_TAG']} senpai")
         await member.remove_roles(role)
         await ctx.send(f"{role} removed from {member}")
+
+    @commands.command()
+    @commands.check(is_creator)
+    async def kick(self, ctx, member: discord.Member, *, reason: str = None):
+        await member.kick(reason=reason)
+
+    @commands.command()
+    @commands.check(is_creator)
+    async def ban(self, ctx, member: discord.Member, *, reason: str = None):
+        await member.ban(reason=reason)

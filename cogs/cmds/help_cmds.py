@@ -151,6 +151,10 @@ class HelpCmds(commands.Cog):
                             value="adds a role to an user", inline=False)
             embed.add_field(name=f"**{self.client.command_prefix}remrole [user] [role]**",
                             value="removes a role from an user", inline=False)
+            embed.add_field(name=f"**{self.client.command_prefix}kick [user] [reason]**",
+                            value="kicks a member", inline=False)
+            embed.add_field(name=f"**{self.client.command_prefix}ban [user] [reason]**",
+                            value="bans a member", inline=False)
             embed.set_footer(
                 text="Thanks for using this useless bot xD and greetings to all weebs xD")
 
