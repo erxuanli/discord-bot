@@ -139,6 +139,8 @@ class HelpCmds(commands.Cog):
                             value="completely useless cmd", inline=False)
             embed.add_field(name=f"**{self.client.command_prefix}melih**",
                             value="completely useless cmd", inline=False)
+            embed.add_field(name=f"**{self.client.command_prefix}erxuan**",
+                            value="completely useless cmd", inline=False)
             embed.set_footer(
                 text="Thanks for using this useless bot xD and greetings to all weebs xD")
 

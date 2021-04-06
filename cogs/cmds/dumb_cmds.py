@@ -14,4 +14,8 @@ class DumbCmds(commands.Cog):
     async def melih(self, ctx):
         await ctx.send("i'm gaaaaaayy xD")
 
+    @commands.command()
+    async def erxuan(self, ctx):
+        await ctx.send("Senpai (っ °Д °;)っ")
+
     
