@@ -24,7 +24,7 @@ class FunCmds(commands.Cog):
                 s = satellites[satellite]["s"]
                 t = satellites[satellite]["t"] 
                 satellite_object = Satrec.twoline2rv(s, t)
-                jd, fr = julian.to_jd(datetime.timedelta(hours = 12), fmt = "jd"), 0.0
+                jd, fr = julian.to_jd(datetime.datetime.now(), fmt = "jd"), 0.0
                 e, r, v = satellite_object.sgp4(jd, fr)
                 embed = discord.Embed(title = f"[{satellite}]", color = discord.Color.gold())
                 embed.add_field(name = "**True Equator Mean Equinox position (km)**", value = r, inline = False)
