@@ -14,7 +14,7 @@ class FunCmds(commands.Cog):
         self.client = client
 
     @commands.command()
-    async def satellite(self, ctx, quan : int):
+    async def satellite(self, ctx, quan : int = 1):
         count = 0
         with open("./cogs/cmds/cmd_utils/sgp4/active_satellites.json", "r") as file:
             satellites = json.load(file)
