@@ -100,7 +100,7 @@ class HelpCmds(commands.Cog):
                       (f"**{self.client.command_prefix}ranimegif**", "random anime gif", False),
                       (f"**{self.client.command_prefix}morse**", "converts to morse code", False),
                       (f"**{self.client.command_prefix}demorse**", "converts morse code back", False),
-                      (f"**{self.client.command_prefix}satellite [quan : int]**", "returns quan satellites", False)]
+                      (f"**{self.client.command_prefix}satellite [quan : int]**", "returns r and v of quan satellites now", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 

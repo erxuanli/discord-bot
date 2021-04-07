@@ -5,6 +5,8 @@ import json
 
 import random
 from sgp4.api import Satrec 
+import julian
+import datetime
 
 
 class FunCmds(commands.Cog):
@@ -22,7 +24,7 @@ class FunCmds(commands.Cog):
                 s = satellites[satellite]["s"]
                 t = satellites[satellite]["t"] 
                 satellite_object = Satrec.twoline2rv(s, t)
-                jd, fr = 2458827, 0.362605
+                jd, fr = julian.to_jd(datetime.timedelta(hours = 12), fmt = "jd"), 0.0
                 e, r, v = satellite_object.sgp4(jd, fr)
                 embed = discord.Embed(title = f"[{satellite}]", color = discord.Color.gold())
                 embed.add_field(name = "**r**", value = r, inline = False)
