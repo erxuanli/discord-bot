@@ -6,6 +6,9 @@ import datetime
 
 from cogs.cmds.custom_checks import is_creator
 
+from discord.ext.commands import cooldown
+from discord.ext.commands import BucketType
+
 
 class GeneralCmds(commands.Cog):
     def __init__(self, client):
@@ -28,6 +31,7 @@ class GeneralCmds(commands.Cog):
             await ctx.send(userAvatarUrl)
 
     @commands.command()
+    @cooldown(1, 60, BucketType.user)
     async def clear(self, ctx, amount=5):
         if amount > 30 and not is_creator(ctx):
             await ctx.send("max amount 30")

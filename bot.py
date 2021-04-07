@@ -21,7 +21,7 @@ from cogs.non_cmds.events import Events
 
 from cogs.activity_roles.voice.voice_activity_roles import VcActivityRoles
 
-client = commands.Bot(command_prefix=";", help_command=None)
+client = commands.Bot(command_prefix="¬", help_command=None)
 
 client.add_cog(HelpCmds(client))
 client.add_cog(GeneralCmds(client))
@@ -38,18 +38,19 @@ client.add_cog(Events(client))
 
 client.add_cog(VcActivityRoles(client))
 
-bot_status = cycle([f";help || Stalking {os.environ['MY_DISCORD_TAG']}", "Watching Overlord", f"bot host started at: {datetime.now()}"])
+# bot_status = cycle([f";help || Stalking {os.environ['MY_DISCORD_TAG']}", "Watching Overlord", f"bot host started at: {datetime.now()}"])
 
-@client.event
-async def on_ready():
-    await client.change_presence(status=discord.Status.do_not_disturb)
-    change_status.start()
-    print(f"[{datetime.now()}] {client.user}: Connected")
+# @client.event
+# async def on_ready():
+#     await client.change_presence(status=discord.Status.do_not_disturb)
+#     change_status.start()
+#     print(f"[{datetime.now()}] {client.user}: Connected")
 
-@tasks.loop(seconds = 10)
-async def change_status():
-    await client.change_presence(activity = discord.Game(name = next(bot_status)))
+# @tasks.loop(seconds = 10)
+# async def change_status():
+#     await client.change_presence(activity = discord.Game(name = next(bot_status)))
 
-client.run(os.environ['BOT_TOKEN'])
+# client.run(os.environ['BOT_TOKEN'])
+client.run('ODI3NTcyMDYyNTIzNjIxMzk2.YGc-iw.LwtM5sTeiS_alhpw8ht1OPe7tXc')
 
 
