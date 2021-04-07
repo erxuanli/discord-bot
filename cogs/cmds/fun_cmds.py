@@ -24,8 +24,10 @@ class FunCmds(commands.Cog):
                 satellite_object = Satrec.twoline2rv(s, t)
                 jd, fr = 2458827, 0.362605
                 e, r, v = satellite_object.sgp4(jd, fr)
-                await ctx.send(r)
-                await ctx.send(v)
+                embed = discord.Embed(title = f"[{satellite}]", color = discord.Color.gold())
+                embed.add_field(name = "**r**", value = r, inline = False)
+                embed.add_field(name = "**v**", value = v, inline = False)
+                await ctx.send(embed = embed)
                 count += 1
 
     @commands.command()
