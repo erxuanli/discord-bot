@@ -15,6 +15,7 @@ from cogs.cmds.math_cmds import MathCmds
 from cogs.cmds.science_cmds import ScienceCmds
 from cogs.cmds.dumb_cmds import DumbCmds
 from cogs.cmds.management_cmds import ManagementCmds
+from cogs.cmds.ecosystem_cmds import EcosystemCmds
 from cogs.cmds.other_cmds import OtherCmds
 
 from cogs.non_cmds.troll_flori import TrollFlori
@@ -33,6 +34,7 @@ client.add_cog(MathCmds(client))
 client.add_cog(ScienceCmds(client))
 client.add_cog(DumbCmds(client))
 client.add_cog(ManagementCmds(client))
+client.add_cog(EcosystemCmds(client))
 client.add_cog(OtherCmds(client))
 
 client.add_cog(TrollFlori(client))

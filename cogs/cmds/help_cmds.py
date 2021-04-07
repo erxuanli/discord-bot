@@ -25,6 +25,7 @@ class HelpCmds(commands.Cog):
                       (f"**{self.client.command_prefix}help science**", "help for all science commands", False),
                       (f"**{self.client.command_prefix}help dumb**", "help for all dumb commands", False),
                       (f"**{self.client.command_prefix}help management**", "help for all management commands", False),
+                      (f"**{self.client.command_prefix}help ecosystem**", "help for all ecosystem commands", False),
                       (f"**{self.client.command_prefix}help other**", "help for all other commands", False)]  
 
             for name, value, inline in fields:
@@ -175,6 +176,21 @@ class HelpCmds(commands.Cog):
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
 
+            embed.set_footer(text="Thanks for using this useless bot xD and greetings to all weebs xD")
+
+            await ctx.send(embed=embed)
+
+        # ---------------------------- help ecosystem ---------------------------------
+        elif category == "ecosystem":
+            embed = discord.Embed(title="help [ecosystem]",
+                                  description="help for all ecosystem commands",
+                                  color=discord.Color.blue())
+
+            fields = [(f"**404**", "nothing here yet", False)]
+
+            for name, value, inline in fields:
+                embed.add_field(name = name, value = value, inline = inline) 
+            
             embed.set_footer(text="Thanks for using this useless bot xD and greetings to all weebs xD")
 
             await ctx.send(embed=embed)
