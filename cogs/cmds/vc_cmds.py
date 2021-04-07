@@ -97,5 +97,23 @@ class VcCmds(commands.Cog):
         source = discord.FFmpegPCMAudio(f"./cogs/cmds/cmd_utils/music_audio_files/{ctx.guild.id}.mp3")
         voice.play(source)
         await ctx.send("Playing mp3")
+
+    @commands.command()
+    async def pause(self, ctx):
+        voice = discord.utils.get(self.client.voice_clients, guild = ctx.guild)
+        if voice.is_playing():
+            voice.pause()
+            await ctx.send("Paused")
+        else:
+            await ctx.send("No audio is playing")
+
+    @commands.command()
+    async def resume(self, ctx):
+        voice = discord.utils.get(self.client.voice_clients, guild = ctx.guild)
+        if voice.is_paused():
+            voice.resume()
+            await ctx.sent("Resuming")
+        else:
+            await ctx.send("The audio is already playing")
     
    

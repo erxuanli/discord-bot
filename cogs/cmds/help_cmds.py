@@ -82,7 +82,9 @@ class HelpCmds(commands.Cog):
                       (f"**{self.client.command_prefix}vcmute**", "mute all in vc", False),
                       (f"**{self.client.command_prefix}vcunmute**", "unmute all in vc", False),
                       (f"**{self.client.command_prefix}play [url]**", "plays a mp3 file", False),
-                      (f"**{self.client.command_prefix}playl**", "plays the previous played mp3 file", False)]
+                      (f"**{self.client.command_prefix}playl**", "plays the previous played mp3 file", False),
+                      (f"**{self.client.command_prefix}pause**", "pauses the current playing mp3 file", False),
+                      (f"**{self.client.command_prefix}resume**", "resumes the paused mp3 file", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
