@@ -14,8 +14,6 @@ class FunCmds(commands.Cog):
         count = 0
         with open("./utils/sgp4/active_satellites.json", "r") as satellites:
             for satellite in satellites:
-                if count >= quan:
-                    return
                 s = satellites[satellite]["s"]
                 t = satellites[satellite]["t"] 
                 satellite_object = Satrec.twoline2rv(s, t)
