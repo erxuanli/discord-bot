@@ -112,7 +112,7 @@ class VcCmds(commands.Cog):
         voice = discord.utils.get(self.client.voice_clients, guild = ctx.guild)
         if voice.is_paused():
             voice.resume()
-            await ctx.sent("Resuming")
+            await ctx.send("Resuming")
         else:
             await ctx.send("The audio is already playing")
     
