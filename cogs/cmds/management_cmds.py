@@ -51,5 +51,5 @@ class ManagementCmds(commands.Cog):
     async def nickname(self, ctx, member : discord.Member, nick : str):
         await member.edit(nick = nick)
         await ctx.send(f"Nickname change: {member}")
-        await ctx.send(f"Unbanned {member}")
+        
             
