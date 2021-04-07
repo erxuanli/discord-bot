@@ -11,8 +11,11 @@ class FunCmds(commands.Cog):
 
     @commands.command()
     async def satellite(self, ctx, quan : int):
+        count = 0
         with open("./utils/sgp4/active_satellites.json", "r") as satellites:
             for satellite in satellites:
+                if count >= quan:
+                    return
                 s = satellites[satellite]["s"]
                 t = satellites[satellite]["t"] 
                 satellite_object = Satrec.twoline2rv(s, t)
@@ -20,6 +23,7 @@ class FunCmds(commands.Cog):
                 e, r, v = satellite_object.sgp4(jd, fr)
                 await ctx.send(r)
                 await ctx.send(v)
+                count += 1
 
     @commands.command()
     async def quote(self, ctx):
