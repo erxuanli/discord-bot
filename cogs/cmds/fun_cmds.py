@@ -10,8 +10,16 @@ class FunCmds(commands.Cog):
         self.client = client
 
     @commands.command()
-    async def satellite(self, ctx):
-        pass
+    async def satellite(self, ctx, quan : int):
+        with open("./utils/sgp4/active_satellites.json", "r") as satellites:
+            for satellite in satellites:
+                s = satellites[satellite]["s"]
+                t = satellites[satellite]["t"] 
+                satellite_object = Satrec.twoline2rv(s, t)
+                jd, fr = 2458827, 0.362605
+                e, r, v = satellite_object.sgp4(jd, fr)
+                await ctx.send(r)
+                await ctx.send(v)
 
     @commands.command()
     async def quote(self, ctx):
