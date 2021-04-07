@@ -18,4 +18,6 @@ class TrollFlori(commands.Cog):
         if not is_flori(ctx):
             self.troll_flori_bool = not self.troll_flori_bool
             await ctx.send(f"Troll Flori: [{self.troll_flori_bool}]")
+        else:
+            await ctx.send("Nononononononono (╯°□°）╯︵ ┻━┻")
 
