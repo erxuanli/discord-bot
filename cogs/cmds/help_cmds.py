@@ -59,7 +59,7 @@ class HelpCmds(commands.Cog):
                                   description="help for all testing commands",
                                   color=discord.Color.blue())
 
-            fields = [(f"**{self.client.command_prefix}ping**", "bot latency", False),
+            fields = [(f"**{self.client.command_prefix}ping [precision : int; default 0]**", "bot latency", False),
                       (f"**{self.client.command_prefix}time**", "returns the current time (of host location)", False)]
 
             for name, value, inline in fields:
