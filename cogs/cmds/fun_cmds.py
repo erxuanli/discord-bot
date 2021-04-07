@@ -27,9 +27,9 @@ class FunCmds(commands.Cog):
                 jd, fr = julian.to_jd(datetime.timedelta(hours = 12), fmt = "jd"), 0.0
                 e, r, v = satellite_object.sgp4(jd, fr)
                 embed = discord.Embed(title = f"[{satellite}]", color = discord.Color.gold())
-                embed.add_field(name = "**r**", value = r, inline = False)
-                embed.add_field(name = "**v**", value = v, inline = False)
-                embed.set_footer(text = f"jd: [{jd}] || fr: [{fr}]")
+                embed.add_field(name = "**True Equator Mean Equinox position (km)**", value = r, inline = False)
+                embed.add_field(name = "**True Equator Mean Equinox velocity (km/s)**", value = v, inline = False)
+                embed.set_footer(text = f"Julian Date [now]: [{jd}] || Fraction: [{fr}]")
                 await ctx.send(embed = embed)
                 count += 1
 
