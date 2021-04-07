@@ -3,5 +3,5 @@ PyNaCl==1.4.0
 youtube-dl==2021.4.1
 sgp4==2.18
 julian==0.14
-python-weather==0.2.3
+
 
