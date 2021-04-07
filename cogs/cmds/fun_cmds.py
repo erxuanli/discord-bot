@@ -12,7 +12,8 @@ class FunCmds(commands.Cog):
     @commands.command()
     async def satellite(self, ctx, quan : int):
         count = 0
-        with open("./utils/sgp4/active_satellites.json", "r") as satellites:
+        with open("./utils/sgp4/active_satellites.json", "r") as file:
+            satellites = file
             for satellite in satellites:
                 s = satellites[satellite]["s"]
                 t = satellites[satellite]["t"] 
