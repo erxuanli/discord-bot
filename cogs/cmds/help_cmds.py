@@ -201,7 +201,7 @@ class HelpCmds(commands.Cog):
                                   description="help for all other commands",
                                   color=discord.Color.blue())
 
-            fields = [(f"**{self.client.command_prefix}nicktimer [int : minutes]**", "a nickname timer", False)]
+            fields = [(f"**{self.client.command_prefix}nicktimer [int : minutes]**", "a nickname timer (still in development)", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
