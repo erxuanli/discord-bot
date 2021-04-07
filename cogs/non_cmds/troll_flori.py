@@ -14,7 +14,7 @@ class TrollFlori(commands.Cog):
             await message.channel.send("troll")
 
     @commands.command()
-    async def flori_troll(self, ctx):
+    async def troll_flori(self, ctx):
         if not is_flori(ctx):
             self.troll_flori_bool = not self.troll_flori_bool
             await ctx.send(f"Troll Flori: [{self.troll_flori_bool}]")
