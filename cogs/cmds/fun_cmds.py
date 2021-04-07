@@ -27,6 +27,7 @@ class FunCmds(commands.Cog):
                 embed = discord.Embed(title = f"[{satellite}]", color = discord.Color.gold())
                 embed.add_field(name = "**r**", value = r, inline = False)
                 embed.add_field(name = "**v**", value = v, inline = False)
+                embed.set_footer(text = f"jd: [{jd}] || fr: [{fr}]")
                 await ctx.send(embed = embed)
                 count += 1
 
