@@ -30,3 +30,4 @@ class ScienceCmds(commands.Cog):
                 embed.set_footer(text = f"Julian Date [now]: [{jd}] || Fraction: [{fr}]")
                 await ctx.send(embed = embed)
                 count += 1   
+                
