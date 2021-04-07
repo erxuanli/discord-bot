@@ -30,7 +30,7 @@ class FunCmds(commands.Cog):
 
     @commands.command()
     async def quote(self, ctx):
-        with open("./cogs/cmds/cmd_utils/quotes", "r") as file:
+        with open("./cogs/cmds/cmd_utils/quotes.json", "r") as file:
             quotes = json.load(file)
             ind = random.randint(0, len(quotes) - 1)
             await ctx.send(quotes[ind])
