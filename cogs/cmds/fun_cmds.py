@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 
+import json
+
 import random
 from sgp4.api import Satrec 
 
@@ -13,7 +15,7 @@ class FunCmds(commands.Cog):
     async def satellite(self, ctx, quan : int):
         count = 0
         with open("./utils/sgp4/active_satellites.json", "r") as file:
-            satellites = file
+            satellites = json.load(file)
             for satellite in satellites:
                 s = satellites[satellite]["s"]
                 t = satellites[satellite]["t"] 
