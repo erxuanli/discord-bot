@@ -6,7 +6,6 @@ import json
 from sgp4.api import Satrec 
 import julian
 import datetime
-import python_weather
 
 class ScienceCmds(commands.Cog):
     def __init__(self, client):
