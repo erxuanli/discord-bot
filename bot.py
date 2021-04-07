@@ -12,6 +12,7 @@ from cogs.cmds.testing_cmds import TestingCmds
 from cogs.cmds.vc_cmds import VcCmds
 from cogs.cmds.fun_cmds import FunCmds
 from cogs.cmds.math_cmds import MathCmds
+from cogs.cmds.science_cmds import ScienceCmds
 from cogs.cmds.dumb_cmds import DumbCmds
 from cogs.cmds.management_cmds import ManagementCmds
 from cogs.cmds.other_cmds import OtherCmds
@@ -29,6 +30,7 @@ client.add_cog(TestingCmds(client))
 client.add_cog(VcCmds(client))
 client.add_cog(FunCmds(client))
 client.add_cog(MathCmds(client))
+client.add_cog(ScienceCmds(client))
 client.add_cog(DumbCmds(client))
 client.add_cog(ManagementCmds(client))
 client.add_cog(OtherCmds(client))

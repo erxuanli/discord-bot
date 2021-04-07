@@ -22,6 +22,7 @@ class HelpCmds(commands.Cog):
                       (f"**{self.client.command_prefix}help vc**", "help for all vc commands", False),
                       (f"**{self.client.command_prefix}help fun**", "help for all fun commands", False),
                       (f"**{self.client.command_prefix}help math**", "help for all math commands", False),
+                      (f"**{self.client.command_prefix}help science**", "help for all science commands", False),
                       (f"**{self.client.command_prefix}help dumb**", "help for all dumb commands", False),
                       (f"**{self.client.command_prefix}help management**", "help for all management commands", False),
                       (f"**{self.client.command_prefix}help other**", "help for all other commands", False)]  
@@ -99,8 +100,7 @@ class HelpCmds(commands.Cog):
                       (f"**{self.client.command_prefix}ascii**", "converts to ascii / unicode", False),
                       (f"**{self.client.command_prefix}ranimegif**", "random anime gif", False),
                       (f"**{self.client.command_prefix}morse**", "converts to morse code", False),
-                      (f"**{self.client.command_prefix}demorse**", "converts morse code back", False),
-                      (f"**{self.client.command_prefix}satellite [quan : int; default 1]**", "returns r and v of quan satellites now", False)]
+                      (f"**{self.client.command_prefix}demorse**", "converts morse code back", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
@@ -118,6 +118,22 @@ class HelpCmds(commands.Cog):
             fields = [(f"**{self.client.command_prefix}sqfunc**", "returns zero points of a quadratic function", False),
                       (f"**{self.client.command_prefix}pi**", "returns pi", False),
                       (f"**{self.client.command_prefix}dice [min] [max]**", "random number", False)]
+
+            for name, value, inline in fields:
+                embed.add_field(name = name, value = value, inline = inline) 
+
+            embed.set_footer(text="Thanks for using this useless bot xD and greetings to all weebs xD")
+
+            await ctx.send(embed=embed)
+
+        # -------------------------- help science -------------------------------
+        elif category == "science":            
+
+            embed = discord.Embed(title="help [science]",
+                                  description="help for all science commands",
+                                  color=discord.Color.blue())
+
+            fields = [(f"**{self.client.command_prefix}satellite [quan : int; default 1]**", "returns r and v of quan satellites now", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
