@@ -2,11 +2,16 @@ import discord
 from discord.ext import commands
 
 import random
+from sgp4.api import Satrec 
 
 
 class FunCmds(commands.Cog):
     def __init__(self, client):
         self.client = client
+
+    @commands.command()
+    async def satellite(self, ctx):
+        pass
 
     @commands.command()
     async def quote(self, ctx):
