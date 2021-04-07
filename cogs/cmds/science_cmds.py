@@ -24,7 +24,7 @@ class ScienceCmds(commands.Cog):
                 satellite_object = Satrec.twoline2rv(s, t)
                 jd, fr = julian.to_jd(datetime.datetime.now(), fmt = "jd"), 0.0
                 e, r, v = satellite_object.sgp4(jd, fr)
-                embed = discord.Embed(title = f"[{count}/{quan}] [{satellite}]", color = discord.Color.gold())
+                embed = discord.Embed(title = f"[{count + 1}/{quan}] [{satellite}]", color = discord.Color.gold())
                 embed.add_field(name = "**True Equator Mean Equinox position (km)**", value = r, inline = False)
                 embed.add_field(name = "**True Equator Mean Equinox velocity (km/s)**", value = v, inline = False)
                 embed.set_footer(text = f"Julian Date [now]: [{jd}] || Fraction: [{fr}]")
