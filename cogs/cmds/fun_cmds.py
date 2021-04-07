@@ -14,7 +14,7 @@ class FunCmds(commands.Cog):
     @commands.command()
     async def satellite(self, ctx, quan : int):
         count = 0
-        with open("./utils/sgp4/active_satellites.json", "r") as file:
+        with open("./cogs/cmds/cmd_utils/sgp4/active_satellites.json", "r") as file:
             satellites = json.load(file)
             for satellite in satellites:
                 if count >= quan:

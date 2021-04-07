@@ -2,7 +2,7 @@ import json
 
 active = dict()
 
-with open("./utils/sgp4/active_elements.txt", "r") as file:
+with open("./cogs/cmds/cmd_utils/sgp4/active_elements.txt", "r") as file:
     counter = 0
     current = ""
     for line in file:
@@ -18,7 +18,7 @@ with open("./utils/sgp4/active_elements.txt", "r") as file:
             counter = 0
         print(counter)
 
-with open("./utils/sgp4/active_satellites.json", "w") as file:
+with open("./cogs/cmds/cmd_utils/sgp4/active_satellites.json", "w") as file:
     json.dump(active, file)
 
 print("Done")
