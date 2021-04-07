@@ -38,8 +38,18 @@ class ManagementCmds(commands.Cog):
         await member.ban(reason=reason)
         await ctx.send(f"Banned {member}")
 
+
+    @commands.command()
+    async def unban(self, ctx, id : int):
+        user = await self.client.fetch_user(id)
+        await ctx.guild.unban(user)
+        await ctx.send(f"Unbanned {user}")
+                
+                
+
     @commands.command()
     async def nickname(self, ctx, member : discord.Member, nick : str):
         await member.edit(nick = nick)
         await ctx.send(f"Nickname change: {member}")
+        
             
