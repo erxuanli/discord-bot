@@ -29,5 +29,5 @@ Now the discord bot is ready to host. Yaaaaay!! Head over to the resources tab a
 Contact PolarBear4u#7025 (Discord) for more information.
 
 ## Licence
-[GNU v3.0](https://github.com/PolarBear4u/discord-bot/blob/main/LICENSE)
+[GNU v3.0](LICENSE)
 
