@@ -42,7 +42,7 @@ client.add_cog(Events(client))
 
 client.add_cog(VcActivityRoles(client))
 
-bot_status = cycle([f";help || Stalking {os.environ['MY_DISCORD_TAG']}", "Collaboration with Frozen0wl#9220", "Still in development UwU", f"bot host started at: {datetime.now()}"])
+bot_status = cycle([f";help || Stalking PolarBear4u#7025", "Collaboration with Frozen0wl#9220", "Still in development UwU", f"bot host started at: {datetime.now()}"])
 
 @client.event
 async def on_ready():
