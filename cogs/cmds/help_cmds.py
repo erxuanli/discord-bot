@@ -197,6 +197,21 @@ class HelpCmds(commands.Cog):
 
             await ctx.send(embed=embed)
 
+        # ---------------------------- help ecosystem ---------------------------------
+        elif category == "games":
+            embed = discord.Embed(title="help [games]",
+                                  description="help for all games",
+                                  color=discord.Color.blue())
+
+            fields = [(f"**404**", "nothing here yet", False)]
+
+            for name, value, inline in fields:
+                embed.add_field(name = name, value = value, inline = inline) 
+            
+            embed.set_footer(text="Thanks for using this useless bot xD and greetings to all weebs xD")
+
+            await ctx.send(embed=embed)
+
         # ---------------------------- help other ---------------------------------
         elif category == "other":
             embed = discord.Embed(title="help [other]",
