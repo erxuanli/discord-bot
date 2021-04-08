@@ -37,7 +37,7 @@ Contact PolarBear4u#7025 (Discord) for more information.
 - Frozen0wl
 
 ## Acknowledgments
-[Acknowledgments.md](.github/ACKNOWLEDMENTS.md)
+[Acknowledgments.md](.github/ACKNOWLEDGMENTS.md)
 
 ## Licence
 [GNU v3.0](LICENSE)
