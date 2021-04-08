@@ -1,5 +1,5 @@
 # discord-bot
-v1.0.0 - [view change log](CHANGELOG.md)
+v1.0.0 - [view change log](.github/CHANGELOG.md)
 
 A discord bot with a lot of cmds and functions
 
@@ -28,7 +28,7 @@ Make sure that the python buildpack is at the bottom of the buildpacks.
 Now the discord bot is ready to host. Yaaaaay!! Head over to the resources tab and switch the worker from off to on.
 
 ## Contributing
-[Contributing.md](CONTRIBUTING.md)
+[Contributing.md](.github/CONTRIBUTING.md)
 
 Contact PolarBear4u#7025 (Discord) for more information.
 
