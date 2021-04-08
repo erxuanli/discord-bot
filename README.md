@@ -1,4 +1,6 @@
 # discord-bot
+v1.0.0 - [view change log](CHANGELOG.md)
+
 A discord bot with a lot of cmds and functions
 
 ## Installation
@@ -26,7 +28,13 @@ Make sure that the python buildpack is at the bottom of the buildpacks.
 Now the discord bot is ready to host. Yaaaaay!! Head over to the resources tab and switch the worker from off to on.
 
 ## Contributing
+[Contributing.md](CONTRIBUTING.md)
+
 Contact PolarBear4u#7025 (Discord) for more information.
+
+## Contributors
+- PolarBear4u
+- Frozen0wl
 
 ## Licence
 [GNU v3.0](LICENSE)
