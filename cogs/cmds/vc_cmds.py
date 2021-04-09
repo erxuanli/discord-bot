@@ -27,6 +27,7 @@ class VcCmds(commands.Cog):
             await ctx.send(f"Disconnected")
 
     @commands.command(aliases = ["vm"])
+    # @commands.has_permissions(mute_membersor = True)
     async def vcmute(self, ctx):
         vc = ctx.author.voice.channel
         for member in vc.members:
@@ -34,6 +35,7 @@ class VcCmds(commands.Cog):
         await ctx.send(f"Muted all members in {vc}")
 
     @commands.command(aliases = ["vu"])
+    # @commands.has_permissions(mute_membersor = True)
     async def vcunmute(self, ctx):
         vc = ctx.author.voice.channel
         for member in vc.members:
@@ -99,6 +101,7 @@ class VcCmds(commands.Cog):
         await ctx.send("Playing mp3")
 
     @commands.command()
+    @commands.has_role("DJ")
     async def pause(self, ctx):
         voice = discord.utils.get(self.client.voice_clients, guild = ctx.guild)
         if voice.is_playing():
@@ -108,6 +111,7 @@ class VcCmds(commands.Cog):
             await ctx.send("No audio is playing")
 
     @commands.command()
+    @commands.has_role("DJ")
     async def resume(self, ctx):
         voice = discord.utils.get(self.client.voice_clients, guild = ctx.guild)
         if voice.is_paused():
