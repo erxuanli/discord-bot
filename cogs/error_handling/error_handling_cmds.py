@@ -23,3 +23,7 @@ class ErrorHandlerCmds(commands.Cog):
         elif isinstance(error, commands.MissingPermissions):
             await ctx.send("Access denied")
 
+        else:
+            await ctx.send("Whoops. Something went wrong...")
+            await ctx.send(error)
+
