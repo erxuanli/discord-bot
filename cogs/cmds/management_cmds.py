@@ -7,6 +7,7 @@ class ManagementCmds(commands.Cog):
 
     @commands.command(aliases=["arole"])
     @commands.has_permissions(administrator=True)
+    @commands.guild_only()
     async def addrole(self, ctx, member: discord.Member, role: discord.Role):
         await ctx.send(f"Permission granted")
         await member.add_roles(role)
@@ -14,6 +15,7 @@ class ManagementCmds(commands.Cog):
 
     @commands.command(aliases=["rrole"])
     @commands.has_permissions(administrator=True)
+    @commands.guild_only()
     async def remrole(self, ctx, member: discord.Member, role: discord.Role):
         await ctx.send(f"Permission granted")
         await member.remove_roles(role)
@@ -21,6 +23,7 @@ class ManagementCmds(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(administrator=True)
+    @commands.guild_only()
     async def kick(self, ctx, member: discord.Member, *, reason: str = None):
         await ctx.send(f"Permission granted")
         await member.kick(reason=reason)
@@ -28,6 +31,7 @@ class ManagementCmds(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(administrator=True)
+    @commands.guild_only()
     async def ban(self, ctx, member: discord.Member, *, reason: str = None):
         await ctx.send(f"Permission granted")
         await member.ban(reason=reason)
@@ -35,12 +39,14 @@ class ManagementCmds(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(administrator=True)
+    @commands.guild_only()
     async def unban(self, ctx, id: int):
         user = await self.client.fetch_user(id)
         await ctx.guild.unban(user)
         await ctx.send(f"Unbanned {user}")
 
     @commands.command()
+    @commands.guild_only()
     async def nickname(self, ctx, member: discord.Member, nick: str):
         await member.edit(nick=nick)
         await ctx.send(f"Nickname change: {member}")

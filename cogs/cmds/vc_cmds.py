@@ -10,6 +10,7 @@ class VcCmds(commands.Cog):
         self.client = client
 
     @commands.command()
+    @commands.guild_only()
     async def join(self, ctx):
         if ctx.author.voice is None:
             await ctx.send("Please join a voice channel")
@@ -19,6 +20,7 @@ class VcCmds(commands.Cog):
         await ctx.send(f"Joined {channel}")
 
     @commands.command()
+    @commands.guild_only()
     async def leave(self, ctx):
         if ctx.voice_client is None:
             await ctx.send("Bot is not in a voice channel")
@@ -27,6 +29,7 @@ class VcCmds(commands.Cog):
             await ctx.send(f"Disconnected")
 
     @commands.command(aliases = ["vm"])
+    @commands.guild_only()
     # @commands.has_permissions(mute_membersor = True)
     async def vcmute(self, ctx):
         vc = ctx.author.voice.channel
@@ -35,6 +38,7 @@ class VcCmds(commands.Cog):
         await ctx.send(f"Muted all members in {vc}")
 
     @commands.command(aliases = ["vu"])
+    @commands.guild_only()
     # @commands.has_permissions(mute_membersor = True)
     async def vcunmute(self, ctx):
         vc = ctx.author.voice.channel
@@ -43,6 +47,7 @@ class VcCmds(commands.Cog):
         await ctx.send(f"Unmuted all members in {vc}")
 
     @commands.command(aliases = ["p"])
+    @commands.guild_only()
     async def play(self, ctx, url: str):
         # ------------ check user vc connection -------------------
         if ctx.message.author.voice is None:
@@ -85,6 +90,7 @@ class VcCmds(commands.Cog):
         await ctx.send("Playing mp3")
 
     @commands.command(aliases = ["pl"])
+    @commands.guild_only()
     async def playl(self, ctx):
         # ------------ check user vc connection -------------------
         if ctx.message.author.voice is None:
@@ -102,6 +108,7 @@ class VcCmds(commands.Cog):
 
     @commands.command()
     @commands.has_role("DJ")
+    @commands.guild_only()
     async def pause(self, ctx):
         voice = discord.utils.get(self.client.voice_clients, guild = ctx.guild)
         if voice.is_playing():
@@ -112,6 +119,7 @@ class VcCmds(commands.Cog):
 
     @commands.command()
     @commands.has_role("DJ")
+    @commands.guild_only()
     async def resume(self, ctx):
         voice = discord.utils.get(self.client.voice_clients, guild = ctx.guild)
         if voice.is_paused():

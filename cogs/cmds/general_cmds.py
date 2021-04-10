@@ -19,6 +19,7 @@ class GeneralCmds(commands.Cog):
         await ctx.send(f"{os.environ['MY_DISCORD_TAG']} sennnnpaiiiiii")
 
     @commands.command()
+    @commands.guild_only()
     async def prefix(self, ctx):
         await ctx.send(self.client.command_prefix)
 
@@ -32,6 +33,7 @@ class GeneralCmds(commands.Cog):
 
     @commands.command()
     @cooldown(1, 60, BucketType.user)
+    @commands.guild_only()
     async def clear(self, ctx, amount=5):
         if amount > 30 and not is_creator(ctx):
             await ctx.send("max amount 30")
@@ -46,6 +48,7 @@ class GeneralCmds(commands.Cog):
             await ctx.send(str(member.id))
 
     @commands.command()
+    @commands.guild_only()
     async def info(self, ctx, member : discord.Member = None):
         user = member
         if user is None:
