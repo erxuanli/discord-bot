@@ -14,7 +14,7 @@ class ErrorHandlerCmds(commands.Cog):
         elif isinstance(error, commands.MissingRequiredArgument):
             await ctx.send(f"Missing required argument(s). Please search this command with {self.client.command_prefix}help and check which arguments are required.")
 
-        elif isinstance(error, commands.CommandNotFound):
+        elif isinstance(error, commands.errors.CommandNotFound):
             await ctx.send(f"That command is not available. You can check all available commands with {self.client.command_prefix}help.")
 
         elif isinstance(error, commands.NoPrivateMessage):
