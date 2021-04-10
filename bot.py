@@ -23,6 +23,8 @@ from cogs.non_cmds.events import Events
 
 from cogs.activity_roles.voice.voice_activity_roles import VcActivityRoles
 
+from cogs.error_handling.error_handling_cmds import ErrorHandlerCmds
+
 client = commands.Bot(command_prefix=";", help_command=None)
 
 client.add_cog(HelpCmds(client))
@@ -41,6 +43,8 @@ client.add_cog(TrollFlori(client))
 client.add_cog(Events(client))
 
 client.add_cog(VcActivityRoles(client))
+
+client.add_cog(ErrorHandlerCmds(client))
 
 bot_status = cycle([f";help || Stalking {os.environ['MY_DISCORD_TAG']}", "Collaboration with Frozen0wl#9220", "Still in development UwU", f"bot host started at: {datetime.now()}"])
 
