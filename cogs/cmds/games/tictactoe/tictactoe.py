@@ -8,10 +8,10 @@ class TictactoeCmds(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-        self.player1 = None # das hier ist eine Instanzvariable
-        self.player2 = None # das hier ist eine Instanzvariable
-        self.turn = None # das hier ist eine Instanzvariable
-        self.gameOver = False # das hier ist eine Instanzvariable
+        self.player1 = None 
+        self.player2 = None 
+        self.turn = None 
+        self.gameOver = False 
         self.count = 0
         self.board = []
 
