@@ -3,6 +3,7 @@ from discord.ext import commands
 
 from cogs.cmds.custom_checks import is_moderator
 
+
 class ManagementCmds(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -55,6 +56,7 @@ class ManagementCmds(commands.Cog):
 
     @commands.command()
     @commands.guild_only()
+    @commands.has_permissions(manage_nicknames=True)
     async def nickname(self, ctx, member: discord.Member, *, nick: str):
         await member.edit(nick=nick)
         await ctx.send(f"Nickname change: {member}")
@@ -64,4 +66,4 @@ class ManagementCmds(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def reset_nicknames(self, ctx):
         for user in ctx.guild.members:
-            await user.edit(nick = " ")
+            await user.edit(nick=" ")
