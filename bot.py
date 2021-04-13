@@ -28,7 +28,7 @@ from cogs.activity_roles.voice.voice_activity_roles import VcActivityRoles
 
 from cogs.error_handling.error_handling_cmds import ErrorHandlerCmds
 
-client = commands.Bot(command_prefix="¬", help_command=None)
+client = commands.Bot(command_prefix=";", help_command=None)
 
 client.add_cog(HelpCmds(client))
 client.add_cog(GeneralCmds(client))
