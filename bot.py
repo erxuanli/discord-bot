@@ -15,8 +15,11 @@ from cogs.cmds.math_cmds import MathCmds
 from cogs.cmds.science_cmds import ScienceCmds
 from cogs.cmds.dumb_cmds import DumbCmds
 from cogs.cmds.management_cmds import ManagementCmds
+from cogs.cmds.moderator_cmds import ModeratorCmds
 from cogs.cmds.ecosystem_cmds import EcosystemCmds
 from cogs.cmds.other_cmds import OtherCmds
+
+from cogs.cmds.games.tictactoe.tictactoe import TictactoeCmds
 
 from cogs.non_cmds.troll_flori import TrollFlori
 from cogs.non_cmds.events import Events
@@ -36,8 +39,11 @@ client.add_cog(MathCmds(client))
 client.add_cog(ScienceCmds(client))
 client.add_cog(DumbCmds(client))
 client.add_cog(ManagementCmds(client))
+client.add_cog(ModeratorCmds(client))
 client.add_cog(EcosystemCmds(client))
 client.add_cog(OtherCmds(client))
+
+client.add_cog(TictactoeCmds(client))
 
 client.add_cog(TrollFlori(client))
 client.add_cog(Events(client))
@@ -45,6 +51,7 @@ client.add_cog(Events(client))
 client.add_cog(VcActivityRoles(client))
 
 client.add_cog(ErrorHandlerCmds(client))
+
 
 bot_status = cycle([f";help || Stalking {os.environ['MY_DISCORD_TAG']}", "Collaboration with Frozen0wl#9220", "Still in development UwU", f"bot host started at: {datetime.now()}"])
 

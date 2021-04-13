@@ -6,7 +6,7 @@ from cogs.cmds.custom_checks import is_flori
 class TrollFlori(commands.Cog):
     def __init__(self, client):
         self.client = client
-        self.troll_flori_bool = True
+        self.troll_flori_bool = False
 
     @commands.Cog.listener()
     async def on_message(self, message):
