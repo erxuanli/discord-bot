@@ -68,5 +68,5 @@ class ManagementCmds(commands.Cog):
         for user in ctx.guild.members:
             try:
                 await user.edit(nick=" ")
-            except commands.BotMissingPermissions:
+            except discord.errors.Forbidden:
                 await ctx.send(f"do not have enough permissions to change {user}'s nickname")
