@@ -30,7 +30,6 @@ from cogs.activity_roles.voice.voice_activity_roles import VcActivityRoles
 
 from cogs.error_handling.error_handling_cmds import ErrorHandlerCmds
 
-global cogs_bool
 cogs_bool = True
 
 client = commands.Bot(command_prefix=";", help_command=None)
@@ -63,13 +62,15 @@ async def change_status():
 @client.command()
 @commands.check(is_moderator)
 async def debug(ctx):
-    if cogs_bool:
+    x = cogs_bool
+    if x:
         for cog in cogs:
             client.remove_cog(cog.__class__.__name__)
-        cogs_bool = not cogs_bool
+        x = not x
     else:
         for cog in cogs:
             client.add_cog(cog)
-        cogs_bool = not cogs_bool
+        x = not x
+    cogs_bool = x
 
 client.run(os.environ['BOT_TOKEN'])
