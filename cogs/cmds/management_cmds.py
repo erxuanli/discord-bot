@@ -64,10 +64,16 @@ class ManagementCmds(commands.Cog):
     @commands.command()
     @commands.guild_only()
     @commands.has_permissions(administrator=True)
-    async def reset_nicknames(self, ctx):
+    async def nicknames(self, ctx, *, n : str = None):
+        nick = None
         for user in ctx.guild.members:
+            if n is None:
+                nick = user.name
+            else:
+                nick = n
             try:
-                await user.edit(nick=" ")
+                await user.edit(nick=nick)
+                await ctx.send(f"changed {user}'s nickname to: [{nick}]")
             except discord.errors.Forbidden:
                 await ctx.send(f"do not have enough permissions to change {user}'s nickname")
-        ctx.send("resetted all nicknames that could be resetted")
+        ctx.send("changed all nicknames that could be changed")
