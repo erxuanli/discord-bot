@@ -6,6 +6,8 @@ from itertools import cycle
 
 from datetime import datetime
 
+from cogs.cmds.custom_checks import is_moderator
+
 from cogs.cmds.help_cmds import HelpCmds
 from cogs.cmds.general_cmds import GeneralCmds
 from cogs.cmds.testing_cmds import TestingCmds
@@ -28,32 +30,20 @@ from cogs.activity_roles.voice.voice_activity_roles import VcActivityRoles
 
 from cogs.error_handling.error_handling_cmds import ErrorHandlerCmds
 
+cogs_bool = True
+
 client = commands.Bot(command_prefix=";", help_command=None)
 
-client.add_cog(HelpCmds(client))
-client.add_cog(GeneralCmds(client))
-client.add_cog(TestingCmds(client))
-client.add_cog(VcCmds(client))
-client.add_cog(FunCmds(client))
-client.add_cog(MathCmds(client))
-client.add_cog(ScienceCmds(client))
-client.add_cog(DumbCmds(client))
-client.add_cog(ManagementCmds(client))
-client.add_cog(ModeratorCmds(client))
-client.add_cog(EcosystemCmds(client))
-client.add_cog(OtherCmds(client))
+cogs = [HelpCmds(client), GeneralCmds(client), TestingCmds(client), VcCmds(client), FunCmds(client), MathCmds(client), ScienceCmds(client), DumbCmds(
+    client), ManagementCmds(client), ModeratorCmds(client), EcosystemCmds(client), OtherCmds(client), TictactoeCmds(client), TrollFlori(client), Events(client), VcActivityRoles(client), ErrorHandlerCmds(client)]
 
-client.add_cog(TictactoeCmds(client))
-
-client.add_cog(TrollFlori(client))
-client.add_cog(Events(client))
-
-client.add_cog(VcActivityRoles(client))
-
-client.add_cog(ErrorHandlerCmds(client))
+for cog in cogs:
+    client.add_cog(cog)
 
 
-bot_status = cycle([f";help || Stalking {os.environ['MY_DISCORD_TAG']}", "Collaboration with Frozen0wl#9220", "Still in development UwU", f"bot host started at: {datetime.now()}"])
+bot_status = cycle([f";help || Stalking {os.environ['MY_DISCORD_TAG']}", "Collaboration with Frozen0wl#9220",
+                   "Still in development UwU", f"bot host started at: {datetime.now()}"])
+
 
 @client.event
 async def on_ready():
@@ -61,11 +51,22 @@ async def on_ready():
     change_status.start()
     print(f"[{datetime.now()}] {client.user}: Connected")
 
-@tasks.loop(seconds = 10)
+
+@tasks.loop(seconds=10)
 async def change_status():
-    await client.change_presence(activity = discord.Game(name = next(bot_status)))
+    await client.change_presence(activity=discord.Game(name=next(bot_status)))
+
+
+@client.command()
+@commands.check(is_moderator)
+async def debug(ctx):
+    if cogs_bool:
+        for cog in cogs:
+            client.remove_cog(cog.__class__.__name__)
+        cogs_bool = not cogs_bool
+    else:
+        for cog in cogs:
+            client.add_cog(cog)
+        cogs_bool = not cogs_bool
 
 client.run(os.environ['BOT_TOKEN'])
-
-
-
