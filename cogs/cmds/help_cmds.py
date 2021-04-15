@@ -26,6 +26,7 @@ class HelpCmds(commands.Cog):
                       (f"**{self.client.command_prefix}help dumb**", "help for all dumb commands", False),
                       (f"**{self.client.command_prefix}help management**", "help for all management commands", False),
                       (f"**{self.client.command_prefix}help ecosystem**", "help for all ecosystem commands", False),
+                      (f"**{self.client.command_prefix}help games**", "help for all games commands", False),
                       (f"**{self.client.command_prefix}help other**", "help for all other commands", False)]  
 
             for name, value, inline in fields:
@@ -198,13 +199,13 @@ class HelpCmds(commands.Cog):
 
             await ctx.send(embed=embed)
 
-        # ---------------------------- help ecosystem ---------------------------------
+        # ---------------------------- help games ----------------------------------
         elif category == "games":
             embed = discord.Embed(title="help [games]",
                                   description="help for all games",
                                   color=discord.Color.blue())
 
-            fields = [(f"**404**", "nothing here yet", False)]
+            fields = [(f"**{self.client.command_prefix}tictactoe [player1] [player2]**", "tic tac toe game (still in development)", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
