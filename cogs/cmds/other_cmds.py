@@ -28,8 +28,24 @@ class OtherCmds(commands.Cog):
         if ctx.author.id not in self.nicktimer_data:
             await ctx.send("You didn't set a timer")
         else:
-            self.nicktimer_data[ctx.author.id] = self.nicktimer_data[ctx.author.id]["end_time"] + (t * 60)
-            await ctx.send(f"Added {t} minutes to timer")
+            if not self.nicktimer_refreshing:
+                self.nicktimer_data[ctx.author.id] = self.nicktimer_data[ctx.author.id]["end_time"] + (t * 60)
+                await ctx.send(f"Added {t} minutes to timer")
+            else:
+                await ctx.send(f"Cannot add timer currently. All timers are refreshing. Please reuse the command.")
+
+    @commands.command()
+    @commands.guild_only()
+    async def nicktimer_stop(self, ctx):
+        if ctx.author.id not in self.nicktimer_data:
+            await ctx.send("No timer running")
+        else:
+            if not self.nicktimer_refreshing:
+                del self.nicktimer_data[ctx.author.id]
+                await ctx.author.edit(nick=ctx.author.name)
+                await ctx.send("Timer stopped")
+            else:
+                await ctx.send(f"Cannot stop timer currently. All timers are refreshing. Please reuse the command.")
 
     @tasks.loop(seconds=5)
     async def refresh_nicktimers(self):
