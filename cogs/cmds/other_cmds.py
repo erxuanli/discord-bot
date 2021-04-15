@@ -9,6 +9,7 @@ class OtherCmds(commands.Cog):
     def __init__(self, client):
         self.client = client
         self.nicktimer_data = dict()
+        self.nicktimer_refreshing = False
         self.refresh_nicktimers.start()
 
     @commands.command()
@@ -21,8 +22,18 @@ class OtherCmds(commands.Cog):
             self.nicktimer_data[ctx.author.id] = {"end_time": end_time, "ctx": ctx}
             await ctx.send(f"Timer set: {t} minutes")
 
-    @tasks.loop(seconds=10)
+    @commands.command()
+    @commands.guild_only()
+    async def nicktimer_add(self, ctx, t : int = 1):
+        if ctx.author.id not in self.nicktimer_data:
+            await ctx.send("You didn't set a timer")
+        else:
+            self.nicktimer_data[ctx.author.id] = self.nicktimer_data[ctx.author.id]["end_time"] + (t * 60)
+            await ctx.send(f"Added {t} minutes to timer")
+
+    @tasks.loop(seconds=5)
     async def refresh_nicktimers(self):
+        self.nicktimer_refreshing = True
         delete = []
         if self.nicktimer_data:
             for user in self.nicktimer_data:
@@ -36,5 +47,8 @@ class OtherCmds(commands.Cog):
         for user in delete:
             del self.nicktimer_data[user]
         delete = []
+        self.nicktimer_refreshing = False
+
+    
 
     
