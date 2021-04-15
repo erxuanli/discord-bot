@@ -66,4 +66,7 @@ class ManagementCmds(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def reset_nicknames(self, ctx):
         for user in ctx.guild.members:
-            await user.edit(nick=" ")
+            try:
+                await user.edit(nick=" ")
+            except PermissionError:
+                await ctx.send("ra")
