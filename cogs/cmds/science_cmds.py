@@ -20,7 +20,7 @@ class ScienceCmds(commands.Cog):
     @commands.command()
     @cooldown(1, 3600, BucketType.user)
     async def satellite(self, ctx, quan : int = 1):
-        if quan > 10 and not is_moderator:
+        if quan > 10 and not is_moderator(ctx):
             await ctx.send(f'Please pick a number smaller than 11')
         else:    
             count = 0
@@ -40,7 +40,5 @@ class ScienceCmds(commands.Cog):
                     embed.add_field(name = "**True Equator Mean Equinox velocity (km/s)**", value = v, inline = False)
                     embed.set_footer(text = f"Julian Date [now]: [{jd}] || Fraction: [{fr}]")
                     await ctx.send(embed = embed)
-                    count += 1   
-            
-
-                
+                    count += 1
+                    
