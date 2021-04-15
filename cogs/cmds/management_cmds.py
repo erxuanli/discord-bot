@@ -76,4 +76,4 @@ class ManagementCmds(commands.Cog):
                 await ctx.send(f"changed {user}'s nickname to: [{nick}]")
             except discord.errors.Forbidden:
                 await ctx.send(f"do not have enough permissions to change {user}'s nickname")
-        ctx.send("changed all nicknames that could be changed")
+        await ctx.send("changed all nicknames that could be changed")

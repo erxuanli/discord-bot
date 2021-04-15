@@ -174,7 +174,7 @@ class HelpCmds(commands.Cog):
                       (f"**{self.client.command_prefix}ban [user] [reason]**", "bans a member", False),
                       (f"**{self.client.command_prefix}unban [user]**", "unbans a member", False),
                       (f"**{self.client.command_prefix}nickname [user] [nickname]**", "changes the nickname of an user", False),
-                      (f"**{self.client.command_prefix}reset_nickname**", "resets all nicknames", False)]
+                      (f"**{self.client.command_prefix}nicknames [nickname]**", "changes all nicknames", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
