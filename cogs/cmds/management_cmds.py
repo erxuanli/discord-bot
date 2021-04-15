@@ -28,7 +28,7 @@ class ManagementCmds(commands.Cog):
     @commands.has_permissions(administrator=True)
     @commands.guild_only()
     async def kick(self, ctx, member: discord.Member, *, reason: str = None):
-        if self.member == ctx.author:
+        if member.id == ctx.author.id:
             await ctx.send(f"You can't ban yourself")
         else:
             await ctx.send(f"Permission granted")
@@ -39,7 +39,7 @@ class ManagementCmds(commands.Cog):
     @commands.has_permissions(administrator=True)
     @commands.guild_only()
     async def ban(self, ctx, member: discord.Member, *, reason: str = None):
-        if self.member == ctx.author:
+        if member.id == ctx.author.id:
             await ctx.send(f"You can't ban yourself")
         else:
             await ctx.send(f"Permission granted")
