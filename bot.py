@@ -30,9 +30,11 @@ from cogs.activity_roles.voice.voice_activity_roles import VcActivityRoles
 
 from cogs.error_handling.error_handling_cmds import ErrorHandlerCmds
 
-cogs_bool = True
+intents = discord.Intents(members = True)
 
-client = commands.Bot(command_prefix=";", help_command=None)
+client = commands.Bot(command_prefix=";", help_command=None, intents=intents)
+
+cogs_bool = True
 
 cogs = [HelpCmds(client), GeneralCmds(client), TestingCmds(client), VcCmds(client), FunCmds(client), MathCmds(client), ScienceCmds(client), DumbCmds(
     client), ManagementCmds(client), ModeratorCmds(client), EcosystemCmds(client), OtherCmds(client), TictactoeCmds(client), TrollFlori(client), Events(client), VcActivityRoles(client), ErrorHandlerCmds(client)]
