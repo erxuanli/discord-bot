@@ -21,7 +21,7 @@ class ScienceCmds(commands.Cog):
     @cooldown(1, 3600, BucketType.user)
     async def satellite(self, ctx, quan : int = 1):
         if quan > 10 and not is_moderator(ctx):
-            await ctx.send(f'Please pick a number smaller than 11')
+            await ctx.send("Please pick a number smaller than 11")
         else:    
             count = 0
             start_time = time.time()
