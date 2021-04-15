@@ -62,15 +62,15 @@ async def change_status():
 @client.command()
 @commands.check(is_moderator)
 async def debug(ctx):
-    x = cogs_bool
-    if x:
+    global cogs_bool
+    if cogs_bool:
         for cog in cogs:
             client.remove_cog(cog.__class__.__name__)
-        x = not x
+        cogs_bool = not cogs_bool
     else:
         for cog in cogs:
             client.add_cog(cog)
-        x = not x
-    cogs_bool = x
+        cogs_bool = not cogs_bool
+
 
 client.run(os.environ['BOT_TOKEN'])
