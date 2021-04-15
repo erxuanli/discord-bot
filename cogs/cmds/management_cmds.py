@@ -55,15 +55,15 @@ class ManagementCmds(commands.Cog):
         await ctx.send(f"Unbanned {user}")
 
     @commands.command()
-    @commands.guild_only()
     @commands.has_permissions(manage_nicknames=True)
+    @commands.guild_only()
     async def nickname(self, ctx, member: discord.Member, *, nick: str):
         await member.edit(nick=nick)
         await ctx.send(f"Nickname change: {member}")
 
     @commands.command()
-    @commands.guild_only()
     @commands.has_permissions(administrator=True)
+    @commands.guild_only()
     async def nicknames(self, ctx, *, n : str = None):
         nick = None
         for user in ctx.guild.members:
