@@ -30,12 +30,15 @@ from cogs.activity_roles.voice.voice_activity_roles import VcActivityRoles
 
 from cogs.error_handling.error_handling_cmds import ErrorHandlerCmds
 
+global cogs_bool
 cogs_bool = True
 
 client = commands.Bot(command_prefix=";", help_command=None)
 
 cogs = [HelpCmds(client), GeneralCmds(client), TestingCmds(client), VcCmds(client), FunCmds(client), MathCmds(client), ScienceCmds(client), DumbCmds(
     client), ManagementCmds(client), ModeratorCmds(client), EcosystemCmds(client), OtherCmds(client), TictactoeCmds(client), TrollFlori(client), Events(client), VcActivityRoles(client)]
+
+# , ErrorHandlerCmds(client)
 
 for cog in cogs:
     client.add_cog(cog)
