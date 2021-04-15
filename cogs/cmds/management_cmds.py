@@ -70,3 +70,4 @@ class ManagementCmds(commands.Cog):
                 await user.edit(nick=" ")
             except discord.errors.Forbidden:
                 await ctx.send(f"do not have enough permissions to change {user}'s nickname")
+        ctx.send("resetted all nicknames that could be resetted")
