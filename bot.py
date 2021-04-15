@@ -30,7 +30,8 @@ from cogs.activity_roles.voice.voice_activity_roles import VcActivityRoles
 
 from cogs.error_handling.error_handling_cmds import ErrorHandlerCmds
 
-intents = discord.Intents(members = True)
+intents = discord.Intents.default()
+intents.members = True
 
 client = commands.Bot(command_prefix=";", help_command=None, intents=intents)
 
