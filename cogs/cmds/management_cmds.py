@@ -29,7 +29,7 @@ class ManagementCmds(commands.Cog):
     @commands.guild_only()
     async def kick(self, ctx, member: discord.Member, *, reason: str = None):
         if member.id == ctx.author.id:
-            await ctx.send(f"You can't ban yourself")
+            await ctx.send(f"You can't kick yourself")
         else:
             await ctx.send(f"Permission granted")
             await member.kick(reason=reason)
