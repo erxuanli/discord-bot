@@ -41,9 +41,12 @@ class OtherCmds(commands.Cog):
             await ctx.send("No timer running")
         else:
             if not self.nicktimer_refreshing:
-                del self.nicktimer_data[ctx.author.id]
-                await ctx.author.edit(nick=ctx.author.name)
-                await ctx.send("Timer stopped")
+                try:
+                    del self.nicktimer_data[ctx.author.id]
+                    await ctx.author.edit(nick=ctx.author.name)
+                    await ctx.send("Timer stopped")
+                except discord.errors.Forbidden:
+                    pass
             else:
                 await ctx.send(f"Cannot stop timer currently. All timers are refreshing. Please reuse the command.")
 
@@ -56,10 +59,16 @@ class OtherCmds(commands.Cog):
                 ctx = self.nicktimer_data[user]["ctx"]
                 end_time = self.nicktimer_data[user]["end_time"]
                 if time.time() >= end_time:
-                    await ctx.author.edit(nick=ctx.author.name)
-                    delete.append(user)
+                    try:
+                        await ctx.author.edit(nick=ctx.author.name)
+                        delete.append(user)
+                    except discord.errors.Forbidden:
+                        pass
                 else:
-                    await ctx.author.edit(nick=f"Back in {int((end_time - time.time()) / 60)} min {round((end_time - time.time()) - (int((end_time - time.time()) / 60) * 60))} sec")
+                    try:
+                        await ctx.author.edit(nick=f"Back in {int((end_time - time.time()) / 60)} min {round((end_time - time.time()) - (int((end_time - time.time()) / 60) * 60))} sec")
+                    except discord.errors.Forbidden:
+                        pass
         for user in delete:
             del self.nicktimer_data[user]
         delete = []
