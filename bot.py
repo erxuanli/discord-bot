@@ -32,7 +32,7 @@ from cogs.error_handling.error_handling_cmds import ErrorHandlerCmds
 
 intents = discord.Intents.default()
 intents.members = True
-intents.presense = True
+intents.presences = True
 
 client = commands.Bot(command_prefix=";", help_command=None, intents=intents)
 
