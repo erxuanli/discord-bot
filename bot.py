@@ -67,10 +67,12 @@ async def debug(ctx):
         for cog in cogs:
             client.remove_cog(cog.__class__.__name__)
         cogs_bool = not cogs_bool
+        await ctx.send(f"debug: [{cogs_bool}]")
     else:
         for cog in cogs:
             client.add_cog(cog)
         cogs_bool = not cogs_bool
+        await ctx.send(f"debug: [{cogs_bool}]")
 
 
 client.run(os.environ['BOT_TOKEN'])
