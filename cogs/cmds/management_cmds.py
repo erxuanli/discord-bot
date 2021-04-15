@@ -65,5 +65,5 @@ class ManagementCmds(commands.Cog):
     @commands.guild_only()
     @commands.has_permissions(administrator=True)
     async def reset_nicknames(self, ctx):
-        for user in ctx.guild.members:
+        for user in ctx.message.server.members:
             await user.edit(nick=" ")
