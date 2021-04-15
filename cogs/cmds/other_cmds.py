@@ -12,6 +12,7 @@ class OtherCmds(commands.Cog):
         self.refresh_nicktimers.start()
 
     @commands.command()
+    @commands.guild_only()
     async def nicktimer(self, ctx, t : int = 5): # time in minutes
         if ctx.author.id in self.nicktimer_data:
             await ctx.send("Already started a timer")
@@ -27,9 +28,9 @@ class OtherCmds(commands.Cog):
                 ctx = self.nicktimer_data[user]["ctx"]
                 end_time = self.nicktimer_data[user]["end_time"]
                 if time.time() >= end_time:
-                    ctx.author.edit(nick=ctx.author.name)
+                    await ctx.author.edit(nick=ctx.author.name)
                     del self.nicktimer_data[user]
                 else:
-                    ctx.author.edit(nick=f"Back in {round((end_time - time.time()) / 60)}")
+                    await ctx.author.edit(nick=f"Back in {round((end_time - time.time()) / 60)}")
 
     
