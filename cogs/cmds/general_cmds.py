@@ -4,7 +4,7 @@ from discord.ext import commands
 import os
 import datetime
 
-from cogs.cmds.custom_checks import is_creator
+from cogs.cmds.custom_checks import is_creator, is_moderator
 
 from discord.ext.commands import cooldown
 from discord.ext.commands import BucketType
@@ -35,7 +35,7 @@ class GeneralCmds(commands.Cog):
     @cooldown(1, 60, BucketType.user)
     @commands.guild_only()
     async def clear(self, ctx, amount=5):
-        if amount > 30 and not is_creator(ctx):
+        if amount > 30 and not is_moderator(ctx):
             await ctx.send("max amount 30")
         else:
             await ctx.channel.purge(limit=amount)
