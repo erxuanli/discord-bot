@@ -32,7 +32,7 @@ class OtherCmds(commands.Cog):
             await ctx.send("You didn't set a timer")
         else:
             if not self.nicktimer_refreshing:
-                self.nicktimer_data[str(ctx.author.id)] = self.nicktimer_data[str(ctx.author.id)]["end_time"] + (t * 60)
+                self.nicktimer_data[str(ctx.author.id)]["end_time"] = self.nicktimer_data[str(ctx.author.id)]["end_time"] + (t * 60)
                 await ctx.send(f"Added {t} minutes to timer")
             else:
                 await ctx.send(f"Cannot add timer currently. All timers are refreshing. Please reuse the command.")
