@@ -5,6 +5,7 @@ import os
 from itertools import cycle
 
 from datetime import datetime
+import time
 
 from cogs.cmds.custom_checks import is_moderator
 
@@ -46,7 +47,7 @@ for cog in cogs:
 
 
 bot_status = cycle([f";help || Stalking {os.environ['MY_DISCORD_TAG']}", "Collaboration with Frozen0wl#9220",
-                   "Still in development UwU", f"bot host started at: {datetime.now()}"])
+                   "Still in development UwU", f"bot host started at: {time.ctime(time.time() + (2 * 60**2))}"])
 
 
 @client.event
