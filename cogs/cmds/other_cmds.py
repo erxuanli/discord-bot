@@ -18,9 +18,12 @@ class OtherCmds(commands.Cog):
         if ctx.author.id in self.nicktimer_data:
             await ctx.send("Already started a timer")
         else:
-            end_time = time.time() + (t * 60)
-            self.nicktimer_data[ctx.author.id] = {"end_time": end_time, "ctx": ctx}
-            await ctx.send(f"Timer set: {t} minutes")
+            if not self.nicktimer_refreshing:
+                end_time = time.time() + (t * 60)
+                self.nicktimer_data[ctx.author.id] = {"end_time": end_time, "ctx": ctx}
+                await ctx.send(f"Timer set: {t} minutes")
+            else:
+                await ctx.send(f"Cannot start timer currently. All timers are refreshing. Please reuse the command.")
 
     @commands.command()
     @commands.guild_only()
