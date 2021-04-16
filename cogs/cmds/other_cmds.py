@@ -19,9 +19,12 @@ class OtherCmds(commands.Cog):
             await ctx.send("Already started a timer")
         else:
             if not self.nicktimer_refreshing:
-                end_time = time.time() + (t * 60)
-                self.nicktimer_data[str(ctx.author.id)] = {"end_time": end_time, "ctx": ctx}
-                await ctx.send(f"Timer set: {t} minutes")
+                if t <= 9_999_999_999_999:
+                    end_time = time.time() + (t * 60)
+                    self.nicktimer_data[str(ctx.author.id)] = {"end_time": end_time, "ctx": ctx}
+                    await ctx.send(f"Timer set: {t} minutes")
+                else:
+                    await ctx.send("Timer must be shorter than 9,999,999,999,999 minutes")
             else:
                 await ctx.send(f"Cannot start timer currently. All timers are refreshing. Please reuse the command.")
 
@@ -32,8 +35,11 @@ class OtherCmds(commands.Cog):
             await ctx.send("You didn't set a timer")
         else:
             if not self.nicktimer_refreshing:
-                self.nicktimer_data[str(ctx.author.id)]["end_time"] = self.nicktimer_data[str(ctx.author.id)]["end_time"] + (t * 60)
-                await ctx.send(f"Added {t} minutes to timer")
+                if (int((self.nicktimer_data[str(ctx.author.id)]["end_time"] - time.time() / 60)) + t) <= 9_999_999_999_999:
+                    self.nicktimer_data[str(ctx.author.id)]["end_time"] = self.nicktimer_data[str(ctx.author.id)]["end_time"] + (t * 60)
+                    await ctx.send(f"Added {t} minutes to timer")
+                else:
+                    await ctx.send("Timer must be shorter than 9,999,999,999,999 minutes")
             else:
                 await ctx.send(f"Cannot add timer currently. All timers are refreshing. Please reuse the command.")
 
