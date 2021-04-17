@@ -43,9 +43,9 @@ class GeneralCmds(commands.Cog):
     @commands.command()
     async def id(self, ctx, member : discord.Member = None):
         if member is None:
-            await ctx.send(str(ctx.author.id))
+            await ctx.send(f"ID [{ctx.guild.name}]: [{ctx.guild.id}] \nID [{ctx.author.name}]: [{ctx.author.id}]")
         else:
-            await ctx.send(str(member.id))
+            await ctx.send(f"ID [{member.name}]: [{member.id}]")
 
     @commands.command()
     @commands.guild_only()
