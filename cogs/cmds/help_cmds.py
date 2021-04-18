@@ -45,6 +45,7 @@ class HelpCmds(commands.Cog):
             fields = [(f"**{self.client.command_prefix}creator**", "creator of this useless bot", False),
                       (f"**{self.client.command_prefix}prefix**", "returns the current prefix", False),
                       (f"**{self.client.command_prefix}avatar [user]**", "returns the avatar of the mentioned user", False),
+                      (f"**{self.client.command_prefix}savatar**", "returns the server icon", False),
                       (f"**{self.client.command_prefix}clear [int]**", "clears channel [max 30]; do not spam", False),
                       (f"**{self.client.command_prefix}id [member]**", "returns the id of a member", False),
                       (f"**{self.client.command_prefix}info [user]**", "info about an user", False)]

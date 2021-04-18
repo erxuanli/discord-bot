@@ -32,6 +32,11 @@ class GeneralCmds(commands.Cog):
             await ctx.send(userAvatarUrl)
 
     @commands.command()
+    @commands.guild_only()
+    async def savatar(self, ctx):
+        await ctx.send(ctx.guild.icon_url)
+
+    @commands.command()
     @cooldown(1, 60, BucketType.user)
     @commands.guild_only()
     async def clear(self, ctx, amount=5):
