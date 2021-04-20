@@ -78,8 +78,6 @@ class FunCmds(commands.Cog):
 
             if n is None:
                 data[str(ctx.author.id)] = "Nothing here xD"
-                await ctx.send("deleted note")
-                return
             else:
                 data[str(ctx.author.id)] = n
                 
