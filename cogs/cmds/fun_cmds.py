@@ -1,6 +1,11 @@
 import discord
 from discord.ext import commands
 
+import os
+
+from pymongo import MongoClient
+from bson.objectid import ObjectId
+
 import json
 
 import random
@@ -59,3 +64,36 @@ class FunCmds(commands.Cog):
         with open("./cogs/cmds/cmd_utils/anime_gifs.json", "r") as file:
             anime_gifs = json.load(file)
             await ctx.send(anime_gifs[random.randint(0, len(anime_gifs) - 1)])
+
+    @commands.command()
+    async def note(self, ctx, *, n : str = None):
+        obj_id = "607f305065c78e14e94bf714"
+        data = dict()
+        client = MongoClient(os.environ('MONGODB'))
+        with client:
+            db = client["fun_cmds"]
+            notes_collection = db["note"]
+            if notes_collection.find_one(ObjectId(obj_id)) is not None:
+                data = notes_collection.find_one(ObjectId(obj_id))
+            
+            data[str(ctx.author.id)] = n
+            notes_collection.update_one({"_id":ObjectId(obj_id)}, {"$set": data}, upsert = True)
+
+            await ctx.send("saved note")
+
+    @commands.command()
+    async def rnote(self, ctx):
+        obj_id = "607f305065c78e14e94bf714"
+        data = dict()
+        client = MongoClient(os.environ('MONGODB'))
+        with client:
+            db = client["fun_cmds"]
+            notes_collection = db["note"]
+            if notes_collection.find_one(ObjectId(obj_id)) is not None:
+                data = notes_collection.find_one(ObjectId(obj_id))
+
+            if str(ctx.author.id) not in data:
+                await ctx.send(f"do not have a note. please set a note with {self.client.command_prefix}note")
+            else:
+                await ctx.send(data[str(ctx.author.id)])
+
