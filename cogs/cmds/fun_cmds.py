@@ -77,8 +77,7 @@ class FunCmds(commands.Cog):
                 data = notes_collection.find_one(ObjectId(obj_id))
 
             if n is None:
-                if str(ctx.author.id) in data:
-                    del data[str(ctx.author.id)]
+                data[str(ctx.author.id)] = "Nothing here xD"
                 await ctx.send("deleted note")
                 return
             
@@ -99,7 +98,7 @@ class FunCmds(commands.Cog):
                 data = notes_collection.find_one(ObjectId(obj_id))
 
             if str(ctx.author.id) not in data:
-                await ctx.send(f"do not have a note. please set a note with {self.client.command_prefix}note")
+                await ctx.send(f"do not have a note. please create a note with {self.client.command_prefix}note")
             else:
                 await ctx.send(data[str(ctx.author.id)])
 
