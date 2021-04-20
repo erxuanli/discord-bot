@@ -80,8 +80,9 @@ class FunCmds(commands.Cog):
                 data[str(ctx.author.id)] = "Nothing here xD"
                 await ctx.send("deleted note")
                 return
-            
-            data[str(ctx.author.id)] = n
+            else:
+                data[str(ctx.author.id)] = n
+                
             notes_collection.update_one({"_id":ObjectId(obj_id)}, {"$set": data}, upsert = True)
 
             await ctx.send("saved note")
