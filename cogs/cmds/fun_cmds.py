@@ -69,7 +69,7 @@ class FunCmds(commands.Cog):
     async def note(self, ctx, *, n : str = None):
         obj_id = "607f305065c78e14e94bf714"
         data = dict()
-        client = MongoClient(str(os.environ('MONGODB')))
+        client = MongoClient(os.environ['MONGODB'])
         with client:
             db = client["fun_cmds"]
             notes_collection = db["note"]
@@ -85,7 +85,7 @@ class FunCmds(commands.Cog):
     async def rnote(self, ctx):
         obj_id = "607f305065c78e14e94bf714"
         data = dict()
-        client = MongoClient(str(os.environ('MONGODB')))
+        client = MongoClient(os.environ['MONGODB'])
         with client:
             db = client["fun_cmds"]
             notes_collection = db["note"]
