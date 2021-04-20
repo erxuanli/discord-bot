@@ -75,6 +75,12 @@ class FunCmds(commands.Cog):
             notes_collection = db["note"]
             if notes_collection.find_one(ObjectId(obj_id)) is not None:
                 data = notes_collection.find_one(ObjectId(obj_id))
+
+            if n is None:
+                if str(ctx.author.id) in data:
+                    del data[str(ctx.author.id)]
+                await ctx.send("deleted note")
+                return
             
             data[str(ctx.author.id)] = n
             notes_collection.update_one({"_id":ObjectId(obj_id)}, {"$set": data}, upsert = True)
