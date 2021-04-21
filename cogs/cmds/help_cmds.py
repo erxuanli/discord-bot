@@ -105,7 +105,9 @@ class HelpCmds(commands.Cog):
                       (f"**{self.client.command_prefix}ascii**", "converts to ascii / unicode", False),
                       (f"**{self.client.command_prefix}ranimegif**", "random anime gif", False),
                       (f"**{self.client.command_prefix}morse**", "converts to morse code", False),
-                      (f"**{self.client.command_prefix}demorse**", "converts morse code back", False)]
+                      (f"**{self.client.command_prefix}demorse**", "converts morse code back", False),
+                      (f"**{self.client.command_prefix}note [your note]**", "saving a note", False),
+                      (f"**{self.client.command_prefix}rnote**", "read your created note", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
