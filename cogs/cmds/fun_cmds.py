@@ -77,8 +77,7 @@ class FunCmds(commands.Cog):
                 data = notes_collection.find_one(ObjectId(obj_id))
 
             if n is None:
-                if str(ctx.author.id) in data:
-                    del data[str(ctx.author.id)]
+                data[str(ctx.author.id)] = "UwU"
             else:
                 data[str(ctx.author.id)] = n
                 
