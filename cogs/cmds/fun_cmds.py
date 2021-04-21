@@ -77,13 +77,14 @@ class FunCmds(commands.Cog):
                 data = notes_collection.find_one(ObjectId(obj_id))
 
             if n is None:
-                data[str(ctx.author.id)] = "Nothing here xD"
+                if str(ctx.author.id) in data:
+                    del data[str(ctx.author.id)]
             else:
                 data[str(ctx.author.id)] = n
                 
             notes_collection.update_one({"_id":ObjectId(obj_id)}, {"$set": data}, upsert = True)
 
-            await ctx.send("saved note")
+            await ctx.send("saved changes")
 
     @commands.command()
     async def rnote(self, ctx):
