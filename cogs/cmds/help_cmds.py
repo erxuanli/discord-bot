@@ -16,17 +16,17 @@ class HelpCmds(commands.Cog):
                              icon_url=ctx.author.avatar_url)
             embed.set_thumbnail(url="https://static.wikia.nocookie.net/the-muse-list/images/f/fd/Albedo_Pout.jpg")
 
-            fields = [(f"**{self.client.command_prefix}help general**", "help for all general commands", False),
-                      (f"**{self.client.command_prefix}help testing**", "help for all testing commands", False),
-                      (f"**{self.client.command_prefix}help vc**", "help for all vc commands", False),
-                      (f"**{self.client.command_prefix}help fun**", "help for all fun commands", False),
-                      (f"**{self.client.command_prefix}help math**", "help for all math commands", False),
-                      (f"**{self.client.command_prefix}help science**", "help for all science commands", False),
-                      (f"**{self.client.command_prefix}help dumb**", "help for all dumb commands", False),
-                      (f"**{self.client.command_prefix}help management**", "help for all management commands", False),
-                      (f"**{self.client.command_prefix}help ecosystem**", "help for all ecosystem commands", False),
-                      (f"**{self.client.command_prefix}help games**", "help for all games commands", False),
-                      (f"**{self.client.command_prefix}help other**", "help for all other commands", False)]  
+            fields = [(f"**{self.client.command_prefix()}help general**", "help for all general commands", False),
+                      (f"**{self.client.command_prefix()}help testing**", "help for all testing commands", False),
+                      (f"**{self.client.command_prefix()}help vc**", "help for all vc commands", False),
+                      (f"**{self.client.command_prefix()}help fun**", "help for all fun commands", False),
+                      (f"**{self.client.command_prefix()}help math**", "help for all math commands", False),
+                      (f"**{self.client.command_prefix()}help science**", "help for all science commands", False),
+                      (f"**{self.client.command_prefix()}help dumb**", "help for all dumb commands", False),
+                      (f"**{self.client.command_prefix()}help management**", "help for all management commands", False),
+                      (f"**{self.client.command_prefix()}help ecosystem**", "help for all ecosystem commands", False),
+                      (f"**{self.client.command_prefix()}help games**", "help for all games commands", False),
+                      (f"**{self.client.command_prefix()}help other**", "help for all other commands", False)]  
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline)      
@@ -41,13 +41,13 @@ class HelpCmds(commands.Cog):
                                   description="help for all general commands",
                                   color=discord.Color.blue())
 
-            fields = [(f"**{self.client.command_prefix}creator**", "creator of this useless bot", False),
-                      (f"**{self.client.command_prefix}prefix**", "returns the current prefix", False),
-                      (f"**{self.client.command_prefix}avatar [user]**", "returns the avatar of the mentioned user", False),
-                      (f"**{self.client.command_prefix}savatar**", "returns the server icon", False),
-                      (f"**{self.client.command_prefix}clear [int]**", "clears channel [max 30]; do not spam", False),
-                      (f"**{self.client.command_prefix}id [member]**", "returns the id of a member", False),
-                      (f"**{self.client.command_prefix}info [user]**", "info about an user", False)]
+            fields = [(f"**{self.client.command_prefix()}creator**", "creator of this useless bot", False),
+                      (f"**{self.client.command_prefix()}prefix**", "returns the current prefix", False),
+                      (f"**{self.client.command_prefix()}avatar [user]**", "returns the avatar of the mentioned user", False),
+                      (f"**{self.client.command_prefix()}savatar**", "returns the server icon", False),
+                      (f"**{self.client.command_prefix()}clear [int]**", "clears channel [max 30]; do not spam", False),
+                      (f"**{self.client.command_prefix()}id [member]**", "returns the id of a member", False),
+                      (f"**{self.client.command_prefix()}info [user]**", "info about an user", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline)  
@@ -62,8 +62,8 @@ class HelpCmds(commands.Cog):
                                   description="help for all testing commands",
                                   color=discord.Color.blue())
 
-            fields = [(f"**{self.client.command_prefix}ping [precision : int; default 0]**", "bot latency", False),
-                      (f"**{self.client.command_prefix}time**", "returns the current time (of host location)", False)]
+            fields = [(f"**{self.client.command_prefix()}ping [precision : int; default 0]**", "bot latency", False),
+                      (f"**{self.client.command_prefix()}time**", "returns the current time (of host location)", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
@@ -78,14 +78,14 @@ class HelpCmds(commands.Cog):
                                   description="help for all vc commands",
                                   color=discord.Color.blue())
 
-            fields = [(f"**{self.client.command_prefix}join**", "join vc", False),
-                      (f"**{self.client.command_prefix}leave**", "leave vc", False),
-                      (f"**{self.client.command_prefix}vcmute**", "mute all in vc", False),
-                      (f"**{self.client.command_prefix}vcunmute**", "unmute all in vc", False),
-                      (f"**{self.client.command_prefix}play [url]**", "plays a mp3 file", False),
-                      (f"**{self.client.command_prefix}playl**", "plays the previous played mp3 file", False),
-                      (f"**{self.client.command_prefix}pause**", "pauses the current playing mp3 file", False),
-                      (f"**{self.client.command_prefix}resume**", "resumes the paused mp3 file", False)]
+            fields = [(f"**{self.client.command_prefix()}join**", "join vc", False),
+                      (f"**{self.client.command_prefix()}leave**", "leave vc", False),
+                      (f"**{self.client.command_prefix()}vcmute**", "mute all in vc", False),
+                      (f"**{self.client.command_prefix()}vcunmute**", "unmute all in vc", False),
+                      (f"**{self.client.command_prefix()}play [url]**", "plays a mp3 file", False),
+                      (f"**{self.client.command_prefix()}playl**", "plays the previous played mp3 file", False),
+                      (f"**{self.client.command_prefix()}pause**", "pauses the current playing mp3 file", False),
+                      (f"**{self.client.command_prefix()}resume**", "resumes the paused mp3 file", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
@@ -100,13 +100,13 @@ class HelpCmds(commands.Cog):
                                   description="help for all fun commands",
                                   color=discord.Color.blue())
 
-            fields = [(f"**{self.client.command_prefix}quote**", "returns random quote", False),
-                      (f"**{self.client.command_prefix}ascii**", "converts to ascii / unicode", False),
-                      (f"**{self.client.command_prefix}ranimegif**", "random anime gif", False),
-                      (f"**{self.client.command_prefix}morse**", "converts to morse code", False),
-                      (f"**{self.client.command_prefix}demorse**", "converts morse code back", False),
-                      (f"**{self.client.command_prefix}note [your note]**", "saving a note", False),
-                      (f"**{self.client.command_prefix}rnote**", "read your created note", False)]
+            fields = [(f"**{self.client.command_prefix()}quote**", "returns random quote", False),
+                      (f"**{self.client.command_prefix()}ascii**", "converts to ascii / unicode", False),
+                      (f"**{self.client.command_prefix()}ranimegif**", "random anime gif", False),
+                      (f"**{self.client.command_prefix()}morse**", "converts to morse code", False),
+                      (f"**{self.client.command_prefix()}demorse**", "converts morse code back", False),
+                      (f"**{self.client.command_prefix()}note [your note]**", "saving a note", False),
+                      (f"**{self.client.command_prefix()}rnote**", "read your created note", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
@@ -121,9 +121,9 @@ class HelpCmds(commands.Cog):
                                   description="help for all math commands",
                                   color=discord.Color.blue())
 
-            fields = [(f"**{self.client.command_prefix}sqfunc**", "returns zero points of a quadratic function", False),
-                      (f"**{self.client.command_prefix}pi**", "returns pi", False),
-                      (f"**{self.client.command_prefix}dice [min] [max]**", "random number", False)]
+            fields = [(f"**{self.client.command_prefix()}sqfunc**", "returns zero points of a quadratic function", False),
+                      (f"**{self.client.command_prefix()}pi**", "returns pi", False),
+                      (f"**{self.client.command_prefix()}dice [min] [max]**", "random number", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
@@ -139,7 +139,7 @@ class HelpCmds(commands.Cog):
                                   description="help for all science commands",
                                   color=discord.Color.blue())
 
-            fields = [(f"**{self.client.command_prefix}satellite [quan : int; default 1]**", "returns r and v of quan satellites now", False)]
+            fields = [(f"**{self.client.command_prefix()}satellite [quan : int; default 1]**", "returns r and v of quan satellites now", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
@@ -154,9 +154,9 @@ class HelpCmds(commands.Cog):
                                   description="help for all dumb commands",
                                   color=discord.Color.blue())
 
-            fields = [(f"**{self.client.command_prefix}sheeesh**", "completely useless cmd", False),
-                      (f"**{self.client.command_prefix}melih**", "completely useless cmd", False),
-                      (f"**{self.client.command_prefix}erxuan**", "completely useless cmd", False)]
+            fields = [(f"**{self.client.command_prefix()}sheeesh**", "completely useless cmd", False),
+                      (f"**{self.client.command_prefix()}melih**", "completely useless cmd", False),
+                      (f"**{self.client.command_prefix()}erxuan**", "completely useless cmd", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
@@ -171,13 +171,13 @@ class HelpCmds(commands.Cog):
                                   description="help for all management commands",
                                   color=discord.Color.blue())
 
-            fields = [(f"**{self.client.command_prefix}addrole [user] [role]**", "adds a role to an user", False),
-                      (f"**{self.client.command_prefix}remrole [user] [role]**", "removes a role from an user", False),
-                      (f"**{self.client.command_prefix}kick [user] [reason]**", "kicks a member", False),
-                      (f"**{self.client.command_prefix}ban [user] [reason]**", "bans a member", False),
-                      (f"**{self.client.command_prefix}unban [user]**", "unbans a member", False),
-                      (f"**{self.client.command_prefix}nickname [user] [nickname]**", "changes the nickname of an user", False),
-                      (f"**{self.client.command_prefix}nicknames [nickname]**", "changes all nicknames", False)]
+            fields = [(f"**{self.client.command_prefix()}addrole [user] [role]**", "adds a role to an user", False),
+                      (f"**{self.client.command_prefix()}remrole [user] [role]**", "removes a role from an user", False),
+                      (f"**{self.client.command_prefix()}kick [user] [reason]**", "kicks a member", False),
+                      (f"**{self.client.command_prefix()}ban [user] [reason]**", "bans a member", False),
+                      (f"**{self.client.command_prefix()}unban [user]**", "unbans a member", False),
+                      (f"**{self.client.command_prefix()}nickname [user] [nickname]**", "changes the nickname of an user", False),
+                      (f"**{self.client.command_prefix()}nicknames [nickname]**", "changes all nicknames", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
@@ -192,9 +192,9 @@ class HelpCmds(commands.Cog):
                                   description="help for all ecosystem commands",
                                   color=discord.Color.blue())
 
-            fields = [(f"**{self.client.command_prefix}daily**", "collect your daily money", False),
-                      (f"**{self.client.command_prefix}transfer [user] [amount]**", "transfer your given amount of money to another user", False),
-                      (f"**{self.client.command_prefix}wallet**", "shows how much money you have", False)]
+            fields = [(f"**{self.client.command_prefix()}daily**", "collect your daily money", False),
+                      (f"**{self.client.command_prefix()}transfer [user] [amount]**", "transfer your given amount of money to another user", False),
+                      (f"**{self.client.command_prefix()}wallet**", "shows how much money you have", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
@@ -209,7 +209,7 @@ class HelpCmds(commands.Cog):
                                   description="help for all games",
                                   color=discord.Color.blue())
 
-            fields = [(f"**{self.client.command_prefix}tictactoe [player1] [player2]**", "tic tac toe game (still in development)", False)]
+            fields = [(f"**{self.client.command_prefix()}tictactoe [player1] [player2]**", "tic tac toe game (still in development)", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
@@ -224,9 +224,9 @@ class HelpCmds(commands.Cog):
                                   description="help for all other commands",
                                   color=discord.Color.blue())
 
-            fields = [(f"**{self.client.command_prefix}nicktimer [int : minutes]**", "start a nickname timer", False),
-                      (f"**{self.client.command_prefix}nicktimer_add [int : minutes]**", "add time to timer", False),
-                      (f"**{self.client.command_prefix}nicktimer_stop**", "stop running timer", False)]
+            fields = [(f"**{self.client.command_prefix()}nicktimer [int : minutes]**", "start a nickname timer", False),
+                      (f"**{self.client.command_prefix()}nicktimer_add [int : minutes]**", "add time to timer", False),
+                      (f"**{self.client.command_prefix()}nicktimer_stop**", "stop running timer", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
