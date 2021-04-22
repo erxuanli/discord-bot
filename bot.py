@@ -52,7 +52,7 @@ def get_prefix(client, message):
         else:
             return prefixes[str(message.guild.id)]
 
-client = commands.Bot(command_prefix=get_prefix, help_command=None, intents=intents)
+client = commands.Bot(command_prefix=get_prefix(), help_command=None, intents=intents)
 
 cogs_bool = True
 
