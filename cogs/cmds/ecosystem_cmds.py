@@ -35,9 +35,12 @@ class EcosystemCmds(commands.Cog):
             await ctx.send("Cannot transfer money to yourself")
             return
         try:
-            self.money.transfer_money(
-                str(ctx.author.id), str(member.id), amount)
-            await ctx.send(f"Transfered {amount} to {member}")
+            if amount <= self.money.get_money(str(ctx.author.id)):
+                self.money.transfer_money(
+                    str(ctx.author.id), str(member.id), amount)
+                await ctx.send(f"Transfered {amount} to {member}")
+            else:
+                await ctx.send(f"Hmmm... i don't think you have that much money... You have {self.money.get_money(str(ctx.author.id))} bot money.")
         except ValueError:
             await ctx.send("Money value cannot be smaller than 1")
         except KeyError:
