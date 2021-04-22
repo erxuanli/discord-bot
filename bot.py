@@ -1,6 +1,9 @@
 import discord
 from discord.ext import commands, tasks
 
+from pymongo import MongoClient
+from bson.objectid import ObjectId
+
 import os
 from itertools import cycle
 
@@ -36,7 +39,20 @@ intents = discord.Intents.default()
 intents.members = True
 intents.presences = True
 
-client = commands.Bot(command_prefix=";", help_command=None, intents=intents)
+def get_prefix(client, message):
+    db_client = MongoClient(os.environ['MONGODB'])
+    with db_client:
+        db = db_client["bot"]
+        prefix_collection = db["prefix"]
+        prefixes = prefix_collection.find_one(ObjectId("6081acc55efe1960648fb76b"))
+        if str(message.guild.id) not in prefixes:
+            prefixes[str(message.guild.id)] = ";"
+            prefix_collection.update_one({"_id": ObjectId("6081acc55efe1960648fb76b")}, {"$set": prefixes}, upsert = True)
+            return ";"
+        else:
+            return prefixes[str(message.guild.id)]
+
+client = commands.Bot(command_prefix=get_prefix, help_command=None, intents=intents)
 
 cogs_bool = True
 
