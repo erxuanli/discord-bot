@@ -44,7 +44,7 @@ class EcosystemCmds(commands.Cog):
         except ValueError:
             await ctx.send("Money value cannot be smaller than 1")
         except KeyError:
-            await ctx.send(f"You or the person you want to transfer to does not have a account. Please collect your daily money with {self.client.command_prefix}daily. This will also create an account if you do not have one.")
+            await ctx.send(f"You or the person you want to transfer to does not have a account. Please collect your daily money with {self.client.command_prefix(self.client, ctx)}daily. This will also create an account if you do not have one.")
 
 
 class Money:

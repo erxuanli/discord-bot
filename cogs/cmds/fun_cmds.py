@@ -97,7 +97,7 @@ class FunCmds(commands.Cog):
                 data = notes_collection.find_one(ObjectId(obj_id))
 
             if str(ctx.author.id) not in data:
-                await ctx.send(f"do not have a note. please create a note with {self.client.command_prefix}note")
+                await ctx.send(f"do not have a note. please create a note with {self.client.command_prefix(self.client, ctx)}note")
             else:
                 await ctx.send(data[str(ctx.author.id)])
 

@@ -96,7 +96,7 @@ class TictactoeCmds(commands.Cog):
             else:
                 await ctx.send("Please wait your turn to play.")
         else:
-            await ctx.send(f"Please start a new game using the {self.client.command_prefix}tictactoe command.")
+            await ctx.send(f"Please start a new game using the {self.client.command_prefix(self.client, ctx)}tictactoe command.")
 
     def checkWinner(self, mark):
         for condition in self.winningConditions:
