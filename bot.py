@@ -45,6 +45,8 @@ def get_prefix(client, ctx):
         db = db_client["bot"]
         prefix_collection = db["prefix"]
         prefixes = prefix_collection.find_one(ObjectId("6081acc55efe1960648fb76b"))
+        if ctx.guild is None: # private messages
+            return ";"
         if str(ctx.guild.id) not in prefixes:
             prefixes[str(ctx.guild.id)] = ";"
             prefix_collection.update_one({"_id": ObjectId("6081acc55efe1960648fb76b")}, {"$set": prefixes}, upsert = True)
