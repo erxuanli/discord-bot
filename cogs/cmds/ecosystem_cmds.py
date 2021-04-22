@@ -1,6 +1,9 @@
 import discord
 from discord.ext import commands
 
+from discord.ext.commands import cooldown
+from discord.ext.commands import BucketType
+
 import os
 
 from pymongo import MongoClient
@@ -13,6 +16,7 @@ class EcosystemCmds(commands.Cog):
         self.money = Money()
 
     @commands.command()
+    @cooldown(1, 86400, BucketType.user)
     async def daily(self, ctx):
         try:
             self.money.change_money(str(ctx.author.id), 150)
@@ -21,14 +25,24 @@ class EcosystemCmds(commands.Cog):
         await ctx.send("Collected daily money")
 
     @commands.command()
+    async def wallet(self, ctx):
+        await ctx.send(f"You have {self.money.get_money(str(ctx.author.id))} bot money")
+
+    @commands.command()
+    @commands.guild_only()
     async def transfer(self, ctx, member: discord.Member, amount: int):
+        if member.id == ctx.author.id:
+            await ctx.send("Cannot transfer money to yourself")
+            return
         try:
-            self.money.transfer_money(str(ctx.author.id), str(member.id), amount)
+            self.money.transfer_money(
+                str(ctx.author.id), str(member.id), amount)
             await ctx.send(f"Transfered {amount} to {member}")
         except ValueError:
             await ctx.send("Money value cannot be smaller than 1")
         except KeyError:
             await ctx.send(f"You or the person you want to transfer to does not have a account. Please collect your daily money with {self.client.command_prefix}daily. This will also create an account if you do not have one.")
+
 
 class Money:
     def __init__(self):
@@ -46,7 +60,8 @@ class Money:
                 raise ValueError
             else:
                 data[id] = data[id] + money
-            money_collection.update_one({"_id": ObjectId(self.db_obj_id)}, {"$set": data}, upsert = True) 
+            money_collection.update_one({"_id": ObjectId(self.db_obj_id)}, {
+                                        "$set": data}, upsert=True)
 
     def set_money(self, id: str, money: int):
         with self.client:
@@ -57,7 +72,8 @@ class Money:
                 raise KeyError
             else:
                 data[id] = money
-            money_collection.update_one({"_id": ObjectId(self.db_obj_id)}, {"$set": data}, upsert = True) 
+            money_collection.update_one({"_id": ObjectId(self.db_obj_id)}, {
+                                        "$set": data}, upsert=True)
 
     def get_money(self, id: str) -> int:
         with self.client:
@@ -81,7 +97,8 @@ class Money:
             else:
                 data[id] = data[id] - money
                 data[to_id] = data[to_id] + money
-            money_collection.update_one({"_id": ObjectId(self.db_obj_id)}, {"$set": data}, upsert = True) 
+            money_collection.update_one({"_id": ObjectId(self.db_obj_id)}, {
+                                        "$set": data}, upsert=True)
 
     def has_account(self, id: str) -> bool:
         with self.client:
@@ -96,5 +113,5 @@ class Money:
         with self.client:
             db = self.client["ecosystem_cmds"]
             money_collection = db["money"]
-            money_collection.update_one({"_id": ObjectId(self.db_obj_id)}, {"$set": data}, upsert = True)
-
+            money_collection.update_one({"_id": ObjectId(self.db_obj_id)}, {
+                                        "$set": data}, upsert=True)
