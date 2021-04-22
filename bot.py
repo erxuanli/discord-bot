@@ -20,6 +20,7 @@ from cogs.cmds.dumb_cmds import DumbCmds
 from cogs.cmds.management_cmds import ManagementCmds
 from cogs.cmds.moderator_cmds import ModeratorCmds
 from cogs.cmds.ecosystem_cmds import EcosystemCmds
+from cogs.cmds.gambling_cmds import GamblingCmds
 from cogs.cmds.other_cmds import OtherCmds
 
 from cogs.cmds.games.tictactoe.tictactoe import TictactoeCmds
@@ -40,7 +41,7 @@ client = commands.Bot(command_prefix=";", help_command=None, intents=intents)
 cogs_bool = True
 
 cogs = [HelpCmds(client), GeneralCmds(client), TestingCmds(client), VcCmds(client), FunCmds(client), MathCmds(client), ScienceCmds(client), DumbCmds(
-    client), ManagementCmds(client), ModeratorCmds(client), EcosystemCmds(client), OtherCmds(client), TictactoeCmds(client), TrollFlori(client), Events(client), VcActivityRoles(client), ErrorHandlerCmds(client)]
+    client), ManagementCmds(client), ModeratorCmds(client), EcosystemCmds(client), GamblingCmds(client), OtherCmds(client), TictactoeCmds(client), TrollFlori(client), Events(client), VcActivityRoles(client), ErrorHandlerCmds(client)]
 
 for cog in cogs:
     client.add_cog(cog)

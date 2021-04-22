@@ -194,7 +194,8 @@ class HelpCmds(commands.Cog):
                                   color=discord.Color.blue())
 
             fields = [(f"**{self.client.command_prefix}daily**", "collect your daily money", False),
-                      (f"**{self.client.command_prefix}transfer [user] [amount]**", "transfer your given amount of money to another user", False)]
+                      (f"**{self.client.command_prefix}transfer [user] [amount]**", "transfer your given amount of money to another user", False),
+                      (f"**{self.client.command_prefix}wallet**", "shows how much money you have", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
