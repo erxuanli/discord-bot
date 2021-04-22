@@ -116,17 +116,19 @@ async def on_guild_remove(guild):
 @client.command()
 @commands.guild_only()
 async def prefix(ctx, prefix: str = None):
-    if prefix is not None:
-        db_client = MongoClient(os.environ['MONGODB'])
-        with db_client:
-            db = db_client["bot"]
-            prefix_collection = db["prefix"]
-            prefixes = prefix_collection.find_one(ObjectId("6081acc55efe1960648fb76b"))
-            prefixes[str(ctx.guild.id)] = prefix.strip()
-            prefix_collection.update_one({"_id": ObjectId("6081acc55efe1960648fb76b")}, {"$set": prefixes}, upsert = True)
-        await ctx.send(f"Updated guild prefix to [{prefix}]")
+    p = None
+    if prefix is None:
+        p = ";"
     else:
-        await ctx.send(f"Please enter a proper prefix")
+        p = prefix
+    db_client = MongoClient(os.environ['MONGODB'])
+    with db_client:
+        db = db_client["bot"]
+        prefix_collection = db["prefix"]
+        prefixes = prefix_collection.find_one(ObjectId("6081acc55efe1960648fb76b"))
+        prefixes[str(ctx.guild.id)] = p.strip()
+        prefix_collection.update_one({"_id": ObjectId("6081acc55efe1960648fb76b")}, {"$set": prefixes}, upsert = True)
+    await ctx.send(f"Updated guild prefix to [{prefix}]")
 
 
 
