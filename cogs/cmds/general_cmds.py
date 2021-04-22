@@ -19,11 +19,6 @@ class GeneralCmds(commands.Cog):
         await ctx.send(f"{os.environ['MY_DISCORD_TAG']} sennnnpaiiiiii")
 
     @commands.command()
-    @commands.guild_only()
-    async def prefix(self, ctx):
-        await ctx.send(self.client.command_prefix)
-
-    @commands.command()
     async def avatar(self, ctx, user: discord.Member = None):
         if user is None:
             await ctx.send(ctx.author.avatar_url)

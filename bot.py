@@ -94,5 +94,40 @@ async def debug(ctx):
         cogs_bool = not cogs_bool
         await ctx.send(f"debug: [{not cogs_bool}]")
 
+@client.event
+async def on_guild_join(guild):
+    db_client = MongoClient(os.environ['MONGODB'])
+    with db_client:
+        db = db_client["bot"]
+        prefix_collection = db["prefix"]
+        prefixes = prefix_collection.find_one(ObjectId("6081acc55efe1960648fb76b"))
+        prefixes[str(guild.id)] = ";"
+        prefix_collection.update_one({"_id": ObjectId("6081acc55efe1960648fb76b")}, {"$set": prefixes}, upsert = True)
+
+@client.event
+async def on_guild_remove(guild):
+    data = {str(guild.id): ""}
+    db_client = MongoClient(os.environ['MONGODB'])
+    with db_client:
+        db = db_client["bot"]
+        prefix_collection = db["prefix"]
+        prefix_collection.update_one({"_id": ObjectId("6081acc55efe1960648fb76b")}, {"$unset": data})
+
+@client.command()
+@commands.guild_only()
+async def prefix(ctx, prefix: str = None):
+    if prefix is not None:
+        db_client = MongoClient(os.environ['MONGODB'])
+        with db_client:
+            db = db_client["bot"]
+            prefix_collection = db["prefix"]
+            prefixes = prefix_collection.find_one(ObjectId("6081acc55efe1960648fb76b"))
+            prefixes[str(ctx.guild.id)] = prefix.strip()
+            prefix_collection.update_one({"_id": ObjectId("6081acc55efe1960648fb76b")}, {"$set": prefixes}, upsert = True)
+        await ctx.send(f"Updated guild prefix to [{prefix}]")
+    else:
+        await ctx.send(f"Please enter a proper prefix")
+
+
 
 client.run(os.environ['BOT_TOKEN'])
