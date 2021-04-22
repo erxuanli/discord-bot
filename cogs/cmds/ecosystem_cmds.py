@@ -28,7 +28,7 @@ class EcosystemCmds(commands.Cog):
 
 class Money:
     def __init__(self):
-        self.db_obj_id = "60818ba0f0f26a6616b518bf"
+        self.db_obj_id = "60819979ac2e4817c9eb6b29"
         self.client = MongoClient(os.environ['MONGODB'])
 
     def change_money(self, id: str, money: int):
