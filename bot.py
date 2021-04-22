@@ -128,7 +128,7 @@ async def prefix(ctx, prefix: str = None):
         prefixes = prefix_collection.find_one(ObjectId("6081acc55efe1960648fb76b"))
         prefixes[str(ctx.guild.id)] = p.strip()
         prefix_collection.update_one({"_id": ObjectId("6081acc55efe1960648fb76b")}, {"$set": prefixes}, upsert = True)
-    await ctx.send(f"Updated guild prefix to [{prefix}]")
+    await ctx.send(f"Updated guild prefix to [{p}]")
 
 
 
