@@ -193,7 +193,8 @@ class HelpCmds(commands.Cog):
                                   description="help for all ecosystem commands",
                                   color=discord.Color.blue())
 
-            fields = [(f"**404**", "nothing here yet", False)]
+            fields = [(f"**{self.client.command_prefix}daily**", "collect your daily money", False),
+                      (f"**{self.client.command_prefix}transfer [user] [amount]**", "transfer your given amount of money to another user", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 

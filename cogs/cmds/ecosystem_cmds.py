@@ -14,7 +14,11 @@ class EcosystemCmds(commands.Cog):
 
     @commands.command()
     async def daily(self, ctx):
-        self.money.change_money(str(ctx.author.id), 150)
+        try:
+            self.money.change_money(str(ctx.author.id), 150)
+        except KeyError:
+            self.money.create_account(str(ctx.author.id), 150)
+        await ctx.send("Collected daily money")
 
     @commands.command()
     async def transfer(self, ctx, member: discord.Member, amount: int):
@@ -87,8 +91,8 @@ class Money:
                 return False
             return True
 
-    def create_account(self, id: str):
-        data = {id: 0}
+    def create_account(self, id: str, money: int = 0):
+        data = {id: money}
         with self.client:
             db = self.client["ecosystem_cmds"]
             money_collection = db["money"]
