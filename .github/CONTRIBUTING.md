@@ -6,10 +6,6 @@ These are not official rules, but it will help everyone to deal with everything 
 
 ## Table of contents
 - Pull requests
-- Issues
 
 ## Pull requests
-We do not accept pull requests yet
-
-## Issues
-We do not accept issues yet
+No rules currently. Just do what you think is right and document your changes.
