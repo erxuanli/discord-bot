@@ -5,6 +5,7 @@ import json
 
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+from bson import json_util
 
 import os
 from itertools import cycle
@@ -50,7 +51,7 @@ def update_prefixes_json():
         prefixes = prefix_collection.find_one(
             ObjectId("6081acc55efe1960648fb76b"))
         with open("prefixes.json", "w") as file:
-            json.dump(dict(prefixes), file)
+            json.dump(str(prefixes), file)
 
 
 def get_prefix(client, ctx):
