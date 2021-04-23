@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands, tasks
 
+import json
+
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
@@ -39,22 +41,43 @@ intents = discord.Intents.default()
 intents.members = True
 intents.presences = True
 
-def get_prefix(client, ctx):
+
+def update_prefixes_json():
     db_client = MongoClient(os.environ['MONGODB'])
     with db_client:
         db = db_client["bot"]
         prefix_collection = db["prefix"]
-        prefixes = prefix_collection.find_one(ObjectId("6081acc55efe1960648fb76b"))
-        if ctx.guild is None: # private messages
+        prefixes = prefix_collection.find_one(
+            ObjectId("6081acc55efe1960648fb76b"))
+        with open("prefixes.json", "w") as file:
+            json.dump(prefixes, file)
+
+
+def get_prefix(client, ctx):
+    changed = False
+    with open("prefixes.json", "r") as file:
+        prefixes = json.load(file)
+        if ctx.guild is None:  # private messages
             return ";"
-        if str(ctx.guild.id) not in prefixes:
-            prefixes[str(ctx.guild.id)] = ";"
-            prefix_collection.update_one({"_id": ObjectId("6081acc55efe1960648fb76b")}, {"$set": prefixes}, upsert = True)
-            return ";"
+        elif str(ctx.guild.id) not in prefixes:
+            db_client = MongoClient(os.environ['MONGODB'])
+            with db_client:
+                db = db_client["bot"]
+                prefix_collection = db["prefix"]
+                db_prefixes = prefix_collection.find_one(
+                    ObjectId("6081acc55efe1960648fb76b"))
+                db_prefixes[str(ctx.guild.id)] = ";"
+                prefix_collection.update_one({"_id": ObjectId("6081acc55efe1960648fb76b")}, {
+                                             "$set": prefixes}, upsert=True)
+                changed = True
         else:
             return prefixes[str(ctx.guild.id)]
+    if changed:
+        update_prefixes_json()
 
-client = commands.Bot(command_prefix=get_prefix, help_command=None, intents=intents)
+
+client = commands.Bot(command_prefix=get_prefix,
+                      help_command=None, intents=intents)
 
 cogs_bool = True
 
@@ -71,6 +94,7 @@ bot_status = cycle([f";help || Stalking {os.environ['MY_DISCORD_TAG']}", "Collab
 
 @client.event
 async def on_ready():
+    update_prefixes_json()
     await client.change_presence(status=discord.Status.do_not_disturb)
     change_status.start()
     print(f"[{datetime.now()}] {client.user}: Connected")
@@ -96,15 +120,20 @@ async def debug(ctx):
         cogs_bool = not cogs_bool
         await ctx.send(f"debug: [{not cogs_bool}]")
 
+
 @client.event
 async def on_guild_join(guild):
     db_client = MongoClient(os.environ['MONGODB'])
     with db_client:
         db = db_client["bot"]
         prefix_collection = db["prefix"]
-        prefixes = prefix_collection.find_one(ObjectId("6081acc55efe1960648fb76b"))
+        prefixes = prefix_collection.find_one(
+            ObjectId("6081acc55efe1960648fb76b"))
         prefixes[str(guild.id)] = ";"
-        prefix_collection.update_one({"_id": ObjectId("6081acc55efe1960648fb76b")}, {"$set": prefixes}, upsert = True)
+        prefix_collection.update_one({"_id": ObjectId("6081acc55efe1960648fb76b")}, {
+                                     "$set": prefixes}, upsert=True)
+    update_prefixes_json()
+
 
 @client.event
 async def on_guild_remove(guild):
@@ -113,7 +142,10 @@ async def on_guild_remove(guild):
     with db_client:
         db = db_client["bot"]
         prefix_collection = db["prefix"]
-        prefix_collection.update_one({"_id": ObjectId("6081acc55efe1960648fb76b")}, {"$unset": data})
+        prefix_collection.update_one(
+            {"_id": ObjectId("6081acc55efe1960648fb76b")}, {"$unset": data})
+    update_prefixes_json()
+
 
 @client.command()
 @commands.guild_only()
@@ -127,11 +159,13 @@ async def prefix(ctx, prefix: str = None):
     with db_client:
         db = db_client["bot"]
         prefix_collection = db["prefix"]
-        prefixes = prefix_collection.find_one(ObjectId("6081acc55efe1960648fb76b"))
+        prefixes = prefix_collection.find_one(
+            ObjectId("6081acc55efe1960648fb76b"))
         prefixes[str(ctx.guild.id)] = p.strip()
-        prefix_collection.update_one({"_id": ObjectId("6081acc55efe1960648fb76b")}, {"$set": prefixes}, upsert = True)
+        prefix_collection.update_one({"_id": ObjectId("6081acc55efe1960648fb76b")}, {
+                                     "$set": prefixes}, upsert=True)
     await ctx.send(f"Updated guild prefix to [{p}]")
-
+    update_prefixes_json()
 
 
 client.run(os.environ['BOT_TOKEN'])
