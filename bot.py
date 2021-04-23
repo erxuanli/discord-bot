@@ -148,8 +148,8 @@ async def on_guild_remove(guild):
 
 
 @client.command()
-@commands.has_permissions(administrator=True)
 @commands.guild_only()
+@commands.has_permissions(administrator=True)
 async def prefix(ctx, prefix: str = None):
     p = None
     if prefix is None:
