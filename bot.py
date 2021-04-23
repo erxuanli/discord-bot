@@ -50,7 +50,7 @@ def update_prefixes_json():
         prefixes = prefix_collection.find_one(
             ObjectId("6081acc55efe1960648fb76b"))
         with open("prefixes.json", "w") as file:
-            json.dump(list(prefixes), file)
+            json.dump(dict(prefixes), file)
 
 
 def get_prefix(client, ctx):
