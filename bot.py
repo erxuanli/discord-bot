@@ -75,7 +75,7 @@ def get_prefix(client, ctx):
     if changed:
         update_prefixes_json()
 
-
+update_prefixes_json()
 client = commands.Bot(command_prefix=get_prefix,
                       help_command=None, intents=intents)
 
@@ -94,7 +94,6 @@ bot_status = cycle([f";help || Stalking {os.environ['MY_DISCORD_TAG']}", "Collab
 
 @client.event
 async def on_ready():
-    update_prefixes_json()
     await client.change_presence(status=discord.Status.do_not_disturb)
     change_status.start()
     print(f"[{datetime.now()}] {client.user}: Connected")
