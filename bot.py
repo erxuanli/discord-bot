@@ -51,13 +51,13 @@ def update_prefixes_json():
         prefixes = prefix_collection.find_one(
             ObjectId("6081acc55efe1960648fb76b"))
         with open("prefixes.json", "w") as file:
-            json.dump(str(prefixes), file)
+            json.dump(json_util.dumps(prefixes), file)
 
 
 def get_prefix(client, ctx):
     changed = False
     with open("prefixes.json", "r") as file:
-        prefixes = json.load(file)
+        prefixes = json.loads(json.load(file))
         if ctx.guild is None:  # private messages
             return ";"
         elif str(ctx.guild.id) not in prefixes:
