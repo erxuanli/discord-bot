@@ -3,6 +3,6 @@ PyNaCl==1.4.0
 youtube-dl==2021.4.26
 sgp4==2.19
 julian==0.14
-pymongo==3.11.3
+pymongo==3.11.4
 dnspython==2.1.0
 
