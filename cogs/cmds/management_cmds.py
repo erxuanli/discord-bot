@@ -59,7 +59,7 @@ class ManagementCmds(commands.Cog):
     @commands.guild_only()
     async def nickname(self, ctx, member: discord.Member, *, nick: str):
         await member.edit(nick=nick)
-        await ctx.send(f"Nickname change: {member}")
+        await ctx.send(f"Nickname change: {member}'s nickname changed to {[nick]}")
 
     @commands.command()
     @commands.has_permissions(administrator=True)
