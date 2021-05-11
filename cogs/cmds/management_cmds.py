@@ -65,7 +65,7 @@ class ManagementCmds(commands.Cog):
     @commands.check(not_in_blacklist)
     async def nickname(self, ctx, member: discord.Member, *, nick: str):
         await member.edit(nick=nick)
-        await ctx.send(f"Nickname change: {member}")
+        await ctx.send(f"Nickname change: {member}'s nickname changed to {[nick]}")
 
     @commands.command()
     @commands.has_permissions(administrator=True)
