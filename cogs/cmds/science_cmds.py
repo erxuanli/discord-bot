@@ -12,6 +12,8 @@ import time
 from discord.ext.commands import cooldown
 from discord.ext.commands import BucketType
 
+from cogs.cmds.custom_checks import not_in_blacklist
+
 
 class ScienceCmds(commands.Cog):
     def __init__(self, client):
@@ -19,6 +21,7 @@ class ScienceCmds(commands.Cog):
 
     @commands.command()
     @cooldown(1, 3600, BucketType.user)
+    @commands.check(not_in_blacklist)
     async def satellite(self, ctx, quan : int = 1):
         if quan > 10 and not is_moderator(ctx):
             await ctx.send("Please pick a number smaller than 11")

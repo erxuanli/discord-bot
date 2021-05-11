@@ -9,6 +9,7 @@ import os
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
+from cogs.cmds.custom_checks import not_in_blacklist
 
 class EcosystemCmds(commands.Cog):
     def __init__(self, client):
@@ -16,6 +17,7 @@ class EcosystemCmds(commands.Cog):
         self.money = Money()
 
     @commands.command()
+    @commands.check(not_in_blacklist)
     @cooldown(1, 86400, BucketType.user)
     async def daily(self, ctx):
         try:
@@ -25,11 +27,13 @@ class EcosystemCmds(commands.Cog):
         await ctx.send("Collected daily money")
 
     @commands.command()
+    @commands.check(not_in_blacklist)
     async def wallet(self, ctx):
         await ctx.send(f"You have {self.money.get_money(str(ctx.author.id))} bot money")
 
     @commands.command()
     @commands.guild_only()
+    @commands.check(not_in_blacklist)
     async def transfer(self, ctx, member: discord.Member, amount: int):
         if member.id == ctx.author.id:
             await ctx.send("Cannot transfer money to yourself")

@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-from cogs.cmds.custom_checks import is_moderator
+from cogs.cmds.custom_checks import is_moderator, not_in_blacklist
 
 
 class ManagementCmds(commands.Cog):
@@ -11,6 +11,7 @@ class ManagementCmds(commands.Cog):
     @commands.command(aliases=["arole"])
     @commands.has_permissions(administrator=True)
     @commands.guild_only()
+    @commands.check(not_in_blacklist)
     async def addrole(self, ctx, member: discord.Member, role: discord.Role):
         await ctx.send(f"Permission granted")
         await member.add_roles(role)
@@ -19,6 +20,7 @@ class ManagementCmds(commands.Cog):
     @commands.command(aliases=["rrole"])
     @commands.has_permissions(administrator=True)
     @commands.guild_only()
+    @commands.check(not_in_blacklist)
     async def remrole(self, ctx, member: discord.Member, role: discord.Role):
         await ctx.send(f"Permission granted")
         await member.remove_roles(role)
@@ -27,6 +29,7 @@ class ManagementCmds(commands.Cog):
     @commands.command()
     @commands.has_permissions(administrator=True)
     @commands.guild_only()
+    @commands.check(not_in_blacklist)
     async def kick(self, ctx, member: discord.Member, *, reason: str = None):
         if member.id == ctx.author.id:
             await ctx.send(f"You can't kick yourself")
@@ -38,6 +41,7 @@ class ManagementCmds(commands.Cog):
     @commands.command()
     @commands.has_permissions(administrator=True)
     @commands.guild_only()
+    @commands.check(not_in_blacklist)
     async def ban(self, ctx, member: discord.Member, *, reason: str = None):
         if member.id == ctx.author.id:
             await ctx.send(f"You can't ban yourself")
@@ -49,6 +53,7 @@ class ManagementCmds(commands.Cog):
     @commands.command()
     @commands.has_permissions(administrator=True)
     @commands.guild_only()
+    @commands.check(not_in_blacklist)
     async def unban(self, ctx, id: int):
         user = await self.client.fetch_user(id)
         await ctx.guild.unban(user)
@@ -57,6 +62,7 @@ class ManagementCmds(commands.Cog):
     @commands.command()
     @commands.has_permissions(manage_nicknames=True)
     @commands.guild_only()
+    @commands.check(not_in_blacklist)
     async def nickname(self, ctx, member: discord.Member, *, nick: str):
         await member.edit(nick=nick)
         await ctx.send(f"Nickname change: {member}")
@@ -64,6 +70,7 @@ class ManagementCmds(commands.Cog):
     @commands.command()
     @commands.has_permissions(administrator=True)
     @commands.guild_only()
+    @commands.check(not_in_blacklist)
     async def nicknames(self, ctx, *, n : str = None):
         nick = None
         for user in ctx.guild.members:

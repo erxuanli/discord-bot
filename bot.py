@@ -13,7 +13,7 @@ from itertools import cycle
 from datetime import datetime
 import time
 
-from cogs.cmds.custom_checks import is_moderator
+from cogs.cmds.custom_checks import is_moderator, not_in_blacklist
 
 from cogs.cmds.help_cmds import HelpCmds
 from cogs.cmds.general_cmds import GeneralCmds
@@ -107,6 +107,7 @@ async def change_status():
 
 @client.command()
 @commands.check(is_moderator)
+@commands.check(not_in_blacklist)
 async def debug(ctx):
     global cogs_bool
     if cogs_bool:
@@ -150,6 +151,7 @@ async def on_guild_remove(guild):
 @client.command()
 @commands.guild_only()
 @commands.has_permissions(administrator=True)
+@commands.check(not_in_blacklist)
 async def prefix(ctx, prefix: str = None):
     p = None
     if prefix is None:

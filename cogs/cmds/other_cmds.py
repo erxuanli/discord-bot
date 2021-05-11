@@ -5,6 +5,8 @@ import os
 
 import time
 
+from cogs.cmds.custom_checks import not_in_blacklist
+
 class OtherCmds(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -14,6 +16,7 @@ class OtherCmds(commands.Cog):
 
     @commands.command()
     @commands.guild_only()
+    @commands.check(not_in_blacklist)
     async def nicktimer(self, ctx, t : int = 5): # time in minutes
         if (str(ctx.guild.id) + str(ctx.author.id)) in self.nicktimer_data:
             await ctx.send("Already started a timer")
@@ -30,6 +33,7 @@ class OtherCmds(commands.Cog):
 
     @commands.command()
     @commands.guild_only()
+    @commands.check(not_in_blacklist)
     async def nicktimer_add(self, ctx, t : int = 1):
         if (str(ctx.guild.id) + str(ctx.author.id)) not in self.nicktimer_data:
             await ctx.send("You didn't set a timer")
@@ -45,6 +49,7 @@ class OtherCmds(commands.Cog):
 
     @commands.command()
     @commands.guild_only()
+    @commands.check(not_in_blacklist)
     async def nicktimer_stop(self, ctx):
         if (str(ctx.guild.id) + str(ctx.author.id)) not in self.nicktimer_data:
             await ctx.send("No timer running")

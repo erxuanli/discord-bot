@@ -4,7 +4,7 @@ from discord.ext import commands
 import os
 import datetime
 
-from cogs.cmds.custom_checks import is_creator, is_moderator
+from cogs.cmds.custom_checks import is_creator, is_moderator, not_in_blacklist
 
 from discord.ext.commands import cooldown
 from discord.ext.commands import BucketType
@@ -15,10 +15,12 @@ class GeneralCmds(commands.Cog):
         self.client = client
 
     @commands.command()
+    @commands.check(not_in_blacklist)
     async def creator(self, ctx):
         await ctx.send(f"{os.environ['MY_DISCORD_TAG']} sennnnpaiiiiii")
 
     @commands.command()
+    @commands.check(not_in_blacklist)
     async def avatar(self, ctx, user: discord.Member = None):
         if user is None:
             await ctx.send(ctx.author.avatar_url)
@@ -27,11 +29,13 @@ class GeneralCmds(commands.Cog):
             await ctx.send(userAvatarUrl)
 
     @commands.command()
+    @commands.check(not_in_blacklist)
     @commands.guild_only()
     async def savatar(self, ctx):
         await ctx.send(ctx.guild.icon_url)
 
     @commands.command()
+    @commands.check(not_in_blacklist)
     @cooldown(1, 60, BucketType.user)
     @commands.guild_only()
     async def clear(self, ctx, amount=5):
@@ -41,6 +45,7 @@ class GeneralCmds(commands.Cog):
             await ctx.channel.purge(limit=amount)
 
     @commands.command()
+    @commands.check(not_in_blacklist)
     async def id(self, ctx, member : discord.Member = None):
         if member is None:
             await ctx.send(f"ID [{ctx.guild.name}]: [{ctx.guild.id}] \nID [{ctx.author.name}]: [{ctx.author.id}]")
@@ -49,6 +54,7 @@ class GeneralCmds(commands.Cog):
 
     @commands.command()
     @commands.guild_only()
+    @commands.check(not_in_blacklist)
     async def info(self, ctx, member : discord.Member = None):
         user = member
         if user is None:

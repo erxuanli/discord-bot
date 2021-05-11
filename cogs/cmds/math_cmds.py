@@ -4,6 +4,7 @@ from discord.ext import commands
 import math
 import random
 
+from cogs.cmds.custom_checks import not_in_blacklist
 
 class MathCmds(commands.Cog):
     def __init__(self, client):
@@ -11,6 +12,7 @@ class MathCmds(commands.Cog):
         self.pi_num = "3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582231725359408128481117450284102701938521105559644622948954930381964428810975665933446128475648233786783165271201909145648566923460348610454326648213393607260249141273724587006606315588174881520920962829254091715364367892590360011330530548820466521384146951"
 
     @commands.command()
+    @commands.check(not_in_blacklist)
     async def sqfunc(self, ctx, a: float, b: float, c: float):
         x1, x2 = None, None
         b = b / a
@@ -28,9 +30,11 @@ class MathCmds(commands.Cog):
             await ctx.send("There aren't any zero points")
 
     @commands.command()
+    @commands.check(not_in_blacklist)
     async def pi(self, ctx):
         await ctx.send(self.pi_num)
 
     @commands.command()
+    @commands.check(not_in_blacklist)
     async def dice(self, ctx, min, max):
         await ctx.send(random.randint(int(min), int(max)))

@@ -1,11 +1,14 @@
 import discord
 from discord.ext import commands
 
+from cogs.cmds.custom_checks import not_in_blacklist
+
 class HelpCmds(commands.Cog):
     def __init__(self, client):
         self.client = client
 
     @commands.command()
+    @commands.check(not_in_blacklist)
     async def help(self, ctx, category: str = None):
         cmd_prefix = self.client.command_prefix(self.client, ctx)
         # --------------------- help [listing categories] ------------------------------

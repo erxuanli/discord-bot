@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-from cogs.cmds.custom_checks import is_flori
+from cogs.cmds.custom_checks import is_flori, not_in_blacklist
 
 class TrollFlori(commands.Cog):
     def __init__(self, client):
@@ -14,6 +14,7 @@ class TrollFlori(commands.Cog):
             await message.channel.send("troll")
 
     @commands.command()
+    @commands.check(not_in_blacklist)
     async def troll_flori(self, ctx):
         if not is_flori(ctx):
             self.troll_flori_bool = not self.troll_flori_bool

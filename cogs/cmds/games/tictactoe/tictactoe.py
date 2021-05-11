@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import random
 
-
+from cogs.cmds.custom_checks import not_in_blacklist
 class TictactoeCmds(commands.Cog):
 
     def __init__(self, client):
@@ -27,6 +27,7 @@ class TictactoeCmds(commands.Cog):
         ]
 
     @commands.command()
+    @commands.check(not_in_blacklist)
     async def tictactoe(self, ctx, p1: discord.Member, p2: discord.Member):
 
         self.board = [":white_large_square:", ":white_large_square:", ":white_large_square:", ":white_large_square:",
@@ -56,6 +57,7 @@ class TictactoeCmds(commands.Cog):
         
 
     @commands.command()
+    @commands.check(not_in_blacklist)
     async def place(self, ctx, pos: int):
         self.pos = pos
 
