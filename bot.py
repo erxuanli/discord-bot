@@ -90,7 +90,7 @@ for cog in cogs:
 
 
 bot_status = cycle([f";help || Stalking {os.environ['MY_DISCORD_TAG']}", "Collaboration with Frozen0wl#9220",
-                   "Still in development UwU", f"bot host started at: {time.ctime(time.time() + (2 * 60**2))}"])
+                   "Still in development (っ °Д °;)っ", f"bot host started at: {time.ctime(time.time() + (2 * 60**2))}"])
 
 
 @client.event
