@@ -4,4 +4,6 @@ __pycache__
 .env
 tempCodeRunnerFile.py
 tempdev_token.txt
+.DS_Store
+
 
