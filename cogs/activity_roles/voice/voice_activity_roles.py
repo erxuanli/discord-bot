@@ -25,7 +25,7 @@ class VcActivityRoles(commands.Cog):
             prefix_collection = db["user_voice"]
             stats = prefix_collection.find_one(
                 ObjectId("60d2fce20a8eed87da7c9f79"))
-            with open(".cogs/activity_roles/voice/user_voice_stats.json", "w") as file:
+            with open("user_voice_stats.json", "w") as file:
                 json.dump(json_util.dumps(stats), file)
             
 
