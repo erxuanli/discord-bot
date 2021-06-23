@@ -7,11 +7,10 @@ class VcActivityRoles(commands.Cog):
 
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, before, after):
-        if before.voice.voice_channel is None and after.voice.voice_channel is not None:
-            try:
-                print("join")
-            except:
-                print("join error")
+        print(dir(member))
+        print("\n\n")
+        print(dir(before))
+        
 
 
     
