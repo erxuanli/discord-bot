@@ -42,6 +42,9 @@ intents = discord.Intents.default()
 intents.members = True
 intents.presences = True
 
+def load_on_startup():
+    update_prefixes_json()
+
 
 def update_prefixes_json():
     db_client = MongoClient(os.environ['MONGODB'])
@@ -76,7 +79,7 @@ def get_prefix(client, ctx):
     if changed:
         update_prefixes_json()
 
-update_prefixes_json()
+load_on_startup()
 client = commands.Bot(command_prefix=get_prefix,
                       help_command=None, intents=intents)
 
