@@ -75,10 +75,13 @@ class VcActivityRoles(commands.Cog):
 
     def update_stats_json_leave(self, dic, member) -> dict:
         if str(member.guild.id) not in dic: # new server --> do nothing
+            print("no server")
             return dic 
         elif str(member.id) not in dic: # new member --> do nothing
+            print("no user")
             return dic
         else:
+            print("im in")
             if len(dic[str(member.guild.id)][str(member.id)]["jlvc"][-1]) == 0:
                 return dic
             elif len(dic[str(member.guild.id)][str(member.id)]["jlvc"][-1]) == 1:
