@@ -17,6 +17,12 @@ class VcActivityRoles(commands.Cog):
     async def on_voice_state_update(self, member, before, after):
         if before.channel is None and after.channel is not None:
             print(f"hi {member.name} / {member.id}")
+            print(dir(member))
+            print("\n\n")
+            print(dir(before))
+            print("\n\n")
+            print(dir(after))
+            print("\n\n")
 
     def udpate_stats_json(self):
         db_client = MongoClient(os.environ['MONGODB'])
