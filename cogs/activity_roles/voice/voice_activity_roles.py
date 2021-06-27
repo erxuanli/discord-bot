@@ -18,6 +18,7 @@ class VcActivityRoles(commands.Cog):
         if before.channel is None and after.channel is not None:
             print(f"hi {member.name} / {member.id}")
             print(dir(member))
+            print(member.guild)
             print("\n\n")
             print(dir(before))
             print("\n\n")
