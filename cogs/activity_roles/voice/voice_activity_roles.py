@@ -49,8 +49,9 @@ class VcActivityRoles(commands.Cog):
                     ObjectId(self.database_id))
                 with open("user_voice_stats.json", "r") as file:
                     json_stats = json.loads(json.load(file))
-                    stats["data"] = {"test": "hello"}
+                    stats["data"] = json_stats
                 stats_collection.update_one({"_id": ObjectId(self.database_id)}, {"$set": stats}, upsert=True)
+        self.sync_stats_json()
             
 
 
