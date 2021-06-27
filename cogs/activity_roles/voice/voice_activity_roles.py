@@ -37,7 +37,7 @@ class VcActivityRoles(commands.Cog):
             print(stats)
         self.editing_json = False
 
-    @tasks.loop(seconds=5)
+    @tasks.loop(seconds=15)
     async def upload_json_to_database(self):
         if not self.loaded: 
             pass
