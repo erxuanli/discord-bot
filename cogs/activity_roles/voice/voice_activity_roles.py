@@ -31,9 +31,7 @@ class VcActivityRoles(commands.Cog):
             if before.channel is None and after.channel is not None: # user joining vc
                 stats = self.update_stats_json_join(stats.copy(), member)
             elif before.channel is not None and after.channel is None: # user leaving vc
-                print("bye")
                 stats = self.update_stats_json_leave(stats.copy(), member)
-            print(stats)
             json.dump(json_util.dumps(stats), file)
         self.editing_json = False
 
@@ -51,6 +49,7 @@ class VcActivityRoles(commands.Cog):
                 with open("user_voice_stats.json", "r") as file:
                     json_stats = json.loads(json.load(file))
                     stats = json_stats
+                    print(stats)
                 stats_collection.update_one({"_id": ObjectId(self.database_id)}, {
                                             "$set": stats}, upsert=True)
             
@@ -75,17 +74,13 @@ class VcActivityRoles(commands.Cog):
 
     def update_stats_json_leave(self, dic, member) -> dict:
         if str(member.guild.id) not in dic: # new server --> do nothing
-            print("no server")
             return dic 
         elif str(member.id) not in dic[str(member.guild.id)]: # new member --> do nothing
-            print("no user")
             return dic
         else:
-            print("im in")
             if len(dic[str(member.guild.id)][str(member.id)]["jlvc"][-1]) == 0:
                 return dic
             elif len(dic[str(member.guild.id)][str(member.id)]["jlvc"][-1]) == 1:
-                print("appending")
                 dic[str(member.guild.id)][str(member.id)]["jlvc"][-1].append(time.time())
             else:
                 return dic
