@@ -46,7 +46,7 @@ class VcActivityRoles(commands.Cog):
             json.dump(json_util.dumps(stats), file)
         self.editing_json = False
 
-    @tasks.loop(seconds=900) # every 15 minutes
+    @tasks.loop(seconds=300) # every 5 minutes
     async def upload_json_to_database(self):
         if not self.loaded: 
             pass
