@@ -25,7 +25,7 @@ class VcActivityRoles(commands.Cog):
         stats = None
         self.editing_json = True
         with open("user_voice_stats.json", "r") as file: # loading existing stats
-            stats = json.load(file)
+            stats = json.loads(json.load(file))
         with open("user_voice_stats.json", "w") as file: # writing new stats
             if stats is None:
                 stats = dict()
@@ -48,8 +48,8 @@ class VcActivityRoles(commands.Cog):
                 stats = stats_collection.find_one(
                     ObjectId(self.database_id))
                 with open("user_voice_stats.json", "r") as file:
-                    json_stats = json.load(file)
-                    stats["data"] = json_stats
+                    json_stats = json.loads(json.load(file))
+                    stats["data"] = {"test": "hello"}
                 stats_collection.update_one({"_id": ObjectId(self.database_id)}, {"$set": stats}, upsert=True)
             
 
