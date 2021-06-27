@@ -26,6 +26,8 @@ class VcActivityRoles(commands.Cog):
         with open("user_voice_stats.json", "r") as file: # loading existing stats
             stats = json.loads(json.load(file))
         with open("user_voice_stats.json", "w") as file: # writing new stats
+            if stats is None:
+                stats = dict()
             if before.channel is None and after.channel is not None: # user joining vc
                 stats = self.update_stats_json_join(stats.copy(), member)
             elif before.channel is not None and after.channel is None: # user leaving vc
