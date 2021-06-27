@@ -17,6 +17,7 @@ class VcActivityRoles(commands.Cog):
         self.loaded = False
         self.database_id = "60d2fce20a8eed87da7c9f79"
         self.sync_stats_json()
+        self.upload_json_to_database.start()
         
 
     @commands.Cog.listener()
