@@ -23,7 +23,6 @@ class VcActivityRoles(commands.Cog):
 
 
     @commands.command()
-    @commands.guild_only()
     @commands.check(not_in_blacklist)
     @commands.check(is_moderator)
     async def vcsj(self, ctx): # vc stats as a json file
