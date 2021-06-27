@@ -69,6 +69,7 @@ class VcActivityRoles(commands.Cog):
             else:
                 dic[str(member.guild.id)][str(member.id)]["jlvc"].pop(-1)
                 dic[str(member.guild.id)][str(member.id)]["jlvc"].append([time.time()])
+        return dic
 
 
     def update_stats_json_leave(self, dic, member) -> dict:
@@ -83,6 +84,7 @@ class VcActivityRoles(commands.Cog):
                 dic[str(member.guild.id)][str(member.id)]["jlvc"][-1].append(time.time())
             else:
                 return dic
+        return dic
 
                       
 
