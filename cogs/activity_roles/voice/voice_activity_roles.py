@@ -37,7 +37,7 @@ class VcActivityRoles(commands.Cog):
 
     @tasks.loop(seconds=5)
     async def upload_json_to_database(self):
-        if self.editing_json or not self.loaded: 
+        if not self.loaded: 
             pass
         else:
             db_client = MongoClient(os.environ['MONGODB'])
