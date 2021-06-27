@@ -10,6 +10,8 @@ from bson import json_util
 
 import time
 
+from cogs.cmds.custom_checks import not_in_blacklist
+
 class VcActivityRoles(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -18,6 +20,15 @@ class VcActivityRoles(commands.Cog):
         self.database_id = "60d2fce20a8eed87da7c9f79"
         self.sync_stats_json()
         self.upload_json_to_database.start()
+
+
+    @commands.command()
+    @commands.guild_only()
+    @commands.check(not_in_blacklist)
+    async def vc_stats_json(self, ctx):
+        with open("user_voice_stats.json", "r") as file:
+            stats = json.loads(json.load(file))
+            await ctx.send(str(stats))
         
 
     @commands.Cog.listener()
@@ -34,10 +45,9 @@ class VcActivityRoles(commands.Cog):
             elif before.channel is not None and after.channel is None: # user leaving vc
                 stats = self.update_stats_json_leave(stats.copy(), member)
             json.dump(json_util.dumps(stats), file)
-            print(stats)
         self.editing_json = False
 
-    @tasks.loop(seconds=15)
+    @tasks.loop(seconds=900) # every 15 minutes
     async def upload_json_to_database(self):
         if not self.loaded: 
             pass
