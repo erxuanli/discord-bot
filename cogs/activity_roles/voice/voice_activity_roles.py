@@ -60,7 +60,7 @@ class VcActivityRoles(commands.Cog):
         if str(member.guild.id) not in dic: # new server
             dic[str(member.guild.id)] = {str(member.id) : {"jlvc" : [[time.time()]]}}
             return dic
-        elif str(member.id) not in dic: # new member
+        elif str(member.id) not in dic[str(member.guild.id)]: # new member
             dic[str(member.guild.id)][str(member.id)] = {"jlvc" : [[time.time()]]}
         else:
             if len(dic[str(member.guild.id)][str(member.id)]["jlvc"][-1]) <= 1: # one or less time stamp
@@ -77,7 +77,7 @@ class VcActivityRoles(commands.Cog):
         if str(member.guild.id) not in dic: # new server --> do nothing
             print("no server")
             return dic 
-        elif str(member.id) not in dic: # new member --> do nothing
+        elif str(member.id) not in dic[str(member.guild.id)]: # new member --> do nothing
             print("no user")
             return dic
         else:
