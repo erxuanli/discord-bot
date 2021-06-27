@@ -49,7 +49,7 @@ class VcActivityRoles(commands.Cog):
                     ObjectId(self.database_id))
                 with open("user_voice_stats.json", "r") as file:
                     json_stats = json.loads(json.load(file))
-                    stats["data"] = json_stats
+                    stats = json_stats
                 stats_collection.update_one({"_id": ObjectId(self.database_id)}, {
                                             "$set": stats}, upsert=True)
             
@@ -96,7 +96,7 @@ class VcActivityRoles(commands.Cog):
             stats = stats_collection.find_one(
                 ObjectId(self.database_id))
             with open("user_voice_stats.json", "w") as file:
-                json.dump(json_util.dumps(stats["data"]), file)
+                json.dump(json_util.dumps(stats), file)
         self.loaded = True
 
             
