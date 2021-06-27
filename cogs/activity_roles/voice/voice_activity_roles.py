@@ -10,7 +10,7 @@ from bson import json_util
 
 import time
 
-from cogs.cmds.custom_checks import not_in_blacklist
+from cogs.cmds.custom_checks import not_in_blacklist, is_moderator
 
 class VcActivityRoles(commands.Cog):
     def __init__(self, client):
@@ -25,7 +25,8 @@ class VcActivityRoles(commands.Cog):
     @commands.command()
     @commands.guild_only()
     @commands.check(not_in_blacklist)
-    async def vc_stats_json(self, ctx):
+    @commands.check(is_moderator)
+    async def vcsj(self, ctx): # vc stats as a json file
         with open("user_voice_stats.json", "r") as file:
             await ctx.send("VC Stats JSON:", file=discord.File(file, "user_voice_stats.json"))
         
