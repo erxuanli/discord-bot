@@ -31,6 +31,7 @@ class VcActivityRoles(commands.Cog):
             if before.channel is None and after.channel is not None: # user joining vc
                 stats = self.update_stats_json_join(stats.copy(), member)
             elif before.channel is not None and after.channel is None: # user leaving vc
+                print("bye")
                 stats = self.update_stats_json_leave(stats.copy(), member)
             print(stats)
             json.dump(json_util.dumps(stats), file)
