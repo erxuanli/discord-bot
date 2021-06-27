@@ -27,8 +27,7 @@ class VcActivityRoles(commands.Cog):
     @commands.check(not_in_blacklist)
     async def vc_stats_json(self, ctx):
         with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            await ctx.send(str(stats))
+            await ctx.send("VC Stats JSON:", file=discord.File(file, "user_voice_stats.json"))
         
 
     @commands.Cog.listener()
