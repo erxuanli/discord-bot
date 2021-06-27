@@ -25,7 +25,7 @@ class VcActivityRoles(commands.Cog):
         stats = None
         self.editing_json = True
         with open("user_voice_stats.json", "r") as file: # loading existing stats
-            stats = json.loads(json.load(file))
+            stats = json.load(file)
         with open("user_voice_stats.json", "w") as file: # writing new stats
             if stats is None:
                 stats = dict()
