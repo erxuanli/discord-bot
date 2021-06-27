@@ -34,6 +34,7 @@ class VcActivityRoles(commands.Cog):
             elif before.channel is not None and after.channel is None: # user leaving vc
                 stats = self.update_stats_json_leave(stats.copy(), member)
             json.dump(json_util.dumps(stats), file)
+        print(stats)
         self.editing_json = False
 
     @tasks.loop(seconds=5)
