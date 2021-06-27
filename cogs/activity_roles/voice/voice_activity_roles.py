@@ -82,6 +82,7 @@ class VcActivityRoles(commands.Cog):
             if len(dic[str(member.guild.id)][str(member.id)]["jlvc"][-1]) == 0:
                 return dic
             elif len(dic[str(member.guild.id)][str(member.id)]["jlvc"][-1]) == 1:
+                print("appending")
                 dic[str(member.guild.id)][str(member.id)]["jlvc"][-1].append(time.time())
             else:
                 return dic
@@ -89,7 +90,7 @@ class VcActivityRoles(commands.Cog):
 
                       
 
-    def sync_stats_json(self):
+    def sync_stats_json(self): 
         db_client = MongoClient(os.environ['MONGODB'])
         with db_client:
             db = db_client["activity"]
