@@ -178,9 +178,12 @@ class VcActivityRoles(commands.Cog):
                 return res
     
     def seconds_to_hours_minutes_seconds(self, seconds: float):
-        hours = int(seconds // 60**2)
-        minutes = int(seconds - (hours*60**2) // 60)
-        c_seconds = int(seconds - ((hours*60**2) + (minutes*60)))
+        ti = seconds
+        hours = int(seconds // (60**2))
+        ti -= hours*60**2
+        minutes = int(ti // 60)
+        ti -= minutes*60
+        c_seconds = int(ti)
         return hours, minutes, c_seconds
 
     # syncing and collecting vc stats -----------------------------------------------
