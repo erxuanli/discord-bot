@@ -28,6 +28,7 @@ class VcActivityRoles(commands.Cog):
     @commands.check(not_in_blacklist)
     async def vcstats(self, ctx):
         await ctx.send(self.user_all_time(str(ctx.guild.id), str(ctx.author.id)))
+        await ctx.send(self.user_all_time_global(str(ctx.author.id)))
         await ctx.send(self.user_all_time_joins(str(ctx.guild.id), str(ctx.author.id)))
         await ctx.send(self.user_all_time_leaves(str(ctx.guild.id), str(ctx.author.id)))
 
@@ -57,6 +58,30 @@ class VcActivityRoles(commands.Cog):
                     else:
                         res += i[1] - i[0]
                 return res
+    
+    def user_all_time_global(self, userid: str) -> float: # returns the sum of all time vc stats of user in all servers in seconds
+        with open("user_voice_stats.json", "r") as file:
+            stats = json.loads(json.load(file))
+            if not stats: # no servers
+                return 0.0
+            else:
+                res = 0.0
+                for server in stats: 
+                    if len(stats[server]) == 0: # no members in server
+                        pass
+                    else:
+                        for user in stats[server]:
+                            if user == userid:
+                                if len(stats[server][user]["jlvc"]) == 0: # user has no stats
+                                    return 0.0
+                                else:
+                                    for i in stats[server][user]["jlvc"]:
+                                        if len(i) != 2:
+                                            pass
+                                        else:
+                                            res += i[1] - i[0]
+                return res
+                    
 
     def user_all_time_joins(self, serverid: str, userid: str) -> int: # returns all time vc user joins
         with open("user_voice_stats.json", "r") as file:
