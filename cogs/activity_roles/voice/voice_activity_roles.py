@@ -32,7 +32,7 @@ class VcActivityRoles(commands.Cog):
         if user is None:
             user = ctx.author
 
-        embed = discord.Embed(title = f"User VC Stats [{str(user)} || {str(user.id)}]", color = discord.Color.green())
+        embed = discord.Embed(title = f"User VC Stats [{str(user)} || {str(user.id)}]", color = discord.Color.orange())
 
         vcat_hours, vcat_minutes, vcat_seconds = self.user_all_time(str(ctx.guild.id), str(user.id))
         vcatg_hours, vcatg_minutes, vcatg_seconds = self.user_all_time_global(str(user.id))
