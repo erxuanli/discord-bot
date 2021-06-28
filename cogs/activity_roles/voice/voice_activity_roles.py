@@ -70,7 +70,7 @@ class VcActivityRoles(commands.Cog):
             else:
                 res = 0
                 for i in stats[serverid][userid]["jlvc"]:
-                    if len(i) == 1:
+                    if len(i) == 1 or len(i) == 2:
                         res += 1
                 return res
 
