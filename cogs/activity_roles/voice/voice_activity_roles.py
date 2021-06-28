@@ -48,7 +48,7 @@ class VcActivityRoles(commands.Cog):
         for name, value, inline in fields:
             embed.add_field(name = name, value = value, inline = inline)
 
-        embed.set_footer(text=f"Time (bot host location): {datetime.datetime.now()}")
+        embed.set_footer(text=f"saving stats when user leaves vc")
 
         await ctx.send(embed = embed)
 
