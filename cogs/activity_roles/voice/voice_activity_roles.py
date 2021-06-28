@@ -9,6 +9,7 @@ from bson.objectid import ObjectId
 from bson import json_util
 
 import time
+import datetime
 
 from cogs.cmds.custom_checks import not_in_blacklist, is_moderator
 
@@ -26,13 +27,27 @@ class VcActivityRoles(commands.Cog):
     @commands.command()
     @commands.guild_only()
     @commands.check(not_in_blacklist)
-    async def vcstats(self, ctx):
-        await ctx.send(self.user_all_time(str(ctx.guild.id), str(ctx.author.id)))
-        await ctx.send(self.user_all_time_global(str(ctx.author.id)))
-        await ctx.send(self.user_all_time_joins(str(ctx.guild.id), str(ctx.author.id)))
-        await ctx.send(self.user_all_time_leaves(str(ctx.guild.id), str(ctx.author.id)))
-        await ctx.send(self.user_all_time_joins_global(str(ctx.author.id)))
-        await ctx.send(self.user_all_time_leaves_global(str(ctx.author.id)))
+    async def vcstats(self, ctx, member: discord.Member = None):
+        user = member
+        if user is None:
+            user = ctx.author
+
+        embed = discord.Embed(title = f"User VC Stats [{str(user)} || {str(user.id)}]", color = discord.Color.green())
+
+        fields = [(f"VC All Time [{ctx.guild}]", str(self.user_all_time(str(ctx.guild.id), str(user.id))), False),
+                  ("VC All Time [Global]", str(self.user_all_time_global(str(user.id))), False),
+                  (f"VC Joins All Time [{ctx.guild}]", str(self.user_all_time_joins(str(ctx.guild.id), str(user.id))), False),
+                  ("VC Joins All Time [Global]", str(self.user_all_time_joins_global(str(user.id))), False),
+                  (f"VC Leaves All Time [{ctx.guild}]", str(self.user_all_time_leaves(str(ctx.guild.id), str(user.id))), False),
+                  ("VC Leaves All Time [Global]", str(self.user_all_time_leaves_global(str(user.id))), False)
+                  ]
+
+        for name, value, inline in fields:
+            embed.add_field(name = name, value = value, inline = inline)
+
+        embed.set_footer(text=f"Time (bot host location): {datetime.datetime.now()}")
+
+        await ctx.send(embed = embed)
 
     @commands.command()
     @commands.check(not_in_blacklist)
@@ -158,7 +173,12 @@ class VcActivityRoles(commands.Cog):
                                         if len(i) == 2:
                                             res += 1
                 return res
-
+    
+    def seconds_to_hours_minutes_seconds(self, seconds: float):
+        hours = seconds // 60**2
+        minutes = seconds // 60
+        c_seconds = seconds % 60
+        return hours, minutes, c_seconds
 
     # syncing and collecting vc stats -----------------------------------------------
     @commands.Cog.listener()
