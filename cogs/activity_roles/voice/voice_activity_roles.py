@@ -28,6 +28,8 @@ class VcActivityRoles(commands.Cog):
     @commands.check(not_in_blacklist)
     async def vcstats(self, ctx):
         await ctx.send(self.user_all_time(str(ctx.guild.id), str(ctx.author.id)))
+        await ctx.send(self.user_all_time_joins(str(ctx.guild.id), str(ctx.author.id)))
+        await ctx.send(self.user_all_time_leaves(str(ctx.guild.id), str(ctx.author.id)))
 
     @commands.command()
     @commands.check(not_in_blacklist)
@@ -54,6 +56,38 @@ class VcActivityRoles(commands.Cog):
                         pass
                     else:
                         res += i[1] - i[0]
+                return res
+
+    def user_all_time_joins(self, serverid: str, userid: str) -> int: # returns all time vc user joins
+        with open("user_voice_stats.json", "r") as file:
+            stats = json.loads(json.load(file))
+            if serverid not in stats:
+                return 0
+            elif userid not in stats[serverid]:
+                return 0
+            elif len(stats[serverid][userid]["jlvc"]) == 0:
+                return 0
+            else:
+                res = 0
+                for i in stats[serverid][userid]["jlvc"]:
+                    if len(i) == 1:
+                        res += 1
+                return res
+
+    def user_all_time_leaves(self, serverid: str, userid: str) -> int: # returns all time vc user leaves
+        with open("user_voice_stats.json", "r") as file:
+            stats = json.loads(json.load(file))
+            if serverid not in stats:
+                return 0
+            elif userid not in stats[serverid]:
+                return 0
+            elif len(stats[serverid][userid]["jlvc"]) == 0:
+                return 0
+            else:
+                res = 0
+                for i in stats[serverid][userid]["jlvc"]:
+                    if len(i) == 2:
+                        res += 1
                 return res
 
 
