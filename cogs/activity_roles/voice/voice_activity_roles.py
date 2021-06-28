@@ -34,8 +34,8 @@ class VcActivityRoles(commands.Cog):
 
         embed = discord.Embed(title = f"User VC Stats [{str(user)} || {str(user.id)}]", color = discord.Color.orange())
 
-        vcat_hours, vcat_minutes, vcat_seconds = self.user_all_time(str(ctx.guild.id), str(user.id))
-        vcatg_hours, vcatg_minutes, vcatg_seconds = self.user_all_time_global(str(user.id))
+        vcat_hours, vcat_minutes, vcat_seconds = self.seconds_to_hours_minutes_seconds(self.user_all_time(str(ctx.guild.id), str(user.id)))
+        vcatg_hours, vcatg_minutes, vcatg_seconds = self.seconds_to_hours_minutes_seconds(self.user_all_time_global(str(user.id)))
 
         fields = [(f"VC All Time [{ctx.guild}]", f"{vcat_hours} hours, {vcat_minutes} minutes, {vcat_seconds} seconds", False),
                   ("VC All Time [Global]", f"{vcatg_hours} hours, {vcatg_minutes} minutes, {vcatg_seconds} seconds", False),
