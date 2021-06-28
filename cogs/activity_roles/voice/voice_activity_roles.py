@@ -31,6 +31,8 @@ class VcActivityRoles(commands.Cog):
         await ctx.send(self.user_all_time_global(str(ctx.author.id)))
         await ctx.send(self.user_all_time_joins(str(ctx.guild.id), str(ctx.author.id)))
         await ctx.send(self.user_all_time_leaves(str(ctx.guild.id), str(ctx.author.id)))
+        await ctx.send(self.user_all_time_joins_global(str(ctx.author.id)))
+        await ctx.send(self.user_all_time_leaves_global(str(ctx.author.id)))
 
     @commands.command()
     @commands.check(not_in_blacklist)
@@ -99,6 +101,27 @@ class VcActivityRoles(commands.Cog):
                         res += 1
                 return res
 
+    def user_all_time_joins_global(self, userid: str) -> int: # returns all time vc user joins global (all servers)
+        with open("user_voice_stats.json", "r") as file:
+            stats = json.loads(json.load(file))
+            if not stats: # no servers
+                return 0
+            else:
+                res = 0
+                for server in stats: 
+                    if len(stats[server]) == 0: # no members in server
+                        pass
+                    else:
+                        for user in stats[server]:
+                            if user == userid:
+                                if len(stats[server][user]["jlvc"]) == 0: # user has no stats
+                                    return 0
+                                else:
+                                    for i in stats[server][user]["jlvc"]:
+                                        if len(i) == 1 or len(i) == 2:
+                                            res += 1
+                return res
+
     def user_all_time_leaves(self, serverid: str, userid: str) -> int: # returns all time vc user leaves
         with open("user_voice_stats.json", "r") as file:
             stats = json.loads(json.load(file))
@@ -113,6 +136,27 @@ class VcActivityRoles(commands.Cog):
                 for i in stats[serverid][userid]["jlvc"]:
                     if len(i) == 2:
                         res += 1
+                return res
+
+    def user_all_time_leaves_global(self, userid: str) -> int: # returns all time vc user leaves global (all servers)
+        with open("user_voice_stats.json", "r") as file:
+            stats = json.loads(json.load(file))
+            if not stats: # no servers
+                return 0
+            else:
+                res = 0
+                for server in stats: 
+                    if len(stats[server]) == 0: # no members in server
+                        pass
+                    else:
+                        for user in stats[server]:
+                            if user == userid:
+                                if len(stats[server][user]["jlvc"]) == 0: # user has no stats
+                                    return 0
+                                else:
+                                    for i in stats[server][user]["jlvc"]:
+                                        if len(i) == 2:
+                                            res += 1
                 return res
 
 
