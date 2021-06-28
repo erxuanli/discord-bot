@@ -22,14 +22,42 @@ class VcActivityRoles(commands.Cog):
         self.upload_json_to_database.start()
 
 
+    # commands -----------------------------------------------------------------------
+    @commands.command()
+    @commands.guild_only()
+    @commands.check(not_in_blacklist)
+    async def vcstats(self, ctx):
+        await ctx.send(self.user_all_time(str(ctx.guild.id), str(ctx.author.id)))
+
     @commands.command()
     @commands.check(not_in_blacklist)
     @commands.check(is_moderator)
     async def vcsj(self, ctx): # vc stats as a json file
         with open("user_voice_stats.json", "r") as file:
             await ctx.send("VC Stats JSON:", file=discord.File(file, "user_voice_stats.json"))
-        
 
+    
+    # utils ------------------------------------------------------------------------
+    def user_all_time(self, serverid: str, userid: str) -> float: # returns all time vc stats of user in seconds
+        with open("user_voice_stats.json", "r") as file:
+            stats = json.loads(json.load(file))
+            if serverid not in stats:
+                return 0.0
+            elif userid not in stats[serverid]:
+                return 0.0
+            elif len(stats[serverid][userid]["jlvc"]) == 0:
+                return 0.0
+            else:
+                res = 0.0
+                for i in stats[serverid][userid]["jlvc"]:
+                    if len(i) != 2:
+                        pass
+                    else:
+                        res += i[1] - i[0]
+                return res
+
+
+    # syncing and collecting vc stats -----------------------------------------------
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, before, after):    
         stats = None
