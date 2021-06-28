@@ -23,6 +23,7 @@ class HelpCmds(commands.Cog):
             fields = [(f"**{cmd_prefix}help general**", "help for all general commands", False),
                       (f"**{cmd_prefix}help testing**", "help for all testing commands", False),
                       (f"**{cmd_prefix}help vc**", "help for all vc commands", False),
+                      (f"**{cmd_prefix}help stats**", "help for all stats commands", False),
                       (f"**{cmd_prefix}help fun**", "help for all fun commands", False),
                       (f"**{cmd_prefix}help math**", "help for all math commands", False),
                       (f"**{cmd_prefix}help science**", "help for all science commands", False),
@@ -30,7 +31,8 @@ class HelpCmds(commands.Cog):
                       (f"**{cmd_prefix}help management**", "help for all management commands", False),
                       (f"**{cmd_prefix}help ecosystem**", "help for all ecosystem commands", False),
                       (f"**{cmd_prefix}help games**", "help for all games commands", False),
-                      (f"**{cmd_prefix}help other**", "help for all other commands", False)]  
+                      (f"**{cmd_prefix}help other**", "help for all other commands", False),
+                      (f"**{cmd_prefix}help dev**", "help for all dev commands", False)]  
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline)      
@@ -90,6 +92,21 @@ class HelpCmds(commands.Cog):
                       (f"**{cmd_prefix}playl**", "plays the previous played mp3 file", False),
                       (f"**{cmd_prefix}pause**", "pauses the current playing mp3 file", False),
                       (f"**{cmd_prefix}resume**", "resumes the paused mp3 file", False)]
+
+            for name, value, inline in fields:
+                embed.add_field(name = name, value = value, inline = inline) 
+
+            embed.set_footer(text="Thanks for using this useless bot xD and greetings to all weebs xD")
+
+            await ctx.send(embed=embed)
+
+        # ---------------------------- help stats ---------------------------------------
+        elif category == "stats":
+            embed = discord.Embed(title="help [stats]",
+                                  description="help for all stats commands",
+                                  color=discord.Color.blue())
+
+            fields = [(f"**{cmd_prefix}vcstats [user; default: message author]**", "returns vc stats of an user", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
@@ -231,6 +248,23 @@ class HelpCmds(commands.Cog):
             fields = [(f"**{cmd_prefix}nicktimer [int : minutes]**", "start a nickname timer", False),
                       (f"**{cmd_prefix}nicktimer_add [int : minutes]**", "add time to timer", False),
                       (f"**{cmd_prefix}nicktimer_stop**", "stop running timer", False)]
+
+            for name, value, inline in fields:
+                embed.add_field(name = name, value = value, inline = inline) 
+            
+            embed.set_footer(text="Thanks for using this useless bot xD and greetings to all weebs xD")
+
+            await ctx.send(embed=embed)
+
+        # --------------------------- help dev --------------------------------------
+        elif category == "dev":
+            embed = discord.Embed(title="help [dev]",
+                                  description="help for all dev commands",
+                                  color=discord.Color.blue())
+
+            fields = [(f"**{cmd_prefix}vcsj**", "returns json file of user vc stats", False),
+                      (f"**{cmd_prefix}debug**", "disable all cmds", False),
+                      (f"**{cmd_prefix}broadcast [message]**", "sending message to all general channels", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
