@@ -74,13 +74,6 @@ class VcActivityRoles(commands.Cog):
 
         await ctx.send(embed = embed)
 
-    #@tasks.loop(seconds=300)
-    @commands.command()
-    @commands.guild_only()
-    async def assign_voice_top(self):
-        await(self.user_all_time_top(1))
-
-
 
     @commands.command()
     @commands.check(not_in_blacklist)
