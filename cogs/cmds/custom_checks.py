@@ -11,7 +11,7 @@ def is_moderator(ctx):
         return True
 
 def not_in_blacklist(ctx):
-    blacklist = [440587260669460480]
+    blacklist = []
     if ctx.author.id not in blacklist:
         return True
     return False
