@@ -143,8 +143,8 @@ class VcActivityRoles(commands.Cog):
             res.append([self.user_all_time_global(user), user])
 
         if quan == 0:
-            return sorted(res)
-        return sorted(res)[:quan]
+            return sorted(res, reverse=True)
+        return sorted(res, reverse=True)[:quan]
 
     def sum_user_all_time(self, serverid: str) -> float: # returns the sum of vc stats of all user of a specific server
         pass
