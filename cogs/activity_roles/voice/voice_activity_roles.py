@@ -101,6 +101,15 @@ class VcActivityRoles(commands.Cog):
                                         else:
                                             res += i[1] - i[0]
                 return res
+
+    def user_all_time_top(self, serverid: str, quan: int = 0) -> list: # returns top quan vc stats users of a specific server
+        pass
+    
+    def user_all_time_global_top(self, quan: int = 0) -> list: # returns top quan vc stats users (global)
+        pass
+
+    def sum_user_all_time(self, serverid: str) -> float: # returns the sum of vc stats of all user of a specific server
+        pass
                     
 
     def user_all_time_joins(self, serverid: str, userid: str) -> int: # returns all time vc user joins
