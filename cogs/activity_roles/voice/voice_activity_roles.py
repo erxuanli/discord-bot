@@ -75,6 +75,27 @@ class VcActivityRoles(commands.Cog):
 
     @commands.command()
     @commands.check(not_in_blacklist)
+    async def vctopserver(self, ctx): 
+        toplist = self.server_all_time_top(10)
+        
+        embed = discord.Embed(title = f"VC Server Top", color = discord.Color.orange())
+
+        count = 1
+        for ti, serverid in toplist:
+            server = await self.client.get_guild(serverid)
+            hours, minutes, seconds = self.seconds_to_hours_minutes_seconds(ti)
+
+            cap = f"[{count}] {server}"
+            count += 1
+
+            embed.add_field(name=cap, value=f"{hours} hour(s), {minutes} minute(s), {seconds} second(s)", inline=False)
+
+        embed.set_footer(text=f"saving stats when user leaves vc")
+
+        await ctx.send(embed = embed)
+
+    @commands.command()
+    @commands.check(not_in_blacklist)
     @commands.check(is_moderator)
     async def vcsj(self, ctx): # vc stats as a json file
         with open("user_voice_stats.json", "r") as file:
@@ -150,8 +171,32 @@ class VcActivityRoles(commands.Cog):
             return sorted(res, reverse=True)
         return sorted(res, reverse=True)[:quan]
 
+    def server_all_time_top(self, quan: int = 0) -> list: # returns top quan vc stats servers (global) (bots included in calculation)
+        res = list()
+        with open("user_voice_stats.json", "r") as file:
+            stats = json.loads(json.load(file))
+            if not stats: # no servers
+                return []
+            for server in stats:
+                res.append([self.sum_user_all_time(server), server])
+        if quan == 0:
+            return sorted(res, reverse=True)
+        return sorted(res, reverse=True)[:quan]
+
     def sum_user_all_time(self, serverid: str) -> float: # returns the sum of vc stats of all user of a specific server
-        pass
+        with open("user_voice_stats.json", "r") as file:
+            stats = json.loads(json.load(file))
+            if not stats: # no servers
+                return 0.0
+            elif serverid not in stats:
+                return 0.0
+            elif not stats[serverid]: # no members in server
+                return 0.0
+            else:
+                res = 0.0
+                for member in stats[serverid]:
+                    res += self.user_all_time(serverid, member)
+                return res
                     
 
     def user_all_time_joins(self, serverid: str, userid: str) -> int: # returns all time vc user joins
