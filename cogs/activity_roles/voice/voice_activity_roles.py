@@ -60,7 +60,7 @@ class VcActivityRoles(commands.Cog):
         embed = discord.Embed(title = f"VC User Top [Global]", color = discord.Color.orange())
 
         for ti, userid in toplist:
-            user = self.client.fetch_user(userid)
+            user = await self.client.fetch_user(userid)
             hours, minutes, seconds = self.seconds_to_hours_minutes_seconds(ti)
 
             embed.add_field(name=str(user), value=f"{hours} hour(s), {minutes} minute(s), {seconds} second(s)", inline=False)
