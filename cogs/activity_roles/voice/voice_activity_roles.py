@@ -59,11 +59,15 @@ class VcActivityRoles(commands.Cog):
         
         embed = discord.Embed(title = f"VC User Top [Global]", color = discord.Color.orange())
 
+        count = 1
         for ti, userid in toplist:
             user = await self.client.fetch_user(userid)
             hours, minutes, seconds = self.seconds_to_hours_minutes_seconds(ti)
 
-            embed.add_field(name=str(user), value=f"{hours} hour(s), {minutes} minute(s), {seconds} second(s)", inline=False)
+            cap = f"[{count}] {user}"
+            count += 1
+
+            embed.add_field(name=cap, value=f"{hours} hour(s), {minutes} minute(s), {seconds} second(s)", inline=False)
 
         embed.set_footer(text=f"saving stats when user leaves vc")
 
