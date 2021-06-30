@@ -53,6 +53,7 @@ class VcActivityRoles(commands.Cog):
         await ctx.send(embed = embed)
 
     @commands.command()
+    @commands.guild_only()
     @commands.check(not_in_blacklist)
     async def vctop(self, ctx): 
         toplist = self.user_all_time_top(str(ctx.guild.id), 10)
