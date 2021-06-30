@@ -106,7 +106,9 @@ class HelpCmds(commands.Cog):
                                   description="help for all stats commands",
                                   color=discord.Color.blue())
 
-            fields = [(f"**{cmd_prefix}vcstats [user; default: message author]**", "returns vc stats of an user", False)]
+            fields = [(f"**{cmd_prefix}vcstats [user; default: message author]**", "returns vc stats of an user", False),
+                      (f"**{cmd_prefix}vctopglobal**", "top 10 vc users", False),
+                      (f"**{cmd_prefix}vctopserver**", "top 10 vc servers", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
