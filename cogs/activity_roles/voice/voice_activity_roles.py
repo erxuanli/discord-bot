@@ -122,7 +122,7 @@ class VcActivityRoles(commands.Cog):
     def user_all_time_top(self, serverid: str, quan: int = 0) -> list: # returns top quan vc stats users of a specific server
         pass
     
-    def user_all_time_global_top(self, quan: int = 0) -> list: # returns top quan vc stats users (global)
+    def user_all_time_global_top(self, quan: int = 0) -> list: # returns top quan vc stats users (global) (bots included)
         users = list()
         res = list()
 
