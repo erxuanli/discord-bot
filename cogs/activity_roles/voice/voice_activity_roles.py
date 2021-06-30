@@ -82,7 +82,7 @@ class VcActivityRoles(commands.Cog):
 
         count = 1
         for ti, serverid in toplist:
-            server = await self.client.get_guild(serverid)
+            server = self.client.get_guild(serverid)
             hours, minutes, seconds = self.seconds_to_hours_minutes_seconds(ti)
 
             cap = f"[{count}] {server}"
