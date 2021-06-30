@@ -32,7 +32,8 @@ class HelpCmds(commands.Cog):
                       (f"**{cmd_prefix}help ecosystem**", "help for all ecosystem commands", False),
                       (f"**{cmd_prefix}help games**", "help for all games commands", False),
                       (f"**{cmd_prefix}help other**", "help for all other commands", False),
-                      (f"**{cmd_prefix}help dev**", "help for all dev commands", False)]  
+                      (f"**{cmd_prefix}help dev**", "help for all dev commands", False),
+                      (f"**Like the bot? Invite me to your server!**", "https://discord.com/api/oauth2/authorize?client_id=825423193694797834&permissions=8&scope=bot", False)]  
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline)      
