@@ -54,6 +54,27 @@ class VcActivityRoles(commands.Cog):
 
     @commands.command()
     @commands.check(not_in_blacklist)
+    async def vctop(self, ctx): 
+        toplist = self.user_all_time_top(str(ctx.guild.id), 10)
+        
+        embed = discord.Embed(title = f"VC User Top [{ctx.guild}]", color = discord.Color.orange())
+
+        count = 1
+        for ti, userid in toplist:
+            user = await self.client.fetch_user(userid)
+            hours, minutes, seconds = self.seconds_to_hours_minutes_seconds(ti)
+
+            cap = f"[{count}] {user}"
+            count += 1
+
+            embed.add_field(name=cap, value=f"{hours} hour(s), {minutes} minute(s), {seconds} second(s)", inline=False)
+
+        embed.set_footer(text=f"saving stats when user leaves vc")
+
+        await ctx.send(embed = embed)
+
+    @commands.command()
+    @commands.check(not_in_blacklist)
     async def vctopglobal(self, ctx): 
         toplist = self.user_all_time_global_top(10)
         
@@ -145,7 +166,19 @@ class VcActivityRoles(commands.Cog):
                 return res
 
     def user_all_time_top(self, serverid: str, quan: int = 0) -> list: # returns top quan vc stats users of a specific server
-        pass
+        res = list()
+        with open("user_voice_stats.json", "r") as file:
+            stats = json.loads(json.load(file))
+            if serverid not in stats: # no servers
+                return []
+            elif not stats[serverid]: # no members in server
+                return []
+            else:
+                for member in stats[serverid]:
+                    res.append([self.user_all_time(serverid, member), member])
+        if quan == 0:
+            return sorted(res, reverse=True)
+        return sorted(res, reverse=True)[:quan]
     
     def user_all_time_global_top(self, quan: int = 0) -> list: # returns top quan vc stats users (global) (bots included)
         users = list()
