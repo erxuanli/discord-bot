@@ -54,6 +54,23 @@ class VcActivityRoles(commands.Cog):
 
     @commands.command()
     @commands.check(not_in_blacklist)
+    async def vctopglobal(self, ctx): 
+        toplist = self.user_all_time_global_top(10)
+        
+        embed = discord.Embed(title = f"VC User Top [Global]", color = discord.Color.orange())
+
+        for ti, userid in toplist:
+            user = discord.utils.get(self.client.get_all_members(), id=userid)
+            hours, minutes, seconds = self.seconds_to_hours_minutes_seconds(ti)
+
+            embed.add_field(name=str(user), value=f"{hours} hour(s), {minutes} minute(s), {seconds} second(s)", inline=False)
+
+        embed.set_footer(text=f"saving stats when user leaves vc")
+
+        await ctx.send(embed = embed)
+
+    @commands.command()
+    @commands.check(not_in_blacklist)
     @commands.check(is_moderator)
     async def vcsj(self, ctx): # vc stats as a json file
         with open("user_voice_stats.json", "r") as file:
@@ -106,7 +123,28 @@ class VcActivityRoles(commands.Cog):
         pass
     
     def user_all_time_global_top(self, quan: int = 0) -> list: # returns top quan vc stats users (global)
-        pass
+        users = list()
+        res = list()
+
+        # collect all users
+        with open("user_voice_stats.json", "r") as file:
+            stats = json.loads(json.load(file))
+            if not stats: # no servers
+                return []
+            else:
+                for server in stats:
+                    if len(stats[server]) == 0: # nembers in server
+                        pass
+                    else:
+                        for user in stats[server]:
+                            users.append(user)
+
+        for user in set(users):
+            res.append([self.user_all_time_global(user), user])
+
+        if quan == 0:
+            return sorted(res)
+        return sorted(res)[:quan]
 
     def sum_user_all_time(self, serverid: str) -> float: # returns the sum of vc stats of all user of a specific server
         pass
