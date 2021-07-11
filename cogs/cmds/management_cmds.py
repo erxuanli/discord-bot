@@ -13,18 +13,24 @@ class ManagementCmds(commands.Cog):
     @commands.guild_only()
     @commands.check(not_in_blacklist)
     async def addrole(self, ctx, member: discord.Member, role: discord.Role):
-        await ctx.send(f"Permission granted")
-        await member.add_roles(role)
-        await ctx.send(f"added {role} to {member}")
+        if role.position > ctx.author.top_role.position:
+            await ctx.send(f"You can't add a role higher than your highest role")
+        else:
+            await ctx.send(f"Permission granted")
+            await member.add_roles(role)
+            await ctx.send(f"added {role} to {member}")
 
     @commands.command(aliases=["rrole"])
     @commands.has_permissions(administrator=True)
     @commands.guild_only()
     @commands.check(not_in_blacklist)
     async def remrole(self, ctx, member: discord.Member, role: discord.Role):
-        await ctx.send(f"Permission granted")
-        await member.remove_roles(role)
-        await ctx.send(f"{role} removed from {member}")
+        if role.position > ctx.author.top_role.position:
+            await ctx.send(f"You can't remove a role higher than your highest role")
+        else:
+            await ctx.send(f"Permission granted")
+            await member.remove_roles(role)
+            await ctx.send(f"{role} removed from {member}")
 
     @commands.command()
     @commands.has_permissions(administrator=True)
@@ -47,6 +53,8 @@ class ManagementCmds(commands.Cog):
     async def ban(self, ctx, member: discord.Member, *, reason: str = None):
         if member.id == ctx.author.id:
             await ctx.send(f"You can't ban yourself")
+        elif member.top_role.position > ctx.author.top_role.position:
+            await ctx.send(f"You can't ban someone with a higher role than you")
         else:
             await ctx.send(f"Permission granted")
             await member.ban(reason=reason)
