@@ -13,7 +13,7 @@ class ManagementCmds(commands.Cog):
     @commands.guild_only()
     @commands.check(not_in_blacklist)
     async def addrole(self, ctx, member: discord.Member, role: discord.Role):
-        if role.position > ctx.author.top_role.position:
+        if role.position >= ctx.author.top_role.position:
             await ctx.send(f"You can't add a role higher than your highest role")
         else:
             await ctx.send(f"Permission granted")
@@ -25,7 +25,7 @@ class ManagementCmds(commands.Cog):
     @commands.guild_only()
     @commands.check(not_in_blacklist)
     async def remrole(self, ctx, member: discord.Member, role: discord.Role):
-        if role.position > ctx.author.top_role.position:
+        if role.position >= ctx.author.top_role.position:
             await ctx.send(f"You can't remove a role higher than your highest role")
         else:
             await ctx.send(f"Permission granted")
