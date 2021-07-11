@@ -33,6 +33,8 @@ class ManagementCmds(commands.Cog):
     async def kick(self, ctx, member: discord.Member, *, reason: str = None):
         if member.id == ctx.author.id:
             await ctx.send(f"You can't kick yourself")
+        elif member.top_role.position > ctx.author.top_role.position:
+            await ctx.send(f"You can't kick someone with a higher role than you")
         else:
             await ctx.send(f"Permission granted")
             await member.kick(reason=reason)
