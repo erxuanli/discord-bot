@@ -484,7 +484,7 @@ class VcActivityRoles(commands.Cog):
                         for user in stats[server]:
                             if user == userid:
                                 if len(stats[server][user]["jlvc"]) == 0: # user has no stats
-                                    pass
+                                    break
                                 else:
                                     for i in stats[server][user]["jlvc"]:
                                         if len(i) == 2:
