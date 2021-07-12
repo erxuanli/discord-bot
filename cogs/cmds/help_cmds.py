@@ -108,9 +108,9 @@ class HelpCmds(commands.Cog):
                                   color=discord.Color.blue())
 
             fields = [(f"**{cmd_prefix}vcstats [user; default: message author]**", "returns vc stats of an user", False),
-                      (f"**{cmd_prefix}vctop**", "top 10 vc users", False),
-                      (f"**{cmd_prefix}vctopglobal**", "top 10 vc users (global)", False),
-                      (f"**{cmd_prefix}vctopserver**", "top 10 vc servers", False)]
+                      (f"**{cmd_prefix}vctop [lookback days; default: all time]**", "top 10 vc users", False),
+                      (f"**{cmd_prefix}vctopglobal [lookback days; default: all time]**", "top 10 vc users (global)", False),
+                      (f"**{cmd_prefix}vctopserver [lookback days; default: all time]**", "top 10 vc servers", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
