@@ -180,7 +180,7 @@ class VcActivityRoles(commands.Cog):
                 return 0.0
             else:
                 res = 0.0
-                for i in stats[serverid][userid]["jlvc"]:
+                for i in reversed(stats[serverid][userid]["jlvc"]):
                     if len(i) != 2:
                         pass
                     else:
@@ -233,7 +233,7 @@ class VcActivityRoles(commands.Cog):
                                 if len(stats[server][user]["jlvc"]) == 0: # user has no stats
                                     break
                                 else:
-                                    for i in stats[server][user]["jlvc"]:
+                                    for i in reversed(stats[server][user]["jlvc"]):
                                         if len(i) != 2:
                                             pass
                                         else:
@@ -407,7 +407,7 @@ class VcActivityRoles(commands.Cog):
                 return 0
             else:
                 res = 0
-                for i in stats[serverid][userid]["jlvc"]:
+                for i in reversed(stats[serverid][userid]["jlvc"]):
                     if len(i) == 1 or len(i) == 2:
                         if i[0] < diff:
                             return res
@@ -452,7 +452,7 @@ class VcActivityRoles(commands.Cog):
                                 if len(stats[server][user]["jlvc"]) == 0: # user has no stats
                                     break
                                 else:
-                                    for i in stats[server][user]["jlvc"]:
+                                    for i in reversed(stats[server][user]["jlvc"]):
                                         if len(i) == 1 or len(i) == 2:
                                             if i[0] < diff:
                                                 break
@@ -487,7 +487,7 @@ class VcActivityRoles(commands.Cog):
                 return 0
             else:
                 res = 0
-                for i in stats[serverid][userid]["jlvc"]:
+                for i in reversed(stats[serverid][userid]["jlvc"]):
                     if len(i) == 2:
                         if i[1] < diff:
                             return res
@@ -532,7 +532,7 @@ class VcActivityRoles(commands.Cog):
                                 if len(stats[server][user]["jlvc"]) == 0: # user has no stats
                                     break
                                 else:
-                                    for i in stats[server][user]["jlvc"]:
+                                    for i in reversed(stats[server][user]["jlvc"]):
                                         if len(i) == 2:
                                             if i[1] < diff:
                                                 break
