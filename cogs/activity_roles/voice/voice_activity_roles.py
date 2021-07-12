@@ -122,10 +122,10 @@ class VcActivityRoles(commands.Cog):
             toplist = self.server_all_time_top(10)
             title = f"VC Server Top"
         else:
-            toplist = self.user_global_top(10, lookback_days)
+            toplist = self.server_top(10, lookback_days)
             title = f"VC Server Top [Last {lookback_days} days]" 
 
-        embed = discord.Embed(title = f"VC Server Top", color = discord.Color.orange()) 
+        embed = discord.Embed(title = title, color = discord.Color.orange()) 
 
         count = 1
         for ti, serverid in toplist:
