@@ -85,10 +85,18 @@ class VcActivityRoles(commands.Cog):
 
     @commands.command()
     @commands.check(not_in_blacklist)
-    async def vctopglobal(self, ctx): 
-        toplist = self.user_all_time_global_top(10)
-        
-        embed = discord.Embed(title = f"VC User Top [Global]", color = discord.Color.orange())
+    async def vctopglobal(self, ctx, lookback_days: int = 0): 
+        toplist = list()
+        title = ""
+
+        if lookback_days <= 0:
+            toplist = self.user_all_time_global_top(10)
+            title = f"VC User Top [Global]"
+        else:
+            toplist = self.user_global_top(10, lookback_days)
+            title = f"VC User Top [Global] [Last {lookback_days} days]"  
+
+        embed = discord.Embed(title = title, color = discord.Color.orange())
 
         count = 1
         for ti, userid in toplist:
@@ -106,10 +114,18 @@ class VcActivityRoles(commands.Cog):
 
     @commands.command()
     @commands.check(not_in_blacklist)
-    async def vctopserver(self, ctx): 
-        toplist = self.server_all_time_top(10)
-        
-        embed = discord.Embed(title = f"VC Server Top", color = discord.Color.orange())
+    async def vctopserver(self, ctx, lookback_days: int = 0): 
+        toplist = list()
+        title = ""
+
+        if lookback_days <= 0:
+            toplist = self.server_all_time_top(10)
+            title = f"VC Server Top"
+        else:
+            toplist = self.user_global_top(10, lookback_days)
+            title = f"VC Server Top [Last {lookback_days} days]" 
+
+        embed = discord.Embed(title = f"VC Server Top", color = discord.Color.orange()) 
 
         count = 1
         for ti, serverid in toplist:
