@@ -36,13 +36,21 @@ class VcActivityRoles(commands.Cog):
 
         vcat_hours, vcat_minutes, vcat_seconds = self.seconds_to_hours_minutes_seconds(self.user_all_time(str(ctx.guild.id), str(user.id)))
         vcatg_hours, vcatg_minutes, vcatg_seconds = self.seconds_to_hours_minutes_seconds(self.user_all_time_global(str(user.id)))
+        vcat_hours_14, vcat_minutes_14, vcat_seconds_14 = self.seconds_to_hours_minutes_seconds(self.user(str(ctx.guild.id), str(user.id), 14))
+        vcatg_hours_14, vcatg_minutes_14, vcatg_seconds_14 = self.seconds_to_hours_minutes_seconds(self.user_global(str(user.id), 14))
 
         fields = [(f"VC All Time [{ctx.guild}]", f"{vcat_hours} hour(s), {vcat_minutes} minute(s), {vcat_seconds} second(s)", False),
                   ("VC All Time [Global]", f"{vcatg_hours} hour(s), {vcatg_minutes} minute(s), {vcatg_seconds} second(s)", False),
+                  (f"VC last 14 days [{ctx.guild}]", f"{vcat_hours_14} hour(s), {vcat_minutes_14} minute(s), {vcat_seconds_14} second(s)", False),
+                  ("VC last 14 days [Global]", f"{vcatg_hours_14} hour(s), {vcatg_minutes_14} minute(s), {vcatg_seconds_14} second(s)", False),
                   (f"VC Joins All Time [{ctx.guild}]", str(self.user_all_time_joins(str(ctx.guild.id), str(user.id))), False),
                   (f"VC Leaves All Time [{ctx.guild}]", str(self.user_all_time_leaves(str(ctx.guild.id), str(user.id))), False),
+                  (f"VC Joins last 14 days [{ctx.guild}]", str(self.user_joins(str(ctx.guild.id), str(user.id), 14)), False),
+                  (f"VC Leaves last 14 days [{ctx.guild}]", str(self.user_leaves(str(ctx.guild.id), str(user.id), 14)), False),
                   ("VC Joins All Time [Global]", str(self.user_all_time_joins_global(str(user.id))), False),
-                  ("VC Leaves All Time [Global]", str(self.user_all_time_leaves_global(str(user.id))), False)
+                  ("VC Leaves All Time [Global]", str(self.user_all_time_leaves_global(str(user.id))), False),
+                  ("VC Joins last 14 days [Global]", str(self.user_joins_global(str(user.id), 14)), False),
+                  ("VC Leaves last 14 days [Global]", str(self.user_leaves_global(str(user.id), 14)), False)
                   ]
 
         for name, value, inline in fields:
