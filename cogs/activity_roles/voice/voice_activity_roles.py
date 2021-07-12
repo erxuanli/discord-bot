@@ -55,10 +55,18 @@ class VcActivityRoles(commands.Cog):
     @commands.command()
     @commands.guild_only()
     @commands.check(not_in_blacklist)
-    async def vctop(self, ctx): 
-        toplist = self.user_all_time_top(str(ctx.guild.id), 10)
-        
-        embed = discord.Embed(title = f"VC User Top [{ctx.guild}]", color = discord.Color.orange())
+    async def vctop(self, ctx, lookback_days: int = 0): 
+        toplist = list()
+        title = ""
+
+        if lookback_days <= 0:
+            toplist = self.user_all_time_top(str(ctx.guild.id), 10)
+            title = f"VC User Top [{ctx.guild}]"
+        else:
+            toplist = self.user_top(str(ctx.guild.id), 10, lookback_days)
+            title = f"VC User Top [{ctx.guild}] [Last {lookback_days} days]"    
+
+        embed = discord.Embed(title = title, color = discord.Color.orange())    
 
         count = 1
         for ti, userid in toplist:
