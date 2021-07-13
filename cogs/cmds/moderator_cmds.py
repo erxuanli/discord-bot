@@ -84,3 +84,9 @@ class ModeratorCmds(commands.Cog):
             except discord.errors.Forbidden:
                 await ctx.send(f"do not have enough permissions to change {user}'s nickname")
         await ctx.send("changed all nicknames that could be changed")
+
+    @commands.command()
+    @commands.guild_only()
+    @commands.check(is_moderator)
+    async def modclear(self, ctx, amount=5):
+        await ctx.channel.purge(limit=amount)
