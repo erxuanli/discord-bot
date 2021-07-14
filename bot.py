@@ -30,7 +30,7 @@ from cogs.cmds.gambling_cmds import GamblingCmds
 from cogs.cmds.other_cmds import OtherCmds
 
 from cogs.cmds.games.tictactoe.tictactoe import TictactoeCmds
-
+from cogs.cmds.games.leagueoflegends.league_of_legends import LeagueOfLegends
 from cogs.non_cmds.troll_flori import TrollFlori
 from cogs.non_cmds.events import Events
 
@@ -86,7 +86,7 @@ client = commands.Bot(command_prefix=get_prefix,
 cogs_bool = True
 
 cogs = [HelpCmds(client), GeneralCmds(client), TestingCmds(client), VcCmds(client), FunCmds(client), MathCmds(client), ScienceCmds(client), DumbCmds(
-    client), ManagementCmds(client), ModeratorCmds(client), EcosystemCmds(client), GamblingCmds(client), OtherCmds(client), TictactoeCmds(client), TrollFlori(client), Events(client), VcActivityRoles(client), ErrorHandlerCmds(client)] 
+    client), ManagementCmds(client), LeagueOfLegends(client), ModeratorCmds(client), EcosystemCmds(client), GamblingCmds(client), OtherCmds(client), TictactoeCmds(client), TrollFlori(client), Events(client), VcActivityRoles(client), ErrorHandlerCmds(client)] 
 
 for cog in cogs:
     client.add_cog(cog)
