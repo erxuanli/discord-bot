@@ -6,6 +6,7 @@ from cogs.cmds.custom_checks import not_in_blacklist
 class HelpCmds(commands.Cog):
     def __init__(self, client):
         self.client = client
+        self.footer_message = "our website: https://chi-discord-bot.github.io/"
 
     @commands.command()
     @commands.check(not_in_blacklist)
@@ -39,7 +40,7 @@ class HelpCmds(commands.Cog):
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline)      
             
-            embed.set_footer(text="Thanks for using this useless bot xD and greetings to all weebs xD")
+            embed.set_footer(text=self.footer_message)
 
             await ctx.send(embed=embed)
 
@@ -60,7 +61,7 @@ class HelpCmds(commands.Cog):
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline)  
 
-            embed.set_footer(text="Thanks for using this useless bot xD and greetings to all weebs xD")
+            embed.set_footer(text=self.footer_message)
 
             await ctx.send(embed=embed)
 
@@ -76,7 +77,7 @@ class HelpCmds(commands.Cog):
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
 
-            embed.set_footer(text="Thanks for using this useless bot xD and greetings to all weebs xD")
+            embed.set_footer(text=self.footer_message)
 
             await ctx.send(embed=embed)
 
@@ -98,7 +99,7 @@ class HelpCmds(commands.Cog):
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
 
-            embed.set_footer(text="Thanks for using this useless bot xD and greetings to all weebs xD")
+            embed.set_footer(text=self.footer_message)
 
             await ctx.send(embed=embed)
 
@@ -116,7 +117,7 @@ class HelpCmds(commands.Cog):
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
 
-            embed.set_footer(text="Thanks for using this useless bot xD and greetings to all weebs xD")
+            embed.set_footer(text=self.footer_message)
 
             await ctx.send(embed=embed)
 
@@ -137,7 +138,7 @@ class HelpCmds(commands.Cog):
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
             
-            embed.set_footer(text="Thanks for using this useless bot xD and greetings to all weebs xD")
+            embed.set_footer(text=self.footer_message)
 
             await ctx.send(embed=embed)
 
@@ -154,7 +155,7 @@ class HelpCmds(commands.Cog):
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
 
-            embed.set_footer(text="Thanks for using this useless bot xD and greetings to all weebs xD")
+            embed.set_footer(text=self.footer_message)
 
             await ctx.send(embed=embed)
 
@@ -170,7 +171,7 @@ class HelpCmds(commands.Cog):
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
 
-            embed.set_footer(text="Thanks for using this useless bot xD and greetings to all weebs xD")
+            embed.set_footer(text=self.footer_message)
 
             await ctx.send(embed=embed)
 
@@ -187,7 +188,7 @@ class HelpCmds(commands.Cog):
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
 
-            embed.set_footer(text="Thanks for using this useless bot xD and greetings to all weebs xD")
+            embed.set_footer(text=self.footer_message)
 
             await ctx.send(embed=embed)
 
@@ -208,7 +209,7 @@ class HelpCmds(commands.Cog):
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
 
-            embed.set_footer(text="Thanks for using this useless bot xD and greetings to all weebs xD")
+            embed.set_footer(text=self.footer_message)
 
             await ctx.send(embed=embed)
 
@@ -225,7 +226,7 @@ class HelpCmds(commands.Cog):
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
             
-            embed.set_footer(text="Thanks for using this useless bot xD and greetings to all weebs xD")
+            embed.set_footer(text=self.footer_message)
 
             await ctx.send(embed=embed)
 
@@ -240,7 +241,7 @@ class HelpCmds(commands.Cog):
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
             
-            embed.set_footer(text="Thanks for using this useless bot xD and greetings to all weebs xD")
+            embed.set_footer(text=self.footer_message)
 
             await ctx.send(embed=embed)
 
@@ -257,7 +258,7 @@ class HelpCmds(commands.Cog):
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
             
-            embed.set_footer(text="Thanks for using this useless bot xD and greetings to all weebs xD")
+            embed.set_footer(text=self.footer_message)
 
             await ctx.send(embed=embed)
 
@@ -274,7 +275,7 @@ class HelpCmds(commands.Cog):
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
             
-            embed.set_footer(text="Thanks for using this useless bot xD and greetings to all weebs xD")
+            embed.set_footer(text=self.footer_message)
 
             await ctx.send(embed=embed)
 
