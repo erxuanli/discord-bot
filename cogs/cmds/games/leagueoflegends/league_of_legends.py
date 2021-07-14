@@ -6,7 +6,7 @@ import random
 class LeagueOfLegends(commands.Cog):
     def __init__(self, client):
         self.client = client
-        with open("cogs\cmds\games\leagueoflegends\ultimate_names.json", "r") as file:
+        with open("./cogs/cmds/games/leagueoflegends/ultimate_names.json", "r") as file:
             self.ultimateNames = json.load(file)
         self.waiting = False
         self.point = 0
