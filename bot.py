@@ -86,7 +86,7 @@ client = commands.Bot(command_prefix=get_prefix,
 cogs_bool = True
 
 cogs = [HelpCmds(client), GeneralCmds(client), TestingCmds(client), VcCmds(client), FunCmds(client), MathCmds(client), ScienceCmds(client), DumbCmds(
-    client), ManagementCmds(client), LeagueOfLegends(client), ModeratorCmds(client), EcosystemCmds(client), GamblingCmds(client), OtherCmds(client), TictactoeCmds(client), TrollFlori(client), Events(client), VcActivityRoles(client), ErrorHandlerCmds(client)] 
+    client), ManagementCmds(client), ModeratorCmds(client), EcosystemCmds(client), GamblingCmds(client), OtherCmds(client), TictactoeCmds(client), TrollFlori(client), Events(client), VcActivityRoles(client), ErrorHandlerCmds(client)] 
 
 for cog in cogs:
     client.add_cog(cog)
