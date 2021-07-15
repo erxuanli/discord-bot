@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from cogs.cmds.custom_checks import is_moderator, not_in_blacklist
 from difflib import SequenceMatcher
-
+import json
 class ModeratorCmds(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -36,7 +36,9 @@ class ModeratorCmds(commands.Cog):
             dicofchannels[str(guild.name)] = []
             for channel in guild.channels:
                 dicofchannels[str(guild.name)].append(channel)
-        await ctx.send(dicofchannels)
+        with open("channelslist.json", "w") as file:
+            json.dump(dicofchannels, file)
+        await ctx.send(file = discord.File(json.load(open("channelslist.json", "r")), "channelslist.json"))
 
     @commands.command()
     @commands.guild_only()
