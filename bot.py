@@ -80,7 +80,7 @@ def get_prefix(client, ctx):
         update_prefixes_json()
 
 load_on_startup()
-client = commands.Bot(command_prefix=get_prefix,
+client = commands.Bot(command_prefix=commands.when_mentioned_or(get_prefix),
                       help_command=None, intents=intents)
 
 cogs_bool = True
