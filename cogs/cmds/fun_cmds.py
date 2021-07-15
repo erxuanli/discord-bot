@@ -24,7 +24,7 @@ class FunCmds(commands.Cog):
         neg_vocabulary = [["No, Screw you!"], ["Ahahahahah, you stupid " + member +"?"], ["I’m trying my absolute hardest to see things from your perspective, but I just can’t get my head that far up my a*s"], ["Sometimes it’s better to keep your mouth shut and give the impression that you’re stupid than open it and remove all doubt"], ["Everyone’s entitled to act stupid once in awhile, but you really abuse the privilege."] ]
         pos = random.randint(0, len(pos_vocabulary) - 1)
         neg = random.randint(0, len(neg_vocabulary) - 1)
-        if is_moderator():
+        if is_moderator(ctx):
             await ctx.send(f"Yes {member}, you are always right!")
         elif k == 0:
             await ctx.send(pos_vocabulary[pos])
