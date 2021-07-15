@@ -62,7 +62,7 @@ def get_prefix(client, ctx):
     with open("prefixes.json", "r") as file:
         prefixes = json.loads(json.load(file))
         if ctx.guild is None:  # private messages
-            return ";"
+            return commands.when_mentioned_or(";")(client, ctx)
         elif str(ctx.guild.id) not in prefixes:
             db_client = MongoClient(os.environ['MONGODB'])
             with db_client:
