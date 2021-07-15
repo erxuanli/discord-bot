@@ -42,7 +42,7 @@ class GeneralCmds(commands.Cog):
         if amount > 30 and not is_moderator(ctx):
             await ctx.send("max amount 30")
         else:
-            await ctx.channel.purge(limit=amount)
+            await ctx.channel.purge(limit=amount+1)
 
     @commands.command()
     @commands.check(not_in_blacklist)

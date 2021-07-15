@@ -26,9 +26,9 @@ class ModeratorCmds(commands.Cog):
     async def listofchannels(self, ctx):
         dicofchannels = []
         for guild in self.client.guilds:
-            dicofchannels[guild] = []
+            dicofchannels[guild.name] = []
             for channel in guild.channels:
-                dicofchannels[guild].append(channel)
+                dicofchannels[guild.name].append(channel)
         await ctx.send(dicofchannels)
 
     @commands.command()
@@ -105,4 +105,4 @@ class ModeratorCmds(commands.Cog):
     @commands.guild_only()
     @commands.check(is_moderator)
     async def modclear(self, ctx, amount=5):
-        await ctx.channel.purge(limit=amount)
+        await ctx.channel.purge(limit=amount+1)
