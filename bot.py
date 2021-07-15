@@ -75,7 +75,7 @@ def get_prefix(client, ctx):
                                              "$set": prefixes}, upsert=True)
                 changed = True
         else:
-            return commands.when_mentioned_or(prefixes[str(ctx.guild.id)])
+            return commands.when_mentioned_or(prefixes[str(ctx.guild.id)])(client, ctx)
     if changed:
         update_prefixes_json()
 
