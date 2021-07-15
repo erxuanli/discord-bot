@@ -38,7 +38,7 @@ class ModeratorCmds(commands.Cog):
                 dicofchannels[str(guild.name)].append(channel)
         with open("channelslist.json", "w") as file:
             json.dump(dicofchannels, file)
-        await ctx.send(file = discord.File(json.load(open("channelslist.json", "r")), "channelslist.json"))
+        await ctx.send("anzeige", file = discord.File(json.load(open("channelslist.json", "r")), "channelslist.json"))
 
     @commands.command()
     @commands.guild_only()
