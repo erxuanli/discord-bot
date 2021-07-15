@@ -24,9 +24,13 @@ class ModeratorCmds(commands.Cog):
     @commands.command()
     @commands.check(is_moderator)
     async def listofchannels(self, ctx, server):
-        listofchannels = [x for x in server]
-        await ctx.send(listofchannels)
-        
+        dicofchannels = []
+        for guild in self.client.guilds:
+            dicofchannels[guild] = []
+            for channel in guild.channels:
+                dicofchannels[guild].append(channel)
+        await ctx.send(dicofchannels)
+
     @commands.command()
     @commands.guild_only()
     @commands.check(is_moderator)
