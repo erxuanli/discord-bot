@@ -17,14 +17,14 @@ class FunCmds(commands.Cog):
         self.client = client
    
     @commands.command()
-    async def right(self, ctx, member: discord.Member):
+    async def right(self, ctx):
         k = random(0, 1)
-        pos_vocabulary = [["Absolutely " + member],["Yes " + member + ". You are right!"], ["Dead-on!"], ["Precisely!"]]
-        neg_vocabulary = [["No, Screw you!"], ["Ahahahahah, you stupid " + member +"?"], ["I’m trying my absolute hardest to see things from your perspective, but I just can’t get my head that far up my a*s"], ["Sometimes it’s better to keep your mouth shut and give the impression that you’re stupid than open it and remove all doubt"], ["Everyone’s entitled to act stupid once in awhile, but you really abuse the privilege."] ]
+        pos_vocabulary = [["Absolutely " + ctx.author],["Yes " + ctx.author + ". You are right!"], ["Dead-on!"], ["Precisely!"]]
+        neg_vocabulary = [["No, Screw you!"], ["Ahahahahah, you stupid " + ctx.author +"?"], ["I’m trying my absolute hardest to see things from your perspective, but I just can’t get my head that far up my a*s"], ["Sometimes it’s better to keep your mouth shut and give the impression that you’re stupid than open it and remove all doubt"], ["Everyone’s entitled to act stupid once in awhile, but you really abuse the privilege."] ]
         pos = random(0, len(pos_vocabulary) - 1)
         neg = random(0, len(neg_vocabulary) - 1)
         if is_moderator():
-            await ctx.send(f"Yes {member}, you are always right!")
+            await ctx.send(f"Yes {ctx.author}, you are always right!")
         elif k == 0:
             await ctx.send(pos_vocabulary[pos])
         else:
