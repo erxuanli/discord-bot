@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-
+from cogs.cmds.custom_checks import is_moderator
 import os
 
 from pymongo import MongoClient
