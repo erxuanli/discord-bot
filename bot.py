@@ -92,7 +92,7 @@ for cog in cogs:
     client.add_cog(cog)
 
 
-bot_status = cycle([f";help || Stalking {os.environ['MY_DISCORD_TAG']}", "https://chi-discord-bot.github.io/", "Still in development UwU", f"bot host started at: {time.ctime(time.time() + (2 * 60**2))}"])
+bot_status = cycle([";help or mention the bot", "Creator: PolarBear4u#7025", "Collaboration with Frozen0wl#9220", "https://chi-discord-bot.github.io/", "Still in development UwU", f"bot host started at: {time.ctime(time.time() + (2 * 60**2))}"])
 
 
 @client.event
