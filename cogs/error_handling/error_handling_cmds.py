@@ -8,7 +8,7 @@ class ErrorHandlerCmds(commands.Cog):
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
-        cmd_prefix = self.client.command_prefix(self.client, ctx)
+        cmd_prefix = self.client.command_prefix(self.client, ctx)[2]
 
         if hasattr(ctx.command, "on_error"):
             return

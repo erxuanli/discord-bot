@@ -11,7 +11,7 @@ class HelpCmds(commands.Cog):
     @commands.command()
     @commands.check(not_in_blacklist)
     async def help(self, ctx, category: str = None):
-        cmd_prefix = self.client.command_prefix(self.client, ctx)
+        cmd_prefix = self.client.command_prefix(self.client, ctx)[2]
         # --------------------- help [listing categories] ------------------------------
         if category is None:
             embed = discord.Embed(title="help",
