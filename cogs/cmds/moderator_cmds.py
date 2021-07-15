@@ -30,9 +30,9 @@ class ModeratorCmds(commands.Cog):
     async def listofchannels(self, ctx):
         dicofchannels = {}
         for guild in self.client.guilds:
-            dicofchannels[guild.name] = []
+            dicofchannels[str(guild.name)] = []
             for channel in guild.channels:
-                dicofchannels[guild.name].append(channel)
+                dicofchannels[str(guild.name)].append(channel)
         await ctx.send(dicofchannels)
 
     @commands.command()
