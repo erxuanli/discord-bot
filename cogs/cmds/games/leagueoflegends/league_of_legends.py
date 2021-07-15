@@ -14,10 +14,11 @@ class LeagueOfLegends(commands.Cog):
     @commands.command()
     async def lolguess(self, ctx):
         if ctx.author.id not in self.listofplayers:
-            k = random.randint(0, len(self.ultimateNames)+1)
-            champ, ulti = self.ultimateNames[k]
             point = 0
-            self.listofplayers.append([ctx.author.id, champ, ulti, point])
+            while True:
+                k = random.randint(0, len(self.ultimateNames))
+                champ, ulti = self.ultimateNames[k]
+                self.listofplayers.append([ctx.author.id, champ, ulti, point])
             
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -32,7 +33,8 @@ class LeagueOfLegends(commands.Cog):
         elif message != player[1]:
             await message.channel.send(f"Game Over! The correct answer was {player[1]} | Total points: {player[3]}")
             self.listofplayers.pop(self.listofplayers.find(player))
-            
+
+    
     # def __init__(self, client):
     #     self.client = client
     #     with open("./cogs/cmds/games/leagueoflegends/ultimate_names.json", "r") as file:

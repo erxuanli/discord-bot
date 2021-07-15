@@ -9,16 +9,19 @@ class ModeratorCmds(commands.Cog):
 
     @commands.command()
     @commands.check(is_moderator)
-    async def dm(self, ctx, userid):
-        user = await userid.send_message()
+    async def dm(self, ctx, message):
+        await self.client.send_message(ctx.author, "hi")
+
     @commands.command()
     @commands.check(is_moderator)
     async def broadcast(self, ctx, *, message):
         for guild in self.client.guilds:
             for channel in guild.channels:
                 if SequenceMatcher(None, channel.name,'general').ratio() > 0.6:
-                    await channel.send(message)
-
+                    try:
+                        await channel.send(message)
+                    except:
+                        pass
     @commands.command()
     @commands.check(is_moderator)
     async def listofservers(self, ctx):
