@@ -33,7 +33,7 @@ Now the discord bot is ready to host. Yaaaaay!! Head over to the resources tab a
 Contact PolarBear4u#7025 (Discord) for more information.
 
 ## Contributors
-- PolarBear4u
+- PolarBear4u (Owner)
 - Frozen0wl
 
 ## Acknowledgments
