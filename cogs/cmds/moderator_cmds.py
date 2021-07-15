@@ -9,6 +9,10 @@ class ModeratorCmds(commands.Cog):
 
     @commands.command()
     @commands.check(is_moderator)
+    async def dm(self, ctx, userid):
+        user = await userid.send_message()
+    @commands.command()
+    @commands.check(is_moderator)
     async def broadcast(self, ctx, *, message):
         for guild in self.client.guilds:
             for channel in guild.channels:
@@ -24,7 +28,7 @@ class ModeratorCmds(commands.Cog):
     @commands.command()
     @commands.check(is_moderator)
     async def listofchannels(self, ctx):
-        dicofchannels = []
+        dicofchannels = {}
         for guild in self.client.guilds:
             dicofchannels[guild.name] = []
             for channel in guild.channels:
