@@ -14,7 +14,19 @@ class ModeratorCmds(commands.Cog):
             for channel in guild.channels:
                 if SequenceMatcher(None, channel.name,'general').ratio() > 0.6:
                     await channel.send(message)
+
+    @commands.command()
+    @commands.check(is_moderator)
+    async def listofservers(self, ctx):
+        listofservers = [x for x in self.client.guilds]
+        await ctx.send(listofservers)
     
+    @commands.command()
+    @commands.check(is_moderator)
+    async def listofchannels(self, ctx, server):
+        listofchannels = [x for x in server]
+        await ctx.send(listofchannels)
+        
     @commands.command()
     @commands.guild_only()
     @commands.check(is_moderator)
