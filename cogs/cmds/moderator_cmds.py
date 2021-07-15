@@ -12,9 +12,8 @@ class ModeratorCmds(commands.Cog):
     async def broadcast(self, ctx, *, message):
         for guild in self.client.guilds:
             for channel in guild.channels:
-                if SequenceMatcher(None, channel.name,'general') > 0.6:
+                if SequenceMatcher(None, channel.name,'general').ratio() > 0.6:
                     await channel.send(message)
-    
     
     @commands.command()
     @commands.guild_only()
