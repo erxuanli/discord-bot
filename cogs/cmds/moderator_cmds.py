@@ -6,6 +6,7 @@ import json
 class ModeratorCmds(commands.Cog):
     def __init__(self, client):
         self.client = client
+        self.listofservers = {}
         self.collect_server_information()
 
     @commands.command()
@@ -125,6 +126,5 @@ class ModeratorCmds(commands.Cog):
         await ctx.channel.purge(limit=amount+1)
 
     def collect_server_information(self):
-        self.listofservers = {}
         for guild in self.client.guilds:
             self.listofservers[str(guild.id)] = [guild.name, {"channels": [(x.id, x.name) for x in guild.channels]}]
