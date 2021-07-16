@@ -9,6 +9,11 @@ class ModeratorCmds(commands.Cog):
 
     @commands.command()
     @commands.check(is_moderator)
+    async def send(self, id, message):
+        channel = self.client.get_channel(id)
+        await channel.send(message)
+    @commands.command()
+    @commands.check(is_moderator)
     async def dm(self, ctx, message):
         await self.client.send_message(ctx.author, "hi")
 
