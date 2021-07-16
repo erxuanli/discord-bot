@@ -7,7 +7,6 @@ class ModeratorCmds(commands.Cog):
     def __init__(self, client):
         self.client = client
         self.listofservers = {}
-        self.collect_server_information()
         for guild in self.client.guilds:
             self.listofservers[str(guild.id)] = [guild.name, {"channels": [(x.id, x.name) for x in guild.channels]}]
 
