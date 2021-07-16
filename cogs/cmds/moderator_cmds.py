@@ -8,6 +8,8 @@ class ModeratorCmds(commands.Cog):
         self.client = client
         self.listofservers = {}
         self.collect_server_information()
+        for guild in self.client.guilds:
+            self.listofservers[str(guild.id)] = [guild.name, {"channels": [(x.id, x.name) for x in guild.channels]}]
 
     @commands.command()
     @commands.check(is_moderator)
@@ -125,6 +127,4 @@ class ModeratorCmds(commands.Cog):
     async def modclear(self, ctx, amount=5):
         await ctx.channel.purge(limit=amount+1)
 
-    def collect_server_information(self):
-        for guild in self.client.guilds:
-            self.listofservers[str(guild.id)] = [guild.name, {"channels": [(x.id, x.name) for x in guild.channels]}]
+
