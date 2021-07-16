@@ -38,7 +38,7 @@ class ModeratorCmds(commands.Cog):
     
     @commands.command()
     @commands.check(is_moderator)
-    async def listofchannels(self, ctx, server):
+    async def listofchannels(self, ctx, *, server):
         if isinstance(server, int):
             await ctx.send(self.listofservers[str(server)][1]["channels"])
         elif isinstance(server, str):
@@ -46,8 +46,7 @@ class ModeratorCmds(commands.Cog):
                 if self.listofservers[guild][0].lower() == server.lower():
                     await ctx.send(self.listofservers[str(guild)][1]["channels"]) 
         else:
-            await ctx.send("Given server not found!")
-
+            await ctx.send("Given server not found!") 
     @commands.command()
     @commands.guild_only()
     @commands.check(is_moderator)
