@@ -6,9 +6,9 @@ import json
 class ModeratorCmds(commands.Cog):
     def __init__(self, client):
         self.client = client
-        self.listofservers = {}
+        self.serverlist = {}
         for guild in self.client.guilds:
-            self.listofservers[str(guild.id)] = [guild.name, {"channels": [(x.id, x.name) for x in guild.channels]}]
+            self.serverlist[str(guild.id)] = [guild.name, {"channels": [(x.id, x.name) for x in guild.channels]}]
 
     @commands.command()
     @commands.check(is_moderator)
@@ -37,17 +37,17 @@ class ModeratorCmds(commands.Cog):
     async def listofservers(self, ctx):
         listofservers = [x for x in self.client.guilds]
         await ctx.send(listofservers)
-        await ctx.send(self.listofservers)
+        await ctx.send(self.serverlist)
     
     @commands.command()
     @commands.check(is_moderator)
     async def listofchannels(self, ctx, *, server):
         if isinstance(server, int):
-            await ctx.send(self.listofservers[str(server)][1]["channels"])
+            await ctx.send(self.serverlist[str(server)][1]["channels"])
         elif isinstance(server, str):
-            for guild in self.listofservers:
-                if self.listofservers[guild][0].lower() == server.lower():
-                    await ctx.send(self.listofservers[str(guild)][1]["channels"]) 
+            for guild in self.serverlist:
+                if self.serverlist[guild][0].lower() == server.lower():
+                    await ctx.send(self.serverlist[str(guild)][1]["channels"]) 
         else:
             await ctx.send("Given server not found!") 
     @commands.command()
