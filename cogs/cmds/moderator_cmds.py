@@ -35,6 +35,7 @@ class ModeratorCmds(commands.Cog):
     async def listofservers(self, ctx):
         listofservers = [x for x in self.client.guilds]
         await ctx.send(listofservers)
+        await ctx.send(self.listofservers)
     
     @commands.command()
     @commands.check(is_moderator)
