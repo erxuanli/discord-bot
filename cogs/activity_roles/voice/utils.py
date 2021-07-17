@@ -1,7 +1,7 @@
 import time
 import json
 
-def user_all_time(self, serverid: str, userid: str) -> float: # returns all time vc stats of user in seconds
+def user_all_time(serverid: str, userid: str) -> float: # returns all time vc stats of user in seconds
         with open("user_voice_stats.json", "r") as file:
             stats = json.loads(json.load(file))
             if serverid not in stats:
@@ -19,7 +19,7 @@ def user_all_time(self, serverid: str, userid: str) -> float: # returns all time
                         res += i[1] - i[0]
                 return res
 
-def user(self, serverid: str, userid: str, lookback_days: int) -> float: # returns the stats of the last lookback_days days of an user in seconds
+def user(serverid: str, userid: str, lookback_days: int) -> float: # returns the stats of the last lookback_days days of an user in seconds
     diff = time.time() - (lookback_days * 24 * 60 * 60)
     with open("user_voice_stats.json", "r") as file:
         stats = json.loads(json.load(file))
@@ -44,7 +44,7 @@ def user(self, serverid: str, userid: str, lookback_days: int) -> float: # retur
                         res += i[1] - i[0]
             return res
 
-def user_all_time_global(self, userid: str) -> float: # returns the sum of all time vc stats of user in all servers in seconds
+def user_all_time_global(userid: str) -> float: # returns the sum of all time vc stats of user in all servers in seconds
     with open("user_voice_stats.json", "r") as file:
         stats = json.loads(json.load(file))
         if not stats: # no servers
@@ -67,7 +67,7 @@ def user_all_time_global(self, userid: str) -> float: # returns the sum of all t
                                         res += i[1] - i[0]
             return res
 
-def user_global(self, userid: str, lookback_days: int) -> float: # returns the sum of all user vc stats in all servers of the last lookback_days days in seconds
+def user_global(userid: str, lookback_days: int) -> float: # returns the sum of all user vc stats in all servers of the last lookback_days days in seconds
     diff = time.time() - (lookback_days * 24 * 60 * 60)
     with open("user_voice_stats.json", "r") as file:
         stats = json.loads(json.load(file))
@@ -97,7 +97,7 @@ def user_global(self, userid: str, lookback_days: int) -> float: # returns the s
                                             res += i[1] - i[0]
             return res
 
-def user_all_time_top(self, serverid: str, quan: int = 0) -> list: # returns top quan vc stats users of a specific server
+def user_all_time_top(serverid: str, quan: int = 0) -> list: # returns top quan vc stats users of a specific server
     res = list()
     with open("user_voice_stats.json", "r") as file:
         stats = json.loads(json.load(file))
@@ -112,7 +112,7 @@ def user_all_time_top(self, serverid: str, quan: int = 0) -> list: # returns top
         return sorted(res, reverse=True)
     return sorted(res, reverse=True)[:quan]
 
-def user_top(self, serverid: str, quan: int = 0, lookback_days: int = 14) -> list: # returns top quan vc stats users of a specific server of the last lookback_days days
+def user_top(serverid: str, quan: int = 0, lookback_days: int = 14) -> list: # returns top quan vc stats users of a specific server of the last lookback_days days
     res = list()
     with open("user_voice_stats.json", "r") as file:
         stats = json.loads(json.load(file))
@@ -127,7 +127,7 @@ def user_top(self, serverid: str, quan: int = 0, lookback_days: int = 14) -> lis
         return sorted(res, reverse=True)
     return sorted(res, reverse=True)[:quan]
 
-def user_all_time_global_top(self, quan: int = 0) -> list: # returns top quan vc stats users (global) (bots included)
+def user_all_time_global_top(quan: int = 0) -> list: # returns top quan vc stats users (global) (bots included)
     users = list()
     res = list()
 
@@ -151,7 +151,7 @@ def user_all_time_global_top(self, quan: int = 0) -> list: # returns top quan vc
         return sorted(res, reverse=True)
     return sorted(res, reverse=True)[:quan]
 
-def user_global_top(self, quan: int = 0, lookback_days: int = 14) -> list: # returns top quan vc stats users (global) (bots included) of the last lookback_days days
+def user_global_top(quan: int = 0, lookback_days: int = 14) -> list: # returns top quan vc stats users (global) (bots included) of the last lookback_days days
     users = list()
     res = list()
 
@@ -175,7 +175,7 @@ def user_global_top(self, quan: int = 0, lookback_days: int = 14) -> list: # ret
         return sorted(res, reverse=True)
     return sorted(res, reverse=True)[:quan]
 
-def server_all_time_top(self, quan: int = 0) -> list: # returns top quan vc stats servers (global) (bots included in calculation)
+def server_all_time_top(quan: int = 0) -> list: # returns top quan vc stats servers (global) (bots included in calculation)
     res = list()
     with open("user_voice_stats.json", "r") as file:
         stats = json.loads(json.load(file))
@@ -187,7 +187,7 @@ def server_all_time_top(self, quan: int = 0) -> list: # returns top quan vc stat
         return sorted(res, reverse=True)
     return sorted(res, reverse=True)[:quan]
 
-def server_top(self, quan: int = 0, lookback_days: int = 14) -> list: # returns top quan vc stats servers (global) (bots inclued in calculation) of the last lookback_days days
+def server_top(quan: int = 0, lookback_days: int = 14) -> list: # returns top quan vc stats servers (global) (bots inclued in calculation) of the last lookback_days days
     res = list()
     with open("user_voice_stats.json", "r") as file:
         stats = json.loads(json.load(file))
@@ -199,7 +199,7 @@ def server_top(self, quan: int = 0, lookback_days: int = 14) -> list: # returns 
         return sorted(res, reverse=True)
     return sorted(res, reverse=True)[:quan]
 
-def sum_user_all_time(self, serverid: str) -> float: # returns the sum of vc stats of all user of a specific server
+def sum_user_all_time(serverid: str) -> float: # returns the sum of vc stats of all user of a specific server
     with open("user_voice_stats.json", "r") as file:
         stats = json.loads(json.load(file))
         if not stats: # no servers
@@ -214,7 +214,7 @@ def sum_user_all_time(self, serverid: str) -> float: # returns the sum of vc sta
                 res += self.user_all_time(serverid, member)
             return res
 
-def sum_user(self, serverid: str, lookback_days: int = 14) -> float: # returns the sum of vc stats of all user of a specific server of the last lookback_days days
+def sum_user(serverid: str, lookback_days: int = 14) -> float: # returns the sum of vc stats of all user of a specific server of the last lookback_days days
     with open("user_voice_stats.json", "r") as file:
         stats = json.loads(json.load(file))
         if not stats: # no servers
@@ -230,7 +230,7 @@ def sum_user(self, serverid: str, lookback_days: int = 14) -> float: # returns t
             return res
                 
 
-def user_all_time_joins(self, serverid: str, userid: str) -> int: # returns all time vc user joins
+def user_all_time_joins(serverid: str, userid: str) -> int: # returns all time vc user joins
     with open("user_voice_stats.json", "r") as file:
         stats = json.loads(json.load(file))
         if serverid not in stats:
@@ -246,7 +246,7 @@ def user_all_time_joins(self, serverid: str, userid: str) -> int: # returns all 
                     res += 1
             return res
 
-def user_joins(self, serverid: str, userid: str, lookback_days: int = 14) -> int: # returns vc user joins of the last lookback_days days
+def user_joins(serverid: str, userid: str, lookback_days: int = 14) -> int: # returns vc user joins of the last lookback_days days
     diff = time.time() - (lookback_days * 24 * 60 * 60)
     with open("user_voice_stats.json", "r") as file:
         stats = json.loads(json.load(file))
@@ -265,7 +265,7 @@ def user_joins(self, serverid: str, userid: str, lookback_days: int = 14) -> int
                     res += 1
             return res
 
-def user_all_time_joins_global(self, userid: str) -> int: # returns all time vc user joins global (all servers)
+def user_all_time_joins_global(userid: str) -> int: # returns all time vc user joins global (all servers)
     with open("user_voice_stats.json", "r") as file:
         stats = json.loads(json.load(file))
         if not stats: # no servers
@@ -286,7 +286,7 @@ def user_all_time_joins_global(self, userid: str) -> int: # returns all time vc 
                                         res += 1
             return res
 
-def user_joins_global(self, userid: str, lookback_days: int = 14) -> int: # returns all time vc user joins global (all servers) of the last lookback_days days
+def user_joins_global(userid: str, lookback_days: int = 14) -> int: # returns all time vc user joins global (all servers) of the last lookback_days days
     diff = time.time() - (lookback_days * 24 * 60 * 60)
     with open("user_voice_stats.json", "r") as file:
         stats = json.loads(json.load(file))
@@ -310,7 +310,7 @@ def user_joins_global(self, userid: str, lookback_days: int = 14) -> int: # retu
                                         res += 1
             return res
 
-def user_all_time_leaves(self, serverid: str, userid: str) -> int: # returns all time vc user leaves
+def user_all_time_leaves(serverid: str, userid: str) -> int: # returns all time vc user leaves
     with open("user_voice_stats.json", "r") as file:
         stats = json.loads(json.load(file))
         if serverid not in stats:
@@ -326,7 +326,7 @@ def user_all_time_leaves(self, serverid: str, userid: str) -> int: # returns all
                     res += 1
             return res
 
-def user_leaves(self, serverid: str, userid: str, lookback_days: int = 14) -> int: # returns vc user leaves of the last lookback_days days
+def user_leaves(serverid: str, userid: str, lookback_days: int = 14) -> int: # returns vc user leaves of the last lookback_days days
     diff = time.time() - (lookback_days * 24 * 60 * 60)
     with open("user_voice_stats.json", "r") as file:
         stats = json.loads(json.load(file))
@@ -345,7 +345,7 @@ def user_leaves(self, serverid: str, userid: str, lookback_days: int = 14) -> in
                     res += 1
             return res
 
-def user_all_time_leaves_global(self, userid: str) -> int: # returns all time vc user leaves global (all servers)
+def user_all_time_leaves_global(userid: str) -> int: # returns all time vc user leaves global (all servers)
     with open("user_voice_stats.json", "r") as file:
         stats = json.loads(json.load(file))
         if not stats: # no servers
@@ -366,7 +366,7 @@ def user_all_time_leaves_global(self, userid: str) -> int: # returns all time vc
                                         res += 1
             return res
 
-def user_leaves_global(self, userid: str, lookback_days: int = 14) -> int: # returns vc user leaves global (all servers) of the last lookback_days days
+def user_leaves_global(userid: str, lookback_days: int = 14) -> int: # returns vc user leaves global (all servers) of the last lookback_days days
     diff = time.time() - (lookback_days * 24 * 60 * 60)
     with open("user_voice_stats.json", "r") as file:
         stats = json.loads(json.load(file))
@@ -390,7 +390,7 @@ def user_leaves_global(self, userid: str, lookback_days: int = 14) -> int: # ret
                                         res += 1
             return res
 
-def seconds_to_hours_minutes_seconds(self, seconds: float):
+def seconds_to_hours_minutes_seconds(seconds: float):
     ti = seconds
     hours = int(seconds // (60**2))
     ti -= hours*60**2
