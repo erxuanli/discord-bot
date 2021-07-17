@@ -22,6 +22,53 @@ class VcActivityRoles(commands.Cog):
         self.sync_stats_json()
         self.upload_json_to_database.start()
 
+    # vc roles commands and functions ---------------------------------------------
+    @commands.command(aliases=["vcss", "vcssetup", "vcstatssetup", "voicechannelstatssetup"])
+    @commands.has_permissions(administrator=True)
+    @commands.guild_only()
+    @commands.check(not_in_blacklist)
+    async def voice_channel_stats_setup(self, ctx, category: str = None, needed_time: int = 0):   
+        cmd_prefix = self.client.command_prefix(self.client, ctx)[2]     
+        
+        if category is None:
+            embed = discord.Embed(title="vc activity roles [menu]",
+                                    description="UwU",
+                                    color=discord.Color.blue())
+
+            fields = [(f"**{cmd_prefix}vcss roles**", "use this command to add a role to activity roles", False)]
+
+            for name, value, inline in fields:
+                embed.add_field(name = name, value = value, inline = inline)  
+
+            embed.set_footer(text=self.footer_message)
+
+            await ctx.send(embed=embed)
+
+        elif category == "roles":
+            embed = discord.Embed(title="vc activity roles [roles menu]",
+                                description="UwU",
+                                color=discord.Color.blue())
+
+            fields = [(f"**{cmd_prefix}vcss addrole**", "use this command to add a role to activity roles", False),
+                      (f"**{cmd_prefix}vcss remrole**", "use this command to add a role to activity roles", False),
+                      (f"**{cmd_prefix}vcss showroles**", "use this command to add a role to activity roles", False)]
+
+            for name, value, inline in fields:
+                embed.add_field(name = name, value = value, inline = inline)  
+
+            embed.set_footer(text=self.footer_message)
+
+            await ctx.send(embed=embed)
+
+        elif category == "addrole":
+            pass
+
+        elif category == "remrole":
+            pass
+
+        elif category == "showroles":
+            pass
+
 
     # commands -----------------------------------------------------------------------
     @commands.command()
