@@ -16,6 +16,7 @@ from cogs.cmds.custom_checks import not_in_blacklist, is_moderator
 class VcActivityRoles(commands.Cog):
     def __init__(self, client):
         self.client = client
+        self.footer_message = "our website: https://chi-discord-bot.github.io/"
         self.editing_json = False
         self.loaded = False
         self.database_id = "60d2fce20a8eed87da7c9f79"
