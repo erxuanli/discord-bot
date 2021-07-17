@@ -37,7 +37,7 @@ class VcActivityRoles(commands.Cog):
                                     description="UwU",
                                     color=discord.Color.blue())
 
-            fields = [(f"**{cmd_prefix}vcss roles**", "use this command to add a role to activity roles", False)]
+            fields = [(f"**{cmd_prefix}vcss roles**", "manage activity roles menu", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline)  
@@ -52,8 +52,8 @@ class VcActivityRoles(commands.Cog):
                                 color=discord.Color.blue())
 
             fields = [(f"**{cmd_prefix}vcss addrole**", "use this command to add a role to activity roles", False),
-                      (f"**{cmd_prefix}vcss remrole**", "use this command to add a role to activity roles", False),
-                      (f"**{cmd_prefix}vcss showroles**", "use this command to add a role to activity roles", False)]
+                      (f"**{cmd_prefix}vcss remrole**", "use this command to remove a role from activity roles", False),
+                      (f"**{cmd_prefix}vcss showroles**", "use this command to show all currently active activity roles", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline)  
