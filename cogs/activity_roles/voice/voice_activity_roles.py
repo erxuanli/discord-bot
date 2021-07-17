@@ -13,6 +13,7 @@ import datetime
 
 from cogs.cmds.custom_checks import not_in_blacklist, is_moderator
 
+import cogs.activity_roles.voice.utils as vcstatsutils
 class VcActivityRoles(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -28,7 +29,7 @@ class VcActivityRoles(commands.Cog):
     @commands.has_permissions(administrator=True)
     @commands.guild_only()
     @commands.check(not_in_blacklist)
-    async def voice_channel_stats_setup(self, ctx, category: str = None, needed_time: int = 0):   
+    async def voice_channel_stats_setup(self, ctx, category: str = None, role: discord.Role = None, needed_time: int = 0):   
         cmd_prefix = self.client.command_prefix(self.client, ctx)[2]     
         
         if category is None:
@@ -82,23 +83,23 @@ class VcActivityRoles(commands.Cog):
 
         embed = discord.Embed(title = f"User VC Stats [{str(user)} || {str(user.id)}]", color = discord.Color.orange())
 
-        vcat_hours, vcat_minutes, vcat_seconds = self.seconds_to_hours_minutes_seconds(self.user_all_time(str(ctx.guild.id), str(user.id)))
-        vcatg_hours, vcatg_minutes, vcatg_seconds = self.seconds_to_hours_minutes_seconds(self.user_all_time_global(str(user.id)))
-        vcat_hours_14, vcat_minutes_14, vcat_seconds_14 = self.seconds_to_hours_minutes_seconds(self.user(str(ctx.guild.id), str(user.id), 14))
-        vcatg_hours_14, vcatg_minutes_14, vcatg_seconds_14 = self.seconds_to_hours_minutes_seconds(self.user_global(str(user.id), 14))
+        vcat_hours, vcat_minutes, vcat_seconds = vcstatsutils.seconds_to_hours_minutes_seconds(vcstatsutils.user_all_time(str(ctx.guild.id), str(user.id)))
+        vcatg_hours, vcatg_minutes, vcatg_seconds = vcstatsutils.seconds_to_hours_minutes_seconds(vcstatsutils.user_all_time_global(str(user.id)))
+        vcat_hours_14, vcat_minutes_14, vcat_seconds_14 = vcstatsutils.seconds_to_hours_minutes_seconds(vcstatsutils.user(str(ctx.guild.id), str(user.id), 14))
+        vcatg_hours_14, vcatg_minutes_14, vcatg_seconds_14 = vcstatsutils.seconds_to_hours_minutes_seconds(vcstatsutils.user_global(str(user.id), 14))
 
         fields = [(f"VC All Time [{ctx.guild}]", f"{vcat_hours} hour(s), {vcat_minutes} minute(s), {vcat_seconds} second(s)", False),
                   ("VC All Time [Global]", f"{vcatg_hours} hour(s), {vcatg_minutes} minute(s), {vcatg_seconds} second(s)", False),
                   (f"VC last 14 days [{ctx.guild}]", f"{vcat_hours_14} hour(s), {vcat_minutes_14} minute(s), {vcat_seconds_14} second(s)", False),
                   ("VC last 14 days [Global]", f"{vcatg_hours_14} hour(s), {vcatg_minutes_14} minute(s), {vcatg_seconds_14} second(s)", False),
-                  (f"VC Joins All Time [{ctx.guild}]", str(self.user_all_time_joins(str(ctx.guild.id), str(user.id))), False),
-                  (f"VC Leaves All Time [{ctx.guild}]", str(self.user_all_time_leaves(str(ctx.guild.id), str(user.id))), False),
-                  (f"VC Joins last 14 days [{ctx.guild}]", str(self.user_joins(str(ctx.guild.id), str(user.id), 14)), False),
-                  (f"VC Leaves last 14 days [{ctx.guild}]", str(self.user_leaves(str(ctx.guild.id), str(user.id), 14)), False),
-                  ("VC Joins All Time [Global]", str(self.user_all_time_joins_global(str(user.id))), False),
-                  ("VC Leaves All Time [Global]", str(self.user_all_time_leaves_global(str(user.id))), False),
-                  ("VC Joins last 14 days [Global]", str(self.user_joins_global(str(user.id), 14)), False),
-                  ("VC Leaves last 14 days [Global]", str(self.user_leaves_global(str(user.id), 14)), False)
+                  (f"VC Joins All Time [{ctx.guild}]", str(vcstatsutils.user_all_time_joins(str(ctx.guild.id), str(user.id))), False),
+                  (f"VC Leaves All Time [{ctx.guild}]", str(vcstatsutils.user_all_time_leaves(str(ctx.guild.id), str(user.id))), False),
+                  (f"VC Joins last 14 days [{ctx.guild}]", str(vcstatsutils.user_joins(str(ctx.guild.id), str(user.id), 14)), False),
+                  (f"VC Leaves last 14 days [{ctx.guild}]", str(vcstatsutils.user_leaves(str(ctx.guild.id), str(user.id), 14)), False),
+                  ("VC Joins All Time [Global]", str(vcstatsutils.user_all_time_joins_global(str(user.id))), False),
+                  ("VC Leaves All Time [Global]", str(vcstatsutils.user_all_time_leaves_global(str(user.id))), False),
+                  ("VC Joins last 14 days [Global]", str(vcstatsutils.user_joins_global(str(user.id), 14)), False),
+                  ("VC Leaves last 14 days [Global]", str(vcstatsutils.user_leaves_global(str(user.id), 14)), False)
                   ]
 
         for name, value, inline in fields:
@@ -116,10 +117,10 @@ class VcActivityRoles(commands.Cog):
         title = ""
 
         if lookback_days <= 0:
-            toplist = self.user_all_time_top(str(ctx.guild.id), 10)
+            toplist = vcstatsutils.user_all_time_top(str(ctx.guild.id), 10)
             title = f"VC User Top [{ctx.guild}]"
         else:
-            toplist = self.user_top(str(ctx.guild.id), 10, lookback_days)
+            toplist = vcstatsutils.user_top(str(ctx.guild.id), 10, lookback_days)
             title = f"VC User Top [{ctx.guild}] [Last {lookback_days} days]"    
 
         embed = discord.Embed(title = title, color = discord.Color.orange())    
@@ -127,7 +128,7 @@ class VcActivityRoles(commands.Cog):
         count = 1
         for ti, userid in toplist:
             user = await self.client.fetch_user(userid)
-            hours, minutes, seconds = self.seconds_to_hours_minutes_seconds(ti)
+            hours, minutes, seconds = vcstatsutils.seconds_to_hours_minutes_seconds(ti)
 
             cap = f"[{count}] {user}"
             count += 1
@@ -146,10 +147,10 @@ class VcActivityRoles(commands.Cog):
         title = ""
 
         if lookback_days <= 0:
-            toplist = self.user_all_time_global_top(10)
+            toplist = vcstatsutils.user_all_time_global_top(10)
             title = f"VC User Top [Global]"
         else:
-            toplist = self.user_global_top(10, lookback_days)
+            toplist = vcstatsutils.user_global_top(10, lookback_days)
             title = f"VC User Top [Global] [Last {lookback_days} days]"  
 
         embed = discord.Embed(title = title, color = discord.Color.orange())
@@ -157,7 +158,7 @@ class VcActivityRoles(commands.Cog):
         count = 1
         for ti, userid in toplist:
             user = await self.client.fetch_user(userid)
-            hours, minutes, seconds = self.seconds_to_hours_minutes_seconds(ti)
+            hours, minutes, seconds = vcstatsutils.seconds_to_hours_minutes_seconds(ti)
 
             cap = f"[{count}] {user}"
             count += 1
@@ -175,10 +176,10 @@ class VcActivityRoles(commands.Cog):
         title = ""
 
         if lookback_days <= 0:
-            toplist = self.server_all_time_top(10)
+            toplist = vcstatsutils.server_all_time_top(10)
             title = f"VC Server Top"
         else:
-            toplist = self.server_top(10, lookback_days)
+            toplist = vcstatsutils.server_top(10, lookback_days)
             title = f"VC Server Top [Last {lookback_days} days]" 
 
         embed = discord.Embed(title = title, color = discord.Color.orange()) 
@@ -186,7 +187,7 @@ class VcActivityRoles(commands.Cog):
         count = 1
         for ti, serverid in toplist:
             server = self.client.get_guild(int(serverid))
-            hours, minutes, seconds = self.seconds_to_hours_minutes_seconds(ti)
+            hours, minutes, seconds = vcstatsutils.seconds_to_hours_minutes_seconds(ti)
 
             cap = f"[{count}] {server}"
             count += 1
@@ -204,405 +205,6 @@ class VcActivityRoles(commands.Cog):
         with open("user_voice_stats.json", "r") as file:
             await ctx.send("VC Stats JSON:", file=discord.File(file, "user_voice_stats.json"))
 
-    
-    # utils ------------------------------------------------------------------------
-    def user_all_time(self, serverid: str, userid: str) -> float: # returns all time vc stats of user in seconds
-        with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            if serverid not in stats:
-                return 0.0
-            elif userid not in stats[serverid]:
-                return 0.0
-            elif len(stats[serverid][userid]["jlvc"]) == 0:
-                return 0.0
-            else:
-                res = 0.0
-                for i in stats[serverid][userid]["jlvc"]:
-                    if len(i) != 2:
-                        pass
-                    else:
-                        res += i[1] - i[0]
-                return res
-
-    def user(self, serverid: str, userid: str, lookback_days: int) -> float: # returns the stats of the last lookback_days days of an user in seconds
-        diff = time.time() - (lookback_days * 24 * 60 * 60)
-        with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            if serverid not in stats:
-                return 0.0
-            elif userid not in stats[serverid]:
-                return 0.0
-            elif len(stats[serverid][userid]["jlvc"]) == 0:
-                return 0.0
-            else:
-                res = 0.0
-                for i in reversed(stats[serverid][userid]["jlvc"]):
-                    if len(i) != 2:
-                        pass
-                    else:
-                        if i[1] <= diff:
-                            return res
-                        elif i[0] < diff:
-                            res += i[1] - diff
-                            return res
-                        else:
-                            res += i[1] - i[0]
-                return res
-    
-    def user_all_time_global(self, userid: str) -> float: # returns the sum of all time vc stats of user in all servers in seconds
-        with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            if not stats: # no servers
-                return 0.0
-            else:
-                res = 0.0
-                for server in stats: 
-                    if len(stats[server]) == 0: # no members in server
-                        pass
-                    else:
-                        for user in stats[server]:
-                            if user == userid:
-                                if len(stats[server][user]["jlvc"]) == 0: # user has no stats
-                                    break
-                                else:
-                                    for i in stats[server][user]["jlvc"]:
-                                        if len(i) != 2:
-                                            pass
-                                        else:
-                                            res += i[1] - i[0]
-                return res
-
-    def user_global(self, userid: str, lookback_days: int) -> float: # returns the sum of all user vc stats in all servers of the last lookback_days days in seconds
-        diff = time.time() - (lookback_days * 24 * 60 * 60)
-        with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            if not stats: # no servers
-                return 0.0
-            else:
-                res = 0.0
-                for server in stats: 
-                    if len(stats[server]) == 0: # no members in server
-                        pass
-                    else:
-                        for user in stats[server]:
-                            if user == userid:
-                                if len(stats[server][user]["jlvc"]) == 0: # user has no stats
-                                    break
-                                else:
-                                    for i in reversed(stats[server][user]["jlvc"]):
-                                        if len(i) != 2:
-                                            pass
-                                        else:
-                                            if i[1] <= diff:
-                                                break
-                                            elif i[0] < diff:
-                                                res += i[1] - diff
-                                                break
-                                            else:
-                                                res += i[1] - i[0]
-                return res
-
-    def user_all_time_top(self, serverid: str, quan: int = 0) -> list: # returns top quan vc stats users of a specific server
-        res = list()
-        with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            if serverid not in stats: # no servers
-                return []
-            elif not stats[serverid]: # no members in server
-                return []
-            else:
-                for member in stats[serverid]:
-                    res.append([self.user_all_time(serverid, member), member])
-        if quan == 0:
-            return sorted(res, reverse=True)
-        return sorted(res, reverse=True)[:quan]
-
-    def user_top(self, serverid: str, quan: int = 0, lookback_days: int = 14) -> list: # returns top quan vc stats users of a specific server of the last lookback_days days
-        res = list()
-        with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            if serverid not in stats: # no servers
-                return []
-            elif not stats[serverid]: # no members in server
-                return []
-            else:
-                for member in stats[serverid]:
-                    res.append([self.user(serverid, member, lookback_days), member])
-        if quan == 0:
-            return sorted(res, reverse=True)
-        return sorted(res, reverse=True)[:quan]
-    
-    def user_all_time_global_top(self, quan: int = 0) -> list: # returns top quan vc stats users (global) (bots included)
-        users = list()
-        res = list()
-
-        # collect all users
-        with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            if not stats: # no servers
-                return []
-            else:
-                for server in stats:
-                    if len(stats[server]) == 0: # no members in server
-                        pass
-                    else:
-                        for user in stats[server]:
-                            users.append(user)
-
-        for user in set(users):
-            res.append([self.user_all_time_global(user), user])
-
-        if quan == 0:
-            return sorted(res, reverse=True)
-        return sorted(res, reverse=True)[:quan]
-
-    def user_global_top(self, quan: int = 0, lookback_days: int = 14) -> list: # returns top quan vc stats users (global) (bots included) of the last lookback_days days
-        users = list()
-        res = list()
-
-        # collect all users
-        with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            if not stats: # no servers
-                return []
-            else:
-                for server in stats:
-                    if len(stats[server]) == 0: # no members in server
-                        pass
-                    else:
-                        for user in stats[server]:
-                            users.append(user)
-
-        for user in set(users):
-            res.append([self.user_global(user, lookback_days), user])
-
-        if quan == 0:
-            return sorted(res, reverse=True)
-        return sorted(res, reverse=True)[:quan]
-
-    def server_all_time_top(self, quan: int = 0) -> list: # returns top quan vc stats servers (global) (bots included in calculation)
-        res = list()
-        with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            if not stats: # no servers
-                return []
-            for server in stats:
-                res.append([self.sum_user_all_time(server), server])
-        if quan == 0:
-            return sorted(res, reverse=True)
-        return sorted(res, reverse=True)[:quan]
-
-    def server_top(self, quan: int = 0, lookback_days: int = 14) -> list: # returns top quan vc stats servers (global) (bots inclued in calculation) of the last lookback_days days
-        res = list()
-        with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            if not stats: # no servers
-                return []
-            for server in stats:
-                res.append([self.sum_user(server, lookback_days), server])
-        if quan == 0:
-            return sorted(res, reverse=True)
-        return sorted(res, reverse=True)[:quan]
-
-    def sum_user_all_time(self, serverid: str) -> float: # returns the sum of vc stats of all user of a specific server
-        with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            if not stats: # no servers
-                return 0.0
-            elif serverid not in stats:
-                return 0.0
-            elif not stats[serverid]: # no members in server
-                return 0.0
-            else:
-                res = 0.0
-                for member in stats[serverid]:
-                    res += self.user_all_time(serverid, member)
-                return res
-    
-    def sum_user(self, serverid: str, lookback_days: int = 14) -> float: # returns the sum of vc stats of all user of a specific server of the last lookback_days days
-        with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            if not stats: # no servers
-                return 0.0
-            elif serverid not in stats:
-                return 0.0
-            elif not stats[serverid]: # no members in server
-                return 0.0
-            else:
-                res = 0.0
-                for member in stats[serverid]:
-                    res += self.user(serverid, member, lookback_days)
-                return res
-                    
-
-    def user_all_time_joins(self, serverid: str, userid: str) -> int: # returns all time vc user joins
-        with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            if serverid not in stats:
-                return 0
-            elif userid not in stats[serverid]:
-                return 0
-            elif len(stats[serverid][userid]["jlvc"]) == 0:
-                return 0
-            else:
-                res = 0
-                for i in stats[serverid][userid]["jlvc"]:
-                    if len(i) == 1 or len(i) == 2:
-                        res += 1
-                return res
-
-    def user_joins(self, serverid: str, userid: str, lookback_days: int = 14) -> int: # returns vc user joins of the last lookback_days days
-        diff = time.time() - (lookback_days * 24 * 60 * 60)
-        with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            if serverid not in stats:
-                return 0
-            elif userid not in stats[serverid]:
-                return 0
-            elif len(stats[serverid][userid]["jlvc"]) == 0:
-                return 0
-            else:
-                res = 0
-                for i in reversed(stats[serverid][userid]["jlvc"]):
-                    if len(i) == 1 or len(i) == 2:
-                        if i[0] < diff:
-                            return res
-                        res += 1
-                return res
-
-    def user_all_time_joins_global(self, userid: str) -> int: # returns all time vc user joins global (all servers)
-        with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            if not stats: # no servers
-                return 0
-            else:
-                res = 0
-                for server in stats: 
-                    if len(stats[server]) == 0: # no members in server
-                        pass
-                    else:
-                        for user in stats[server]:
-                            if user == userid:
-                                if len(stats[server][user]["jlvc"]) == 0: # user has no stats
-                                    break
-                                else:
-                                    for i in stats[server][user]["jlvc"]:
-                                        if len(i) == 1 or len(i) == 2:
-                                            res += 1
-                return res
-
-    def user_joins_global(self, userid: str, lookback_days: int = 14) -> int: # returns all time vc user joins global (all servers) of the last lookback_days days
-        diff = time.time() - (lookback_days * 24 * 60 * 60)
-        with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            if not stats: # no servers
-                return 0
-            else:
-                res = 0
-                for server in stats: 
-                    if len(stats[server]) == 0: # no members in server
-                        pass
-                    else:
-                        for user in stats[server]:
-                            if user == userid:
-                                if len(stats[server][user]["jlvc"]) == 0: # user has no stats
-                                    break
-                                else:
-                                    for i in reversed(stats[server][user]["jlvc"]):
-                                        if len(i) == 1 or len(i) == 2:
-                                            if i[0] < diff:
-                                                break
-                                            res += 1
-                return res
-
-    def user_all_time_leaves(self, serverid: str, userid: str) -> int: # returns all time vc user leaves
-        with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            if serverid not in stats:
-                return 0
-            elif userid not in stats[serverid]:
-                return 0
-            elif len(stats[serverid][userid]["jlvc"]) == 0:
-                return 0
-            else:
-                res = 0
-                for i in stats[serverid][userid]["jlvc"]:
-                    if len(i) == 2:
-                        res += 1
-                return res
-
-    def user_leaves(self, serverid: str, userid: str, lookback_days: int = 14) -> int: # returns vc user leaves of the last lookback_days days
-        diff = time.time() - (lookback_days * 24 * 60 * 60)
-        with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            if serverid not in stats:
-                return 0
-            elif userid not in stats[serverid]:
-                return 0
-            elif len(stats[serverid][userid]["jlvc"]) == 0:
-                return 0
-            else:
-                res = 0
-                for i in reversed(stats[serverid][userid]["jlvc"]):
-                    if len(i) == 2:
-                        if i[1] < diff:
-                            return res
-                        res += 1
-                return res
-
-    def user_all_time_leaves_global(self, userid: str) -> int: # returns all time vc user leaves global (all servers)
-        with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            if not stats: # no servers
-                return 0
-            else:
-                res = 0
-                for server in stats: 
-                    if len(stats[server]) == 0: # no members in server
-                        pass
-                    else:
-                        for user in stats[server]:
-                            if user == userid:
-                                if len(stats[server][user]["jlvc"]) == 0: # user has no stats
-                                    break
-                                else:
-                                    for i in stats[server][user]["jlvc"]:
-                                        if len(i) == 2:
-                                            res += 1
-                return res
-
-    def user_leaves_global(self, userid: str, lookback_days: int = 14) -> int: # returns vc user leaves global (all servers) of the last lookback_days days
-        diff = time.time() - (lookback_days * 24 * 60 * 60)
-        with open("user_voice_stats.json", "r") as file:
-            stats = json.loads(json.load(file))
-            if not stats: # no servers
-                return 0
-            else:
-                res = 0
-                for server in stats: 
-                    if len(stats[server]) == 0: # no members in server
-                        pass
-                    else:
-                        for user in stats[server]:
-                            if user == userid:
-                                if len(stats[server][user]["jlvc"]) == 0: # user has no stats
-                                    break
-                                else:
-                                    for i in reversed(stats[server][user]["jlvc"]):
-                                        if len(i) == 2:
-                                            if i[1] < diff:
-                                                break
-                                            res += 1
-                return res
-    
-    def seconds_to_hours_minutes_seconds(self, seconds: float):
-        ti = seconds
-        hours = int(seconds // (60**2))
-        ti -= hours*60**2
-        minutes = int(ti // 60)
-        ti -= minutes*60
-        c_seconds = int(ti)
-        return hours, minutes, c_seconds
 
     # syncing and collecting vc stats -----------------------------------------------
     @commands.Cog.listener()
