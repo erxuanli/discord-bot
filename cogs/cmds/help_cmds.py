@@ -236,7 +236,7 @@ class HelpCmds(commands.Cog):
                                   description="help for all games",
                                   color=discord.Color.blue())
 
-            fields = [(f"**{cmd_prefix}tictactoe [player1] [player2]**", "tic tac toe game (still in development)", False)]
+            fields = [(f"**nothing here yet**", "404 xD", False)]
 
             for name, value, inline in fields:
                 embed.add_field(name = name, value = value, inline = inline) 
