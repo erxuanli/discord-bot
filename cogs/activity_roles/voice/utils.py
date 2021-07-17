@@ -107,7 +107,7 @@ def user_all_time_top(serverid: str, quan: int = 0) -> list: # returns top quan 
             return []
         else:
             for member in stats[serverid]:
-                res.append([self.user_all_time(serverid, member), member])
+                res.append([user_all_time(serverid, member), member])
     if quan == 0:
         return sorted(res, reverse=True)
     return sorted(res, reverse=True)[:quan]
@@ -122,7 +122,7 @@ def user_top(serverid: str, quan: int = 0, lookback_days: int = 14) -> list: # r
             return []
         else:
             for member in stats[serverid]:
-                res.append([self.user(serverid, member, lookback_days), member])
+                res.append([user(serverid, member, lookback_days), member])
     if quan == 0:
         return sorted(res, reverse=True)
     return sorted(res, reverse=True)[:quan]
@@ -145,7 +145,7 @@ def user_all_time_global_top(quan: int = 0) -> list: # returns top quan vc stats
                         users.append(user)
 
     for user in set(users):
-        res.append([self.user_all_time_global(user), user])
+        res.append([user_all_time_global(user), user])
 
     if quan == 0:
         return sorted(res, reverse=True)
@@ -169,7 +169,7 @@ def user_global_top(quan: int = 0, lookback_days: int = 14) -> list: # returns t
                         users.append(user)
 
     for user in set(users):
-        res.append([self.user_global(user, lookback_days), user])
+        res.append([user_global(user, lookback_days), user])
 
     if quan == 0:
         return sorted(res, reverse=True)
@@ -182,7 +182,7 @@ def server_all_time_top(quan: int = 0) -> list: # returns top quan vc stats serv
         if not stats: # no servers
             return []
         for server in stats:
-            res.append([self.sum_user_all_time(server), server])
+            res.append([sum_user_all_time(server), server])
     if quan == 0:
         return sorted(res, reverse=True)
     return sorted(res, reverse=True)[:quan]
@@ -194,7 +194,7 @@ def server_top(quan: int = 0, lookback_days: int = 14) -> list: # returns top qu
         if not stats: # no servers
             return []
         for server in stats:
-            res.append([self.sum_user(server, lookback_days), server])
+            res.append([sum_user(server, lookback_days), server])
     if quan == 0:
         return sorted(res, reverse=True)
     return sorted(res, reverse=True)[:quan]
@@ -211,7 +211,7 @@ def sum_user_all_time(serverid: str) -> float: # returns the sum of vc stats of 
         else:
             res = 0.0
             for member in stats[serverid]:
-                res += self.user_all_time(serverid, member)
+                res += user_all_time(serverid, member)
             return res
 
 def sum_user(serverid: str, lookback_days: int = 14) -> float: # returns the sum of vc stats of all user of a specific server of the last lookback_days days
@@ -226,7 +226,7 @@ def sum_user(serverid: str, lookback_days: int = 14) -> float: # returns the sum
         else:
             res = 0.0
             for member in stats[serverid]:
-                res += self.user(serverid, member, lookback_days)
+                res += user(serverid, member, lookback_days)
             return res
                 
 
