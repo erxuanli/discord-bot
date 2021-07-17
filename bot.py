@@ -34,6 +34,7 @@ from cogs.cmds.games.leagueoflegends.league_of_legends import LeagueOfLegends
 from cogs.non_cmds.troll_flori import TrollFlori
 from cogs.non_cmds.events import Events
 
+from cogs.activity_roles.voice.voice_stats_cmds import VoiceStatsCmds
 from cogs.activity_roles.voice.voice_activity_roles import VcActivityRoles
 
 from cogs.error_handling.error_handling_cmds import ErrorHandlerCmds
@@ -86,7 +87,7 @@ client = commands.Bot(command_prefix=get_prefix,
 cogs_bool = True
 
 cogs = [HelpCmds(client), GeneralCmds(client), TestingCmds(client), VcCmds(client), FunCmds(client), MathCmds(client), ScienceCmds(client), DumbCmds(
-    client), ManagementCmds(client), ModeratorCmds(client), EcosystemCmds(client), GamblingCmds(client), OtherCmds(client), TictactoeCmds(client), TrollFlori(client), Events(client), VcActivityRoles(client), ErrorHandlerCmds(client)] 
+    client), ManagementCmds(client), ModeratorCmds(client), EcosystemCmds(client), GamblingCmds(client), OtherCmds(client), TictactoeCmds(client), TrollFlori(client), Events(client), VcActivityRoles(client), ErrorHandlerCmds(client), VoiceStatsCmds(client)] 
 
 for cog in cogs:
     client.add_cog(cog)
