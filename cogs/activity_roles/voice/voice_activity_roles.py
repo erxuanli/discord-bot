@@ -85,7 +85,7 @@ class VcActivityRoles(commands.Cog):
                 stats = self.update_stats_json_join(stats.copy(), member)
             elif before.channel is not None and after.channel is None: # user leaving vc
                 stats = self.update_stats_json_leave(stats.copy(), member)
-            json.dump(json_util.dumps(stats), file)
+            json.dump(json_util.dumps(stats, indent = 4, sort_keys = True), file)
         self.editing_json = False
 
     @tasks.loop(seconds=300) # every 5 minutes
@@ -148,7 +148,7 @@ class VcActivityRoles(commands.Cog):
             stats = stats_collection.find_one(
                 ObjectId(self.database_id))
             with open("user_voice_stats.json", "w") as file:
-                json.dump(json_util.dumps(stats["data"]), file)
+                json.dump(json_util.dumps(stats["data"], indent = 4, sort_keys = True), file)
         self.loaded = True
 
             
