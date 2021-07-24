@@ -28,7 +28,7 @@ class LolCmds(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def addlolrankrole(self, ctx,*, roles):
         roles = roles.split()
-        cluster = MongoClient("mongodb+srv://owl:ESIKO1juCf3bUkrk@frozen0wl.c6k33.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+        cluster = MongoClient(os.environ['MONGODB'])
         db = cluster["riotapi"]
         collection = db["roles"]
 
@@ -49,7 +49,7 @@ class LolCmds(commands.Cog):
         if not self.isverified(ctx.author.id):
             await ctx.send(f"You need to first verify your account. Use the command verify to do so")
             return
-        cluster = MongoClient("mongodb+srv://owl:ESIKO1juCf3bUkrk@frozen0wl.c6k33.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+        cluster = MongoClient(os.environ['MONGODB'])
         db = cluster["riotapi"]
         collection = db["verifiedlist"]
 
@@ -92,7 +92,7 @@ class LolCmds(commands.Cog):
             pass
         if str(ctx.author.id) == code:
             try:
-                cluster = MongoClient("mongodb+srv://owl:ESIKO1juCf3bUkrk@frozen0wl.c6k33.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+                cluster = MongoClient(os.environ['MONGODB'])
                 db = cluster["riotapi"]
                 collection = db["verifiedlist"]
 
@@ -116,7 +116,7 @@ class LolCmds(commands.Cog):
             pass
         if str(ctx.author.id) == code:
             try:
-                cluster = MongoClient("mongodb+srv://owl:ESIKO1juCf3bUkrk@frozen0wl.c6k33.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+                cluster = MongoClient(os.environ['MONGODB'])
                 db = cluster["riotapi"]
                 collection = db["verifiedlist"]
 
@@ -139,7 +139,7 @@ class LolCmds(commands.Cog):
             pass
         if str(ctx.author.id) == code:
             try:
-                cluster = MongoClient("mongodb+srv://owl:ESIKO1juCf3bUkrk@frozen0wl.c6k33.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+                cluster = MongoClient(os.environ['MONGODB'])
                 db = cluster["riotapi"]
                 collection = db["verifiedlist"]
 
@@ -156,7 +156,7 @@ class LolCmds(commands.Cog):
         if region + "1" in self.regions:
             region += "1"
         if region not in self.regions:
-            cluster = MongoClient("mongodb+srv://owl:ESIKO1juCf3bUkrk@frozen0wl.c6k33.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+            cluster = MongoClient(os.environ['MONGODB'])
             db = cluster["riotapi"]
             collection = db["verifiedlist"]
             result = collection.find_one({"id":ctx.author.id})
@@ -198,7 +198,7 @@ class LolCmds(commands.Cog):
             region += "1"
         isverified = self.isverified(ctx.author.id)
         if region not in self.regions and isverified:
-            cluster = MongoClient("mongodb+srv://owl:ESIKO1juCf3bUkrk@frozen0wl.c6k33.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+            cluster = MongoClient(os.environ['MONGODB'])
             db = cluster["riotapi"]
             collection = db["verifiedlist"]
             result = collection.find_one({"id":ctx.author.id})
@@ -225,7 +225,7 @@ class LolCmds(commands.Cog):
             if not isverified:
                 stats = self.getLeagueEntries(region, summonerName)
             else:
-                cluster = MongoClient("mongodb+srv://owl:ESIKO1juCf3bUkrk@frozen0wl.c6k33.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+                cluster = MongoClient(os.environ['MONGODB'])
                 db = cluster["riotapi"]
                 collection = db["verifiedlist"]
                 result = collection.find_one({"id":ctx.author.id})
@@ -285,7 +285,7 @@ class LolCmds(commands.Cog):
                 return response[type][info]
 
     def isverified(self, discordid):
-        cluster = MongoClient("mongodb+srv://owl:ESIKO1juCf3bUkrk@frozen0wl.c6k33.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+        cluster = MongoClient(os.environ['MONGODB'])
         db = cluster["riotapi"]
         collection = db["verifiedlist"]
 
