@@ -8,7 +8,7 @@ import requests
 
 import pymongo
 from pymongo import MongoClient
-
+from discord.ext.commands import BucketType
 
 class LolCmds(commands.Cog):
 
@@ -26,7 +26,7 @@ class LolCmds(commands.Cog):
     @commands.command()
     @commands.guild_only()
     @commands.has_permissions(administrator=True)
-    async def addlolrankrole(self, ctx,*, roles):
+    async def addlolrankrole(self, ctx,*, roles: discord.Role):
         roles = roles.split()
         cluster = MongoClient(os.environ['MONGODB'])
         db = cluster["riotapi"]
@@ -45,6 +45,7 @@ class LolCmds(commands.Cog):
             await ctx.send("")
 
     @commands.command()
+    @commands.cooldown(1, 10, BucketType.user)
     async def update(self, ctx):
         if not self.isverified(ctx.author.id):
             await ctx.send(f"You need to first verify your account. Use the command verify to do so")
@@ -56,7 +57,11 @@ class LolCmds(commands.Cog):
         result = collection.find_one({"id":ctx.author.id})
         id = result["_id"]
         region = result["region"]
-        tier = self.getLeagueEntriesID(region, id, 0, "tier")
+        try:
+            tier = self.getLeagueEntriesID(region, id, 0, "tier")
+        except IndexError:
+            await ctx.send("You are unranked")
+            return
         num = self.ranks[tier]
         collection = db["roles"]
         result = collection.find_one({"_id":ctx.guild.id})
@@ -78,6 +83,7 @@ class LolCmds(commands.Cog):
             await ctx.send(f"{role} role added. This role gives you the following permissions:\n{permissions[1:-1]}")
         else:
             await ctx.send(f"{role} role added. This role gives no extra permissions")
+
     @commands.command()
     async def verify(self, ctx, region, *, summonerName):
         if self.isverified(ctx.author.id):
@@ -85,11 +91,11 @@ class LolCmds(commands.Cog):
             return
         if region + "1" in self.regions:
             region += "1"
-        summonerName = summonerName.strip()
+        summonerName = "".join(summonerName.split())
         try:
             code = self.verificationCode(region, summonerName)
         except:
-            pass
+            code = None
         if str(ctx.author.id) == code:
             try:
                 cluster = MongoClient(os.environ['MONGODB'])
@@ -109,7 +115,7 @@ class LolCmds(commands.Cog):
     async def changeverification(self, ctx, region, *, summonerName):
         if region +"1" in self.regions:
             region+="1"
-        summonerName = summonerName.strip()
+        summonerName = "".join(summonerName.split())
         try:
             code = self.verificationCode(region, summonerName)
         except:
@@ -132,7 +138,7 @@ class LolCmds(commands.Cog):
     async def removeverification(self, ctx, region, *, summonerName):
         if region +"1" in self.regions:
             region+="1"
-        summonerName = summonerName.strip()
+        summonerName = "".join(summonerName.split())
         try:
             code = self.verificationCode(region, summonerName)
         except:
@@ -152,10 +158,11 @@ class LolCmds(commands.Cog):
 
 
     @commands.command()
+    @commands.cooldown(1, 1, BucketType.user)
     async def lolstats(self, ctx, region = "", *, summonerName = ""):
         if region + "1" in self.regions:
             region += "1"
-        if region not in self.regions:
+        if region not in self.regions and self.isverified(ctx.author.id):
             cluster = MongoClient(os.environ['MONGODB'])
             db = cluster["riotapi"]
             collection = db["verifiedlist"]
@@ -179,7 +186,7 @@ class LolCmds(commands.Cog):
                     losses = stats[1]["losses"]
                     await ctx.send(f"**{summoner}**\n{tier} {rank} [{lp}LP]\n{winrate}% winrate\nW{wins}; L{losses}")
         else:
-            summonerName = summonerName.strip()
+            summonerName = "".join(summonerName.split())
             stats = self.getLeagueEntries(region, summonerName)
             stats = sorted(stats, key=lambda k: k['queueType']) 
             tier = stats[1]["tier"] 
@@ -193,6 +200,7 @@ class LolCmds(commands.Cog):
             await ctx.send(f"**{summoner}**\n{tier} {rank} [{lp}LP]\n{winrate}% winrate\nW{wins}; L{losses}")
 
     @commands.command()
+    @commands.cooldown(1, 1, BucketType.user)
     async def lolflexstats(self, ctx, region = "", *, summonerName = ""):
         if region + "1" in self.regions:
             region += "1"
@@ -221,7 +229,7 @@ class LolCmds(commands.Cog):
                     losses = stats[0]["losses"]
                     await ctx.send(f"**{summoner}**\n{tier} {rank} [{lp}LP]\n{winrate}% winrate\nW{wins}; L{losses}")
         else:
-            summonerName = summonerName.strip()
+            summonerName = "".join(summonerName.split())
             if not isverified:
                 stats = self.getLeagueEntries(region, summonerName)
             else:
@@ -250,6 +258,7 @@ class LolCmds(commands.Cog):
         id = self.getSummonerInfo(region, summonerName)
         URL = f"https://{region}.api.riotgames.com/lol/platform/v4/third-party-code/by-summoner/{id}?api_key={self.APIKey}"
         response = requests.get(URL).json()
+        
         return response
 
     def getSummonerInfo(self, region, summonerName, info = "id"):
