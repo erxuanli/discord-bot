@@ -1,7 +1,7 @@
 import os
 
 def is_creator(ctx):
-    return ctx.author.id == int(os.environ['MY_DISCORD_ID'])
+    return ctx.author.id == 538375186722979851
 
 def is_flori(ctx):
     return ctx.author.id == 681969539935633441

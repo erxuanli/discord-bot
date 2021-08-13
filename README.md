@@ -13,8 +13,6 @@ After that please create a new application on [Heroku](https://www.heroku.com/) 
 In the settings of the app you need to add a few env vars. Add the following env vars.
 ```
 BOT_TOKEN = your bot token
-MY_DISCORD_ID = your discord id
-MY_DISCORD_TAG = your discord tag
 ```
 
 To be able to host the discord bot you still need a few [Heroku](https://www.heroku.com/) buildpacks. So head over to your [Heroku](https://www.heroku.com/) app settings and add the following buildpacks.

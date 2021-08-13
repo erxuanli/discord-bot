@@ -17,7 +17,7 @@ class GeneralCmds(commands.Cog):
     @commands.command()
     @commands.check(not_in_blacklist)
     async def creator(self, ctx):
-        await ctx.send(f"{os.environ['MY_DISCORD_TAG']} sennnnpaiiiiii")
+        await ctx.send("PolarBear4u#7025 sennnnpaiiiiii")
 
     @commands.command()
     @commands.check(not_in_blacklist)
