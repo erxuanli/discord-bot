@@ -53,8 +53,8 @@ class ManagementCmds(commands.Cog):
     async def ban(self, ctx, member: discord.Member, *, reason: str = None):
         if member.id == ctx.author.id:
             await ctx.send(f"You can't ban yourself")
-        elif member.top_role.position > ctx.author.top_role.position:
-            await ctx.send(f"You can't ban someone with a higher role than you")
+        elif member.top_role.position >= ctx.author.top_role.position:
+            await ctx.send(f"You can't ban someone with a role, higher or equal to your higest role")
         else:
             await ctx.send(f"Permission granted")
             await member.ban(reason=reason)
