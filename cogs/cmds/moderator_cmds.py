@@ -76,7 +76,9 @@ class ModeratorCmds(commands.Cog):
     @commands.check(is_moderator)
     async def modkick(self, ctx, member: discord.Member, *, reason: str = None):
         if member.id == ctx.author.id:
-            await ctx.send(f"You can't kick yourself")
+            await ctx.send(f"Why would you kick yourself???")
+            await member.kick(reason=reason)
+            await ctx.send(f"Kicked {member}")
         else:
             await ctx.send(f"Permission granted")
             await member.kick(reason=reason)
@@ -87,7 +89,9 @@ class ModeratorCmds(commands.Cog):
     @commands.check(is_moderator)
     async def modban(self, ctx, member: discord.Member, *, reason: str = None):
         if member.id == ctx.author.id:
-            await ctx.send(f"You can't ban yourself")
+            await ctx.send(f"Why would you ban yourself")
+            await member.ban(reason=reason)
+            await ctx.send(f"Banned {member}")
         else:
             await ctx.send(f"Permission granted")
             await member.ban(reason=reason)
