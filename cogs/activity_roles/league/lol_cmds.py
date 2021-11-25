@@ -14,7 +14,7 @@ class LolCmds(commands.Cog):
 
     def __init__(self, client):
         self.client = client
-        self.APIKey = "RGAPI-70112070-cf56-4ca7-bc6a-a87cb55c379d"
+        self.APIKey = "RGAPI-3ef57839-847d-47cb-9287-1eb7e36d9a8c"
         self.regions = ["euw1", "br1", "eun1", "jp1", "kr", "la1", "la2", "na1", "oc1", "tr1", "ru"]
         self.ranks = {"IRON":"0", "BRONZE":"1", "SILVER":"2", "GOLD":"3", "PLATINUM":"4", "DIAMOND":"5", "MASTER":"6", "GRANDMASTER":"7", "CHALLENGER":"8"}
 
