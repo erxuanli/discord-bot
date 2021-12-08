@@ -83,7 +83,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- GETTING STARTED -->
 # Getting Started
 
-To get a copy up and running follow these simple example steps.
+To get a copy up and running follow these simple steps.
 
 
 ## Prerequisites
