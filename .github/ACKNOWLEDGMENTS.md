@@ -6,4 +6,5 @@ This discord bot makes use of the following (open source) projects.
 - [pynacl](https://github.com/pyca/pynacl)
 - [sgp4](https://github.com/brandon-rhodes/python-sgp4)
 - [youtube-dl](https://github.com/ytdl-org/youtube-dl)
-- [ffmpeg](https://www.ffmpeg.org/)
+- [ffmpeg](https://www.ffmpeg.org/) 
+- [Img Shields](https://shields.io)

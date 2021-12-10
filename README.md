@@ -1,9 +1,8 @@
 <div id="top"></div>
 
 
-
 <!-- PROJECT LOGO -->
-<br />
+<br>
 <div align="center">
   <a href="https://github.com/CHI-Discord-Bot/discord-bot">
     <img src="https://raw.githubusercontent.com/CHI-Discord-Bot/CHI-Discord-Bot.github.io/main/images/ChaHaeIn.jpg" alt="Logo" width="200" height="200">
@@ -34,15 +33,8 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
@@ -52,51 +44,14 @@
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
-
-
-
-<!-- ABOUT THE PROJECT -->
-# About The Project
-
-First of all, thanks for showing interest in this discord bot! We aim to provide a multifunctional discord bot.
-Have fun exploring it.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-## Built With
-
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [discord.py](https://github.com/Rapptz/discord.py)
-* [julian](https://github.com/dannyzed/julian)
-* [pynacl](https://github.com/pyca/pynacl)
-* [sgp4](https://github.com/brandon-rhodes/python-sgp4)
-* [youtube-dl](https://github.com/ytdl-org/youtube-dl)
-* [ffmpeg](https://www.ffmpeg.org/)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
+<br>
 
 <!-- GETTING STARTED -->
 # Getting Started
+First of all, thanks for showing interest in this discord bot! We aim to provide a multifunctional discord bot.
+Have fun exploring it.
 
-To get a copy up and running follow these simple steps.
-
-
-## Prerequisites
-
-* discord.py==1.7.3
-* PyNaCl==1.4.0
-* youtube-dl==2021.6.6
-* sgp4==2.20
-* julian==0.14
-* pymongo==3.12.0
-* dnspython==2.1.0
-* requests==2.26.0
- 
+To get a copy up and running follow these simple steps. 
 
 ## Installation
 
@@ -127,7 +82,7 @@ To get a copy up and running follow these simple steps.
 
 7. Now the discord bot is ready to host. Head over to the resources tab and switch the worker from off to on.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right"><a href="#top">back to top</a></p>
 
 
 
@@ -136,21 +91,22 @@ To get a copy up and running follow these simple steps.
 
 Any contributions you make are **greatly appreciated**.
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+If you have any suggestions and want to take action yourself, please fork the repo and create a pull request. 
+You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
 
 Please make sure to read the [Contributor Guidelines](https://github.com/CHI-Discord-Bot/discord-bot/blob/main/.github/CONTRIBUTING.md)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right"><a href="#top">back to top</a></p>
 
 
 
 <!-- LICENSE -->
 # License
 
-Distributed under the [GNU v3.0](LICENSE) License. See `LICENSE.txt` for more information.
+Distributed under the [GNU v3.0](LICENSE) License. See `LICENSE` for more information.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right"><a href="#top">back to top</a></p>
 
 
 
@@ -159,15 +115,7 @@ Distributed under the [GNU v3.0](LICENSE) License. See `LICENSE.txt` for more in
 
 [PolarBear4u](https://polarbear4u.github.io/) - PolarBear4u#7025
 
-[FrozenOwl](https://github.com/Frozen0wl)
+[Frozen0wl](https://github.com/Frozen0wl) - Frozen0wl#9220
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right"><a href="#top">back to top</a></p>
 
-
-
-<!-- ACKNOWLEDGMENTS -->
-# Acknowledgments
-
-* [Img Shields](https://shields.io)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
