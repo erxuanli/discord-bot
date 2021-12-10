@@ -44,7 +44,6 @@
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
-<br>
 
 <!-- GETTING STARTED -->
 # Getting Started
