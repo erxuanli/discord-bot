@@ -139,11 +139,7 @@ Any contributions you make are **greatly appreciated**.
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Please make sure to read the [Contributor Guidelines](https://github.com/CHI-Discord-Bot/discord-bot/blob/main/.github/CONTRIBUTING.md)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -161,7 +157,7 @@ Distributed under the [GNU v3.0](LICENSE) License. See `LICENSE.txt` for more in
 <!-- CONTACT -->
 # Contact
 
-[PolarBear4u](https://polarbear4u.github.io/) - BolarBear4u#7025
+[PolarBear4u](https://polarbear4u.github.io/) - PolarBear4u#7025
 
 [FrozenOwl](https://github.com/Frozen0wl)
 
