@@ -1,0 +1,8 @@
+venv
+.vscode
+__pycache__
+.env
+tempCodeRunnerFile.py
+tempdev_token.txt
+.DS_Store
+env.py
