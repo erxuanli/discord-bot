@@ -4,5 +4,5 @@ youtube-dl==2021.6.6
 sgp4==2.22
 julian==0.14
 pymongo==4.3.3
-dnspython==2.3.0
+dnspython==2.4.0
 requests==2.31.0
